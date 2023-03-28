@@ -1,0 +1,69 @@
+I:\!!!BASE\MEDIA\!! !! Video\Parser Avito (IT каждый день)
+
+cd avito_parser_django
+django-admin -h
+django-admin startproject avito #02:50 базовый проект django avito
+cd avito_parser_django/avito
+python manage.py startapp aparser #05:25 приложение aparser в django проекте avito
+python manage.py runserver #09:00
+python manage.py migrate
+manage.py create superuser #vladimir / 111 OK!
+##################################################
+14:18
+python manage.py makemigrations
+python manage.py migrate
+
+16:40 admin.py class ProductAdmin(admin.ModelAdmin):
+19:07 mkfile aparser/forms.py -> copy from file ProductForm(forms.ModelForm):
+admin.py > from .forms import ProductForm
+avito/avito add file __init__.py
+mark directory as execute
+
+21:28
+
+ avito/aparser/: add dir management/ + __init__ + add dir commands/ + __init__
+
+pip install lxml
+pip install httpx
+#management/commands/parse_avito_httpx
+#from I:\pythonProjects\avito_django_telebot\avito_parser_django\avito>
+manage.py parse_avito
+manage.py parse_avito_httpx
+
+python avito/manage.py parse_avito
+
+!!!!!!!!!!!!!!!!!!!
+22:55 оборачиваем вместо __name__ = '__main__' в class Command(BaseCommand) 23:13!!!!!
+
+###################################################
+###################################################
+###################################################
+        ДОРАБОТКА
+git hhttps://bitbucket.org/vkasatkin/tele_bot/src/master/avito_parser_django/
+
+09:18 CommandError отслеживание ошибок
+15:00 логирование
+27:20 логирование вместо принтов в конфиг джанги settings 'LOGGING ='  str128
+32:30 !!!! батник запуска sh Makefile
+35:20 Фильтры по сумме в админке
+38:00 get_page r=self.session.get Заменить на HTTPX
+39:20 Фильтры по сумме в админке на интервалы
+
+44:40 Создание модели задания task
+50:20 В модели Product добавляем поле task ForeignKey
+52:30 в админку регистрируем task (фильтр по полю status)
+migrate
+56:04 берем задания из базы def find_task()
+!!!!!!!!!!!!!!!!!!!parse_avito def find_task()
+1:05:21 добавить логов в parse_all()
+1:11:30 про дебаг logger
+1:14:25 название задания в модели + формы
+пока стоп I:\!!!BASE\MEDIA\!! !! Video\Parser Avito (IT каждый день)    Доработка
+
+
+
+
+
+
+
+

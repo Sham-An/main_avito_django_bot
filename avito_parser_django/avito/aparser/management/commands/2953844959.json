@@ -1,0 +1,272 @@
+{
+  "address": "Москва, Лианозовский пр., 14с1",
+  "adjustParams": {
+    "categoryId": "10",
+    "microCategoryId": "5531",
+    "vertical": "GENERAL"
+  },
+  "advertOptions": [],
+  "breadcrumbs": [
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=10\u0026locationId=652120",
+      "name": "Запчасти и аксессуары",
+      "title": "Запчасти и аксессуары в Тарасовском",
+      "url": "/tarasovskiy/zapchasti_i_aksessuary"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=10\u0026locationId=652120\u0026params%5B5%5D%5B0%5D=49\u0026params%5B5%5D%5B1%5D=56",
+      "name": "Запчасти",
+      "title": "Запчасти",
+      "url": "/tarasovskiy/zapchasti_i_aksessuary/zapchasti-ASgBAgICAUQKJA"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=10\u0026locationId=652120\u0026params%5B598%5D%5B0%5D=54\u0026params%5B598%5D%5B1%5D=51\u0026params%5B598%5D%5B2%5D=57\u0026params%5B598%5D%5B3%5D=54\u0026params%5B5%5D%5B0%5D=49\u0026params%5B5%5D%5B1%5D=56",
+      "name": "Для автомобилей",
+      "title": "Для автомобилей",
+      "url": "/tarasovskiy/zapchasti_i_aksessuary/zapchasti/dlya_avtomobiley-ASgBAgICAkQKJKwJ~GM"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=10\u0026locationId=652120\u0026params%5B598%5D%5B0%5D=54\u0026params%5B598%5D%5B1%5D=51\u0026params%5B598%5D%5B2%5D=57\u0026params%5B598%5D%5B3%5D=54\u0026params%5B5%5D%5B0%5D=49\u0026params%5B5%5D%5B1%5D=56\u0026params%5B817%5D%5B0%5D=49\u0026params%5B817%5D%5B1%5D=49\u0026params%5B817%5D%5B2%5D=54\u0026params%5B817%5D%5B3%5D=50\u0026params%5B817%5D%5B4%5D=48",
+      "name": "Двигатель",
+      "title": "Двигатель",
+      "url": "/tarasovskiy/zapchasti_i_aksessuary/zapchasti/dlya_avtomobiley/dvigatel-ASgBAgICA0QKJKwJ~GPiDMi1AQ"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=10\u0026locationId=652120\u0026params%5B1866%5D%5B0%5D=49\u0026params%5B1866%5D%5B1%5D=54\u0026params%5B1866%5D%5B2%5D=56\u0026params%5B1866%5D%5B3%5D=51\u0026params%5B1866%5D%5B4%5D=53\u0026params%5B598%5D%5B0%5D=54\u0026params%5B598%5D%5B1%5D=51\u0026params%5B598%5D%5B2%5D=57\u0026params%5B598%5D%5B3%5D=54\u0026params%5B5%5D%5B0%5D=49\u0026params%5B5%5D%5B1%5D=56\u0026params%5B817%5D%5B0%5D=49\u0026params%5B817%5D%5B1%5D=49\u0026params%5B817%5D%5B2%5D=54\u0026params%5B817%5D%5B3%5D=50\u0026params%5B817%5D%5B4%5D=48",
+      "name": "Крепление двигателя",
+      "title": "Крепление двигателя",
+      "url": "/tarasovskiy/zapchasti_i_aksessuary/zapchasti/dlya_avtomobiley/dvigatel/kreplenie_dvigatelya-ASgBAgICBEQKJKwJ~GPiDMi1AZQdhocC"
+    }
+  ],
+  "categoryId": 10,
+  "chatHistoryTitle": "История сообщений",
+  "closingReason": "Снято с публикации",
+  "coords": {
+    "lat": 55.90143,
+    "lng": 37.545267
+  },
+  "customerValue": 1,
+  "description": "Бренд: JP Group, артикул: 1317901000, JP1317901000_подушка ДВС! MB W140 4.0-5.0/3.0TD/3.5TD 91-99. \n\"АвтоМарка\" автозапчасти быстро и точно\nДоставка в пределах МКАД от 300р.\nОтправляем  Авито Доставкой в Регионы , любой удобной для Вас службой.\n Только качественные и новые автозапчасти!\n Самые надежные поставщики, контрафакта НЕТ!\n Максимально быстрые сроки поставки!",
+  "descriptionHtml": "Бренд: JP Group, артикул: 1317901000, JP1317901000_подушка ДВС! MB W140 4.0-5.0/3.0TD/3.5TD 91-99. \u003cbr/\u003e\u003cp\u003e\u003cstrong\u003e\"АвтоМарка\" автозапчасти быстро и точно\u003c/strong\u003e\u003c/p\u003e\u003cbr/\u003e\u003cstrong\u003eДоставка в пределах МКАД от 300р.\u003c/strong\u003e\u003cbr/\u003e\u003cp\u003eОтправляем \u003cstrong\u003e Авито Доставкой в Регионы \u003c/strong\u003e, любой удобной для Вас службой.\u003c/p\u003e\u003cbr/\u003e \u003cli\u003e\u003cem\u003eТолько качественные и новые автозапчасти!\u003c/em\u003e\u003c/li\u003e\u003cbr/\u003e \u003cli\u003e\u003cem\u003eСамые надежные поставщики, контрафакта НЕТ!\u003c/em\u003e\u003c/li\u003e\u003cbr/\u003e \u003cli\u003e\u003cem\u003eМаксимально быстрые сроки поставки!\u003c/em\u003e\u003c/li\u003e",
+  "districtId": 664,
+  "firebaseParams": {
+    "categoryId": "10",
+    "categorySlug": "zapchasti_i_aksessuary",
+    "condition": "Новое",
+    "dostupnost": "Под заказ",
+    "isASDClient": "0",
+    "isShop": "1",
+    "itemID": "2953844959",
+    "itemPrice": "3130",
+    "locationId": "637640",
+    "microCategoryId": "5531",
+    "nomer_detali_oem": "1317901000",
+    "proizvoditel": "JP Group",
+    "tip_detali_dvigatelya": "Крепление двигателя",
+    "tip_tovara": "Для автомобилей",
+    "type_of_trade": "Товар приобретён на продажу",
+    "userAuth": "0",
+    "vertical": "GENERAL",
+    "vid_tovara": "Запчасти",
+    "vid_zapchasti": "Двигатель",
+    "withDelivery": "0"
+  },
+  "id": 2953844959,
+  "images": [
+    {
+      "100x75": "https://99.img.avito.st/image/1/1.mgbQbLa-Nu-uzqLs6ArOT-XONOlux5Tu3s007WDN_OzwzjQ.oTQpKea2zw2XlVEot9hDFi8fSA58I_pyWn3QHBKRTNs",
+      "1280x960": "https://99.img.avito.st/image/1/1.mgbQbLawNu_m27Ti6ArOT-XONO9gxT7lZg.EzUw_tCk_v8caFMZn4TroblqWjjF-B_FuhtGxtteDQM",
+      "140x105": "https://99.img.avito.st/image/1/1.mgbQbLa-Nu_-zebs6ArOT-XONOlux5Tu3s007WDNrO-0zjQ.ERwkypLOCObe5WPVMjxJMdIP41chVGnuK6mNNc9zcRc",
+      "240x180": "https://99.img.avito.st/image/1/1.mgbQbLa1Nu-GzNzv6ArOT-XONO9ux9Tujs007Q.OxugDec89bZU00PXo96dNDwEmjIRgYLA-X8Xx-LHIxA",
+      "432x324": "https://99.img.avito.st/image/1/1.mgbQbLatNu-Gybzo6ArOT-XONO0.sdX2Z1UGAkg4oHOlyI2CTSc2FVe74srbyvCefmlEVYA",
+      "640x480": "https://99.img.avito.st/image/1/1.mgbQbLa5Nu_mxfTq6ArOT-XONOlgzbTnpsg062zFPO0.sg1LN2agRQwTH5qqDtIMPR_khL-yqn-aJ0VhHCShpy8"
+    }
+  ],
+  "inGalleryButtons": false,
+  "inMapButtons": false,
+  "isShowAds": false,
+  "itemCardRedesign": {
+    "contactBar": true,
+    "delivery": false,
+    "deliveryButtonsTop": false,
+    "deliveryFullDescription": false,
+    "deliveryShortDescription": false,
+    "gallery": false,
+    "hideAnonymousNumber": true,
+    "priceSwap": true,
+    "propertiesAboveDescription": true,
+    "redesign": true,
+    "restyle": true,
+    "sellerInfo": true,
+    "shorterAddress": true,
+    "showMoreDescription": true
+  },
+  "locationId": 637640,
+  "metroId": 5,
+  "metroType": "text",
+  "needToCheckSimilarItems": true,
+  "parameters": {
+    "flat": [
+      {
+        "attributeId": 5,
+        "description": "Запчасти",
+        "title": "Вид товара"
+      },
+      {
+        "attributeId": 110056,
+        "description": "Новое",
+        "title": "Состояние"
+      },
+      {
+        "attributeId": 112709,
+        "description": "Под заказ",
+        "title": "Доступность"
+      },
+      {
+        "attributeId": 110548,
+        "description": "JP Group",
+        "title": "Производитель"
+      },
+      {
+        "attributeId": 1866,
+        "description": "Крепление двигателя",
+        "title": "Тип детали двигателя"
+      },
+      {
+        "attributeId": 598,
+        "description": "Для автомобилей",
+        "title": "Тип товара"
+      },
+      {
+        "attributeId": 817,
+        "description": "Двигатель",
+        "title": "Вид запчасти"
+      },
+      {
+        "attributeId": 110057,
+        "description": "1317901000",
+        "title": "Номер запчасти"
+      }
+    ],
+    "flatTitle": {
+      "text": "Характеристики"
+    },
+    "groups": []
+  },
+  "price": {
+    "metric": "₽",
+    "title": "Цена",
+    "value": "3 130",
+    "value_signed": "3 130 ₽"
+  },
+  "seller": {
+    "avatar": {
+      "defaultUrl": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgSW8Y7aIDI479ZJDTYiSTaw6clxMGnJTrC.BM5MKahkj0_nDCOEKcF3_KPlyyG8bots9Os-Orh57rY",
+      "images": {
+        "120x80": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgyWIY7aIDI479ZJDTYqSeaw6clxMGnJTrC.UqBaCNqa18AShi9S0n0QKR4WJ1KYRBQF14HKrIxncb4",
+        "168x112": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgSW8Y7aIDI479ZJDTYiSTaw6clxMGnJTrC.BM5MKahkj0_nDCOEKcF3_KPlyyG8bots9Os-Orh57rY",
+        "192x128": "https://00.img.avito.st/image/1/1.iNF0-ra4MjhCWqY4aIDI479ZJDTY2SW6wKclxMGnJTrC.x0rG4bGQgjdikHq1T7pTMiWXEE9aexzEqjVJDKb6g_Q",
+        "336x224": "https://00.img.avito.st/image/1/1.iNF0-ra4MjhiXOY5aIDI479ZJDTY-SP6waclxMGnJTrC.bWNdtYQYWjf-h46vpZn4cv3Ti_Fc6HWGu6slQZLr6Ss",
+        "60x40": "https://00.img.avito.st/image/1/1.iNF0-ra0Mji6CYzjLIBbOsBXPEKSpyXEwaclOsI.VCvUA49LeEigOYds99VP5Hv2QmMeP6qPGDmSujPcc20",
+        "96x64": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgCWKY7aIDI479ZJDTYmSe6w6clxMGnJTrC.GxA7pBqL9M3zqEvPKDryUIgIyvhv3l0epuCe0iGjGoI"
+      },
+      "shape": "square"
+    },
+    "badgeBar": {
+      "badges": [
+        {
+          "id": 31,
+          "style": {
+            "backgroundColor": {
+              "value": "#CCECFF",
+              "valueDark": "#004078"
+            },
+            "fontColor": {
+              "value": "#000000",
+              "valueDark": "#E3E3E3"
+            }
+          },
+          "title": "Документы проверены"
+        }
+      ]
+    },
+    "connection": {
+      "sources": [
+        {
+          "type": "email"
+        },
+        {
+          "type": "phone"
+        }
+      ],
+      "title": "Подтверждён"
+    },
+    "domain": "i312483308",
+    "images": {
+      "120x80": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgyWIY7aIDI479ZJDTYqSeaw6clxMGnJTrC.UqBaCNqa18AShi9S0n0QKR4WJ1KYRBQF14HKrIxncb4",
+      "168x112": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgSW8Y7aIDI479ZJDTYiSTaw6clxMGnJTrC.BM5MKahkj0_nDCOEKcF3_KPlyyG8bots9Os-Orh57rY",
+      "192x128": "https://00.img.avito.st/image/1/1.iNF0-ra4MjhCWqY4aIDI479ZJDTY2SW6wKclxMGnJTrC.x0rG4bGQgjdikHq1T7pTMiWXEE9aexzEqjVJDKb6g_Q",
+      "336x224": "https://00.img.avito.st/image/1/1.iNF0-ra4MjhiXOY5aIDI479ZJDTY-SP6waclxMGnJTrC.bWNdtYQYWjf-h46vpZn4cv3Ti_Fc6HWGu6slQZLr6Ss",
+      "60x40": "https://00.img.avito.st/image/1/1.iNF0-ra0Mji6CYzjLIBbOsBXPEKSpyXEwaclOsI.VCvUA49LeEigOYds99VP5Hv2QmMeP6qPGDmSujPcc20",
+      "96x64": "https://00.img.avito.st/image/1/1.iNF0-ra4MjgCWKY7aIDI479ZJDTYmSe6w6clxMGnJTrC.GxA7pBqL9M3zqEvPKDryUIgIyvhv3l0epuCe0iGjGoI"
+    },
+    "isVerified": false,
+    "link": "ru.avito://1/user/profile?userKey=07a0e7411bd598a76c48d05eb1806fa5\u0026context=H4sIAAAAAAAA_0q0MrKqLrYyslLKTFGyzrQysjQ1tjAxsTS1tC62MrZSKi5KVrIutjKxUsosSc1Vsq4FBAAA___7w4AGMQAAAA",
+    "manager": "Сергей",
+    "name": "АвтоМарка Алтуфьево Запчасти Быстро и Точно",
+    "online": false,
+    "postfix": "Компания",
+    "profileType": "shop",
+    "rating": {
+      "deeplink": "ru.avito://1/user/ratings?context=H4sIAAAAAAAA_xzHTQoCIBAG0LvMCUbzZ_w8jIw5RkQUWouI7h61e0_h8d4ooLuerM11u1LdCKDzw_4U0HPbahd7_XrwIM7KloNzfcQimtMxyOBo3QmnqZHq5xsAAP__bIfkalgAAAA\u0026userKey=07a0e7411bd598a76c48d05eb1806fa5",
+      "score": 5,
+      "scoreFloat": 5,
+      "text": "3 отзыва"
+    },
+    "ratingAction": {
+      "title": "Оценить продавца",
+      "uri": "ru.avito://1/rating/publish?buyerInfo=false\u0026context=H4sIAAAAAAAA_3TMUQ6CMBCE4bvsCVqlUIbDNAu7NI0KZosaY7y7gXcfZ_LnYwR8KnrQnbOm2dYbDRXeg6brWlVS2fS4WpDxVpZMgyDsTQSZPou-EoukzUrOanvagJZ10QMC1T9gBD2qWrroe5_nE8h17LRrvB8l9JG7dmqiuKCjj66dOdDw_QUAAP__7Pax7bEAAAA\u0026dealProof=false\u0026itemId=2953844959\u0026userKey=07a0e7411bd598a76c48d05eb1806fa5"
+    },
+    "registrationInfo": "На Авито с 02 февраля 2023",
+    "registrationTime": 1675333991,
+    "replyTime": {
+      "category": 3,
+      "text": "Отвечает на сообщения за несколько часов"
+    },
+    "subscribeInfo": {
+      "isSubscribed": false
+    },
+    "title": "Частное лицо",
+    "userHash": "07a0e7411bd598a76c48d05eb1806fa5",
+    "userHashId": "07a0e7411bd598a76c48d05eb1806fa5"
+  },
+  "seo": {
+    "canonicalUrl": "https://www.avito.ru/moskva/zapchasti_i_aksessuary/jp1317901000podushka_dvs_mb_w140_4.0-5.03.0td_2953844959",
+    "description": "JP1317901000подушка двс MB W140 4.0-5.0/3.0TD: объявление о продаже в Москве на Авито. Бренд: JP Group, артикул: 1317901000, JP1317901000_подушка ДВС! MB W140 4.0-5.0/3.0TD/3.5TD 91-99. \"АвтоМарка\" автозапчасти быстро и точно Доставка в пределах МКАД от 300р. Отправляем Авито Доставкой в Регионы , любой удобной для Вас службой. Только качественные и новые автозапчасти! Самые надежные поставщики, контрафакта НЕТ! Максимально быстрые сроки поставки!",
+    "title": "JP1317901000подушка двс MB W140 4.0-5.0/3.0TD купить в Москве JP Group 1317901000 | Авито"
+  },
+  "shopId": 3333681,
+  "shouldShowMapPreview": true,
+  "similarAction": {
+    "title": "Другие объявления в категории",
+    "uri": "ru.avito://1/items/search?categoryId=10"
+  },
+  "sparePart": {
+    "partNumber": "1317901000",
+    "targetMicrocategoryId": "14",
+    "vendorInfmId": "448875"
+  },
+  "stats": {
+    "views": {}
+  },
+  "status": "closed",
+  "time": 1678702139,
+  "title": "JP1317901000подушка двс MB W140 4.0-5.0/3.0TD",
+  "userType": "company",
+  "verticalId": 4,
+  "viewItemAndBuyerEventsParams": {
+    "item_id": "2953844959",
+    "item_location_id": "General",
+    "logcat": "SpareParts"
+  }
+}

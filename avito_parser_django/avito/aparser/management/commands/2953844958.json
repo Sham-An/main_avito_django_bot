@@ -1,0 +1,509 @@
+{
+  "address": "Москва, Ленинградское ш.",
+  "adjustParams": {
+    "categoryId": "38",
+    "microCategoryId": "332",
+    "vertical": "GENERAL"
+  },
+  "advertOptions": [],
+  "anonymousNumber": {
+    "subtitle": "смс и сообщения в Viber, WhatsApp и других мессенджерах не будут доставлены.",
+    "title": "Номер защищён:"
+  },
+  "bargainOffer": {
+    "buttonTitle": "Отправить",
+    "form": {
+      "description": {
+        "displaying": {
+          "multiline": true
+        },
+        "id": 2,
+        "placeholder": "Сообщение увидит продавец",
+        "required": false,
+        "title": "Аргументируйте, если хотите",
+        "type": "char"
+      },
+      "price": {
+        "id": 1,
+        "inputType": "numeric",
+        "motivation": {
+          "text": "В объявлении — 6 500 ₽"
+        },
+        "placeholder": "₽",
+        "required": true,
+        "title": "Ваша цена",
+        "type": "char"
+      }
+    },
+    "template": "Здравствуйте! Могу предложить {{1}} ₽. {{2}}",
+    "title": "Предложите цену"
+  },
+  "breadcrumbs": [
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=7\u0026locationId=652120",
+      "name": "Хобби и отдых",
+      "title": "Хобби и отдых в Тарасовском",
+      "url": "/tarasovskiy/hobbi_i_otdyh"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=38\u0026locationId=652120",
+      "name": "Музыкальные инструменты",
+      "title": "Музыкальные инструменты в Тарасовском",
+      "url": "/tarasovskiy/muzykalnye_instrumenty"
+    },
+    {
+      "deeplink": "ru.avito://1/items/search?categoryId=38\u0026locationId=652120\u0026params%5B162%5D%5B0%5D=54\u0026params%5B162%5D%5B1%5D=55\u0026params%5B162%5D%5B2%5D=54",
+      "name": "Для студии и концертов",
+      "title": "Для студии и концертов",
+      "url": "/tarasovskiy/muzykalnye_instrumenty/dlya_studii_i_kontsertov-ASgBAgICAUTEAsgK"
+    }
+  ],
+  "categoryId": 38,
+  "chatHistoryTitle": "История сообщений",
+  "contacts": {
+    "list": [
+      {
+        "type": "phone",
+        "value": {
+          "title": "Позвонить",
+          "uri": "ru.avito://1/phone/get?itemId=2953844958"
+        }
+      },
+      {
+        "type": "messenger",
+        "value": {
+          "title": "Написать",
+          "uri": "ru.avito://1/item/channel/create?itemId=2953844958\u0026source=details-item"
+        }
+      }
+    ]
+  },
+  "coords": {
+    "lat": 55.8188065198328,
+    "lng": 37.4977425902698
+  },
+  "customerValue": 1,
+  "description": "Продаю свою миди клавиатуру. Полностью рабочая, в хорошем состоянии, 49 чувствительных к силе нажатия клавиш. В последнее время просто стояла. \nЛюбые проверки. \nЖиву в области, могу подвести к метро: Волоколамская, Тушинская, Щукинская, Войковская. Или могу встретиться на любой станции мцд2 от Нахабино до Стрешнево. Если не дозвонились пишите, отвечу сразу!",
+  "districtId": 633,
+  "firebaseParams": {
+    "categoryId": "38",
+    "categorySlug": "muzykalnye_instrumenty",
+    "isASDClient": "0",
+    "isShop": "0",
+    "itemID": "2953844958",
+    "itemPrice": "6500",
+    "locationId": "637640",
+    "microCategoryId": "332",
+    "type_of_trade": "Продаю своё",
+    "userAuth": "0",
+    "vertical": "GENERAL",
+    "vid_tovara": "Для студии и концертов",
+    "withDelivery": "1"
+  },
+  "geoReferences": [
+    {
+      "after": "",
+      "afterWithIcon": {
+        "iconName": "walkingRoute16",
+        "text": "до 5 мин."
+      },
+      "colors": [
+        "#4FB04F"
+      ],
+      "content": "Войковская"
+    }
+  ],
+  "icebreakers": {
+    "contact": "Спросите у продавца",
+    "isRedesign": true,
+    "texts": [
+      {
+        "id": 10701421,
+        "messageText": "Здравствуйте! Ещё продаёте?",
+        "previewText": "Ещё продаёте?",
+        "uri": "ru.avito://1/item/channel/create?itemId=2953844958\u0026messageDraft=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%95%D1%89%D1%91+%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D1%91%D1%82%D0%B5%3F\u0026source=details-icebreaker"
+      },
+      {
+        "id": 10701422,
+        "messageText": "Здравствуйте! Скажите, торг уместен?",
+        "previewText": "Торг уместен?",
+        "uri": "ru.avito://1/item/channel/create?itemId=2953844958\u0026messageDraft=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A1%D0%BA%D0%B0%D0%B6%D0%B8%D1%82%D0%B5%2C+%D1%82%D0%BE%D1%80%D0%B3+%D1%83%D0%BC%D0%B5%D1%81%D1%82%D0%B5%D0%BD%3F\u0026source=details-icebreaker"
+      },
+      {
+        "id": 10701423,
+        "messageText": "Здравствуйте! Сможете отправить Авито Доставкой?",
+        "previewText": "Отправите Авито Доставкой?",
+        "uri": "ru.avito://1/item/channel/create?itemId=2953844958\u0026messageDraft=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%A1%D0%BC%D0%BE%D0%B6%D0%B5%D1%82%D0%B5+%D0%BE%D1%82%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D1%82%D1%8C+%D0%90%D0%B2%D0%B8%D1%82%D0%BE+%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%BE%D0%B9%3F\u0026source=details-icebreaker"
+      },
+      {
+        "id": 10701424,
+        "messageText": "Здравствуйте! Когда можно посмотреть?",
+        "previewText": "Когда можно посмотреть?",
+        "uri": "ru.avito://1/item/channel/create?itemId=2953844958\u0026messageDraft=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21+%D0%9A%D0%BE%D0%B3%D0%B4%D0%B0+%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE+%D0%BF%D0%BE%D1%81%D0%BC%D0%BE%D1%82%D1%80%D0%B5%D1%82%D1%8C%3F\u0026source=details-icebreaker"
+      }
+    ]
+  },
+  "id": 2953844958,
+  "images": [
+    {
+      "100x75": "https://20.img.avito.st/image/1/1.xOeZTra-aA7n7PwNnTW796zsaggn5coPl-9qDCnvog257Go.6_67Uv0FFcwZ_xxwyXqgJQ8ulXr9aRYJdgJTT2EtP-8",
+      "1280x960": "https://20.img.avito.st/image/1/1.xOeZTrawaA6v-eoDnTW796zsag4p52AELw.UMgdMkFvbMCKOR90uVJyO4DbRYfT1jRIzAVTmzS0Sa8",
+      "140x105": "https://20.img.avito.st/image/1/1.xOeZTra-aA6377gNnTW796zsaggn5coPl-9qDCnv8g797Go.Hy2EbtmDwG-CXIoccE8AWWQQ0dUTacG7teAUbHNku0U",
+      "240x180": "https://20.img.avito.st/image/1/1.xOeZTra1aA7P7oIOnTW796zsag4n5YoPx-9qDA.o9ROWcaXN58Owmx_UBLWNIzT3JQSIicHw3P8JaZSx4o",
+      "432x324": "https://20.img.avito.st/image/1/1.xOeZTrataA7P6-IJnTW796zsagw.HzVVPzDUya9XkUDKwJfSMrJKz6-UT2CWqW-kzolSxGI",
+      "640x480": "https://20.img.avito.st/image/1/1.xOeZTra5aA6v56oLnTW796zsaggp7-oG7-pqCiXnYgw.n3pZdmEjh28-hkjVKXNllt3dX-LDd6XM7yKpVXBfwuk"
+    },
+    {
+      "100x75": "https://10.img.avito.st/image/1/1.uBVmdra-FPwY1ID_GnzFBVPUFvrY3bb9aNcW_tbX3v9G1BY.pbwPXi4WstLKOfXRpTAKM3_5t2WawbBV41ZbY37iKiM",
+      "1280x960": "https://10.img.avito.st/image/1/1.uBVmdrawFPxQwZbxGnzFBVPUFvzW3xz20A.Zer_lp71Uhn1XIqs7UzpPyylbga4PCi8u6kh8qtA0kE",
+      "140x105": "https://10.img.avito.st/image/1/1.uBVmdra-FPxI18T_GnzFBVPUFvrY3bb9aNcW_tbXjvwC1BY.OQqTZ7JLFh_gl0HBuYuxwKBvFL-Gd-nnY_SqIsWpGKI",
+      "240x180": "https://10.img.avito.st/image/1/1.uBVmdra1FPww1v78GnzFBVPUFvzY3fb9ONcW_g._JdMjXgX6W4166Y5SfUcURIaPN-X8ZUyrVFRWL2KBJc",
+      "432x324": "https://10.img.avito.st/image/1/1.uBVmdratFPww0577GnzFBVPUFv4.Vyf8yN8LpQTjt9GEHAQAFcNXjbihM0S1gFGo8TMra3w",
+      "640x480": "https://10.img.avito.st/image/1/1.uBVmdra5FPxQ39b5GnzFBVPUFvrW15b0ENIW-NrfHv4._yRglkD659y_-15qIYjmByqntP7dCGjsACZEWggCAmM"
+    },
+    {
+      "100x75": "https://91.img.avito.st/image/1/1.epQCk7a-1n18MUJ-etoFhDcx1Hu8OHR8DDLUf7IyHH4iMdQ.PU7PRK056tQE8zDGZ43mEiK4p2uXOtcMxwHH0so7eMk",
+      "1280x960": "https://91.img.avito.st/image/1/1.epQCk7aw1n00JFRwetoFhDcx1H2yOt53tA.rVT_0eiI7NceTQyWIt92HcpdL34yWvy9JZ5ab-NO24s",
+      "140x105": "https://91.img.avito.st/image/1/1.epQCk7a-1n0sMgZ-etoFhDcx1Hu8OHR8DDLUf7IyTH1mMdQ.crxO_fi88Zxij_AJigU3qWpUW6lgvC_uZhoXQoAprGw",
+      "240x180": "https://91.img.avito.st/image/1/1.epQCk7a11n1UMzx9etoFhDcx1H28ODR8XDLUfw.VO1DT62lXpATuLt1c7cMKZPjdWpf2JmQ0wlpXpFrD34",
+      "432x324": "https://91.img.avito.st/image/1/1.epQCk7at1n1UNlx6etoFhDcx1H8.hPIMY9r-Pw1LaoqDOmiqAzyshyn5LSIKbcKsaIY5WuM",
+      "640x480": "https://91.img.avito.st/image/1/1.epQCk7a51n00OhR4etoFhDcx1HuyMlR1dDfUeb463H8.psSU87I36eF-pq2yT9eRVfrsoijUHAcR93HbYoRlUQs"
+    },
+    {
+      "100x75": "https://50.img.avito.st/image/1/1.1TGuvLa-edjQHu3biOeqIZsee94QF9vZoB172h4ds9uOHns.rnwaWpStCp7nglJgUB_M-4-i-ymLqraxvR7TXsn1laY",
+      "1280x960": "https://50.img.avito.st/image/1/1.1TGuvLawediYC_vViOeqIZsee9geFXHSGA.S8_XGbWLfJ2-_fOf7ja6IrMcOY0FpN-zYyOmxXlw0b0",
+      "140x105": "https://50.img.avito.st/image/1/1.1TGuvLa-ediAHanbiOeqIZsee94QF9vZoB172h4d49jKHns.scYOV_J4SG44tCwInqHraTVWEiv7bsB-sGjW8NsB0D4",
+      "240x180": "https://50.img.avito.st/image/1/1.1TGuvLa1edj4HJPYiOeqIZsee9gQF5vZ8B172g.OvtfGMkUV0BoniSGK001AFWgcskeyl04AL3CyOsG8Oc",
+      "432x324": "https://50.img.avito.st/image/1/1.1TGuvLatedj4GfPfiOeqIZsee9o.VFd4thG_6_bf6AP9mZzYXXQzm25wol_mFGc7stQgIj8",
+      "640x480": "https://50.img.avito.st/image/1/1.1TGuvLa5ediYFbvdiOeqIZsee94eHfvQ2Bh73BIVc9o.6IyHo95CuzgopVkS10c2asd_l64IZ5gPP9hKVCv0OZ0"
+    },
+    {
+      "100x75": "https://70.img.avito.st/image/1/1.rx0wWLa-A_RO-pf3YnrTDQX6AfKO86H1PvkB9oD5yfcQ-gE.QjCWvSF1IpQ7ZHmYHJv1sWJ_NFk2jS6AWMs54zZI_N4",
+      "1280x960": "https://70.img.avito.st/image/1/1.rx0wWLawA_QG74H5YnrTDQX6AfSA8Qv-hg.fCa98u2lnn6DTZRE4SVpkcoNL5cOxjRs_Z5uokNzGFA",
+      "140x105": "https://70.img.avito.st/image/1/1.rx0wWLa-A_Qe-dP3YnrTDQX6AfKO86H1PvkB9oD5mfRU-gE.osmohBuUkiSVMAlya44VMFJQWVEM0ZyLMUyCmdoqoaw",
+      "240x180": "https://70.img.avito.st/image/1/1.rx0wWLa1A_Rm-On0YnrTDQX6AfSO8-H1bvkB9g.7KtaWS9e1ESVopnWP4zUd1bdsd0x6cvI4YiqcVJZjdk",
+      "432x324": "https://70.img.avito.st/image/1/1.rx0wWLatA_Rm_YnzYnrTDQX6AfY.5GUMwl8pWBM8O13lrTrWUR8BBijlLdfwA1PJ3NuPK3A",
+      "640x480": "https://70.img.avito.st/image/1/1.rx0wWLa5A_QG8cHxYnrTDQX6AfKA-YH8RvwB8IzxCfY.G5C_a26B-K7ieEmKp9ti-yS7RviH50ieUdBazEBq520"
+    },
+    {
+      "100x75": "https://70.img.avito.st/image/1/1.vxRAJba-E_0-h4f-Mg_DBHWHEfv-jrH8ToQR__CE2f5ghxE.LTH61EElNZ5qFtLXuF6iHgpnCB-qo_d99YUg6vTt3jM",
+      "1280x960": "https://70.img.avito.st/image/1/1.vxRAJbawE_12kpHwMg_DBHWHEf3wjBv39g.kI6Jb2Cl1bfjpMaqvSiSgNiN8_jQnZAiAkJLdKYkAiU",
+      "140x105": "https://70.img.avito.st/image/1/1.vxRAJba-E_1uhMP-Mg_DBHWHEfv-jrH8ToQR__CEif0khxE.Isb5LryGLhnKk1pweoNKN1_-3aCaifmieBwG_ZhDuL8",
+      "240x180": "https://70.img.avito.st/image/1/1.vxRAJba1E_0Whfn9Mg_DBHWHEf3-jvH8HoQR_w.9_26MvKhVmR80EBEfm5DjlGRgQTQFuLj7oBsz20NEK0",
+      "432x324": "https://70.img.avito.st/image/1/1.vxRAJbatE_0WgJn6Mg_DBHWHEf8.r0KJje_OLtvmayKbrnbph86nLY9iZYXKCy6IsfizA1M",
+      "640x480": "https://70.img.avito.st/image/1/1.vxRAJba5E_12jNH4Mg_DBHWHEfvwhJH1NoER-fyMGf8.6yH_n-S3ybXBFWKBRbVw0IxO8eAvmA3CrYp57rc-HAg"
+    },
+    {
+      "100x75": "https://40.img.avito.st/image/1/1.E_TezLa-vx2gbise9Phv5OtuvRtgZx0c0G29H25tdR7-br0._daq4MMB_Mu6XqRCgwgwNATJIu1IEexuRWmVnVhMbwM",
+      "1280x960": "https://40.img.avito.st/image/1/1.E_TezLawvx3oez0Q9Phv5OtuvR1uZbcXaA.9r0IzykY73AHERhUt2l5nCnQafSHAznAEyUCkgrIdpM",
+      "140x105": "https://40.img.avito.st/image/1/1.E_TezLa-vx3wbW8e9Phv5OtuvRtgZx0c0G29H25tJR26br0.uNNzd1ELH2Mg6DsNZRlKxFhsAd9ek-2gUKZO4oJ9lFU",
+      "240x180": "https://40.img.avito.st/image/1/1.E_TezLa1vx2IbFUd9Phv5OtuvR1gZ10cgG29Hw.tpLbixa9ahk83fkPhsGggHn0FDnqSrrnN5okPzJ0L4s",
+      "432x324": "https://40.img.avito.st/image/1/1.E_TezLatvx2IaTUa9Phv5OtuvR8.eiLV_-FWUXZXqurQWI3h9TV24JVHogj7G2GCGXbKG6c",
+      "640x480": "https://40.img.avito.st/image/1/1.E_TezLa5vx3oZX0Y9Phv5OtuvRtubT0VqGi9GWJltR8.xZOpyU0Wt0Ha1x9ZPaDKCRZntxOYAqeI0l8Ldectz5c"
+    },
+    {
+      "100x75": "https://10.img.avito.st/image/1/1.-4Vpy7a-V2wXacNvE8SHlVxpVWrXYPVtZ2pVbtlqnW9JaVU.Cp32esynx2hceQzyF7lkERVP3cKeVLsLq2k3Bet_p1k",
+      "1280x960": "https://10.img.avito.st/image/1/1.-4Vpy7awV2xffNVhE8SHlVxpVWzZYl9m3w.G0XLQtp5U6nbrck8DPA0MfOmQBYYUrlEBtkME3Rf_8M",
+      "140x105": "https://10.img.avito.st/image/1/1.-4Vpy7a-V2xHaodvE8SHlVxpVWrXYPVtZ2pVbtlqzWwNaVU.npASr5sXosVf2Uyc2XG3GxK-CWZREi-uIyIoxbAIVMI",
+      "240x180": "https://10.img.avito.st/image/1/1.-4Vpy7a1V2w_a71sE8SHlVxpVWzXYLVtN2pVbg.5AXRIoN6A3jEq8bPBP1etJUTz-T6Gvn3hz_CV5pDG04",
+      "432x324": "https://10.img.avito.st/image/1/1.-4Vpy7atV2w_bt1rE8SHlVxpVW4.XhiSN60IiNpo_Mib_7OPb-sPru81F1pcrlmnl9Wx3Jw",
+      "640x480": "https://10.img.avito.st/image/1/1.-4Vpy7a5V2xfYpVpE8SHlVxpVWrZatVkH29VaNViXW4.BpZeetKj4R2hHWWPJs0cuNEZLv9SGTwlT37SQXLccQ8"
+    },
+    {
+      "100x75": "https://80.img.avito.st/image/1/1.RCxbrra-6MUlDHzGX784PG4M6sPlBUrEVQ_qx-sPIsZ7DOo.mqe8aHOareJA_eNmf9rFZaIDbQWF3OPucjExZAZUNSI",
+      "1280x960": "https://80.img.avito.st/image/1/1.RCxbrraw6MVtGWrIX784PG4M6sXrB-DP7Q.mr9aUl-Gawunko7v_sdj8FrLA2nX5zhupPFLralrq7w",
+      "140x105": "https://80.img.avito.st/image/1/1.RCxbrra-6MV1DzjGX784PG4M6sPlBUrEVQ_qx-sPcsU_DOo.LeuXfciJbf3LFCKakhPGDZG4CkCFV135692AGgo1b0U",
+      "240x180": "https://80.img.avito.st/image/1/1.RCxbrra16MUNDgLFX784PG4M6sXlBQrEBQ_qxw.BWGd9hkbQ4qQzBVs1WsL1OaAKPnIHESOjxIuYc0KCto",
+      "432x324": "https://80.img.avito.st/image/1/1.RCxbrrat6MUNC2LCX784PG4M6sc.LdjsWSw_DYa62mjKYLQRxvf-a7qQl0uDEcCgkaHC0o0",
+      "640x480": "https://80.img.avito.st/image/1/1.RCxbrra56MVtByrAX784PG4M6sPrD2rNLQrqwecH4sc.iIXk9q5d3nH7mPO3KCzu5O_sZLvEyKBEMRr0KqRTMCs"
+    },
+    {
+      "100x75": "https://10.img.avito.st/image/1/1.4UoAXra-TaN-_NmgTj2dWjX8T6W-9e-iDv9PobD_h6Ag_E8.p56ia88_z8WB-Ssy-Ur1oQEkR936X_XAkP4NqA4ux9I",
+      "1280x960": "https://10.img.avito.st/image/1/1.4UoAXrawTaM26c-uTj2dWjX8T6Ow90Wptg.Gj3zlY24rYmj5msfGx5mc-03_RiIdOSi3oynLJAwj18",
+      "140x105": "https://10.img.avito.st/image/1/1.4UoAXra-TaMu_52gTj2dWjX8T6W-9e-iDv9PobD_16Nk_E8.e0vYZY0CNX-U5rOzvqMRceZnZr8eHlMvwnllN0_ycEc",
+      "240x180": "https://10.img.avito.st/image/1/1.4UoAXra1TaNW_qejTj2dWjX8T6O-9a-iXv9PoQ.3BzQEG2o6Ze-CwXx-bngGY-ieQZPtjsd-JGJ_lUuRAY",
+      "432x324": "https://10.img.avito.st/image/1/1.4UoAXratTaNW-8ekTj2dWjX8T6E.iew3jhdVLosrhXOIsqybLAE5Iuy7Ie2ldZyZvTEtFBM",
+      "640x480": "https://10.img.avito.st/image/1/1.4UoAXra5TaM294-mTj2dWjX8T6Ww_8-rdvpPp7z3R6E.aXnR_mCt966hnFh4fQwhUdu7XziowwmB1LyBZvahFQI"
+    }
+  ],
+  "inGalleryButtons": false,
+  "inMapButtons": false,
+  "isShowAds": false,
+  "itemCardRedesign": {
+    "contactBar": true,
+    "delivery": false,
+    "deliveryButtonsTop": false,
+    "deliveryFullDescription": false,
+    "deliveryShortDescription": false,
+    "gallery": false,
+    "hideAnonymousNumber": true,
+    "priceSwap": true,
+    "propertiesAboveDescription": true,
+    "redesign": true,
+    "restyle": true,
+    "sellerInfo": true,
+    "shorterAddress": true,
+    "showMoreDescription": true
+  },
+  "locationId": 637640,
+  "metroId": 25,
+  "metroType": "text",
+  "needToCheckCreditInfo": false,
+  "needToCheckSimilarItems": true,
+  "parameters": {
+    "flat": [
+      {
+        "attributeId": 162,
+        "description": "Для студии и концертов",
+        "title": "Вид товара"
+      },
+      {
+        "attributeId": 110402,
+        "description": "Б/у",
+        "title": "Состояние"
+      }
+    ],
+    "flatTitle": {
+      "text": "Характеристики"
+    },
+    "groups": []
+  },
+  "price": {
+    "metric": "₽",
+    "title": "Цена",
+    "value": "6 500",
+    "value_signed": "6 500 ₽"
+  },
+  "safeDeal": {
+    "components": [
+      {
+        "params": {
+          "deepLink": "ru.avito://1/clickstream?id=2483\u0026params=%7B%22cid%22%3A%2238%22%2C%22delivery_price%22%3A%2249%22%2C%22iid%22%3A%222953844958%22%2C%22is_marketplace%22%3A%220%22%2C%22is_user_auth%22%3A%220%22%2C%22safedeal_services%22%3A%22%5Bdelivery%5D%22%2C%22srcp%22%3A%22item%22%7D\u0026redirect=ru.avito%3A%2F%2F1%2FdeepLinks%2Ffallbackable%2Fopen%3Ffallbacks%3D%255B%2522ru.avito%253A%252F%252F1%252Fdelivery%252FsavedAddress%252Fcheck%253FcontactEvent%253D%25257B%252522id%252522%25253A4675%25252C%252522version%252522%25253A2%25252C%252522parameters%252522%25253A%25257B%252522iid%252522%25253A2953844958%25252C%252522x%252522%25253A%252522%252522%25252C%252522safedeal_services%252522%25253A%252522%25255Bdelivery%25255D%252522%25257D%25257D%255Cu0026itemId%253D2953844958%2522%252C%2522ru.avito%253A%252F%252F1%252Fdelivery%252Forder%252Fcreate%253FcontactEvent%253D%25257B%252522id%252522%25253A4675%25252C%252522version%252522%25253A2%25252C%252522parameters%252522%25253A%25257B%252522iid%252522%25253A2953844958%25252C%252522x%252522%25253A%252522%252522%25252C%252522safedeal_services%252522%25253A%252522%25255Bdelivery%25255D%252522%25257D%25257D%255Cu0026itemId%253D2953844958%2522%255D\u0026version=11",
+          "id": "buyButton",
+          "isFloating": true,
+          "style": "safedealLarge",
+          "title": "Купить с доставкой"
+        },
+        "type": "button"
+      },
+      {
+        "params": {
+          "height": 16,
+          "title": null
+        },
+        "type": "spacing"
+      },
+      {
+        "params": {
+          "localIcon": {
+            "color": "black",
+            "name": "deliveryOutline20"
+          },
+          "title": {
+            "attributes": {
+              "cost": {
+                "type": "attributes",
+                "value": {
+                  "list": [
+                    {
+                      "type": "fontColor",
+                      "value": "#97CF27",
+                      "valueName": "green"
+                    }
+                  ],
+                  "title": "49 ₽"
+                }
+              },
+              "info": {
+                "type": "attributes",
+                "value": {
+                  "list": [
+                    {
+                      "type": "fontColor",
+                      "value": "#858585",
+                      "valueName": "gray48"
+                    }
+                  ],
+                  "title": "Первые доставки в пункт выдачи от"
+                }
+              }
+            },
+            "text": "Авито Доставка\n{{info}} {{cost}}"
+          }
+        },
+        "type": "listItem"
+      },
+      {
+        "params": {
+          "height": 10,
+          "title": null
+        },
+        "type": "spacing"
+      },
+      {
+        "params": {
+          "localIcon": {
+            "color": "black",
+            "name": "returnOutline20"
+          },
+          "title": {
+            "text": "Гарантия возврата денег, если товар не подойдёт"
+          }
+        },
+        "type": "listItem"
+      },
+      {
+        "params": {
+          "height": 10,
+          "title": null
+        },
+        "type": "spacing"
+      },
+      {
+        "params": {
+          "localIcon": {
+            "height": 20,
+            "name": "empty",
+            "width": 20
+          },
+          "title": {
+            "attributes": {
+              "about": {
+                "type": "deepLink",
+                "value": {
+                  "title": "Об Авито Доставке",
+                  "uri": "ru.avito://1/clickstream?id=3193\u0026params=%7B%22cid%22%3A%2238%22%2C%22iid%22%3A%222953844958%22%7D\u0026redirect=ru.avito%3A%2F%2F1%2Fwebview%3Furl%3Dhttps%253A%252F%252Fm.avito.ru%252Fdostavka%253FisApp%253D1%2523buyer\u0026version=3"
+                }
+              }
+            },
+            "text": "{{about}}"
+          }
+        },
+        "type": "listItem"
+      }
+    ],
+    "tooltips": {
+      "buyButton": {
+        "button": {
+          "deepLink": "ru.avito://1/clickstream?id=6099\u0026params=%7B%22business_platform%22%3A%222%22%2C%22iid%22%3A%222953844958%22%7D\u0026redirect=ru.avito%3A%2F%2F1%2Finforming%3Flabel%3Dbuyer-onboarding-delivery%26title%3D%25D0%259A%25D0%25B0%25D0%25BA%2B%25D0%25BF%25D0%25BE%25D0%25BA%25D1%2583%25D0%25BF%25D0%25B0%25D1%2582%25D1%258C%2B%25D1%2581%2B%25D0%2590%25D0%25B2%25D0%25B8%25D1%2582%25D0%25BE%2B%25D0%2594%25D0%25BE%25D1%2581%25D1%2582%25D0%25B0%25D0%25B2%25D0%25BA%25D0%25BE%25D0%25B9\u0026version=3",
+          "text": "Узнать о доставке"
+        },
+        "label": "buyer-onboarding-delivery",
+        "showEvent": {
+          "id": 6098,
+          "params": {
+            "business_platform": 2,
+            "iid": 2953844958
+          },
+          "version": 3
+        },
+        "text": "Коротко о безопасных покупках через Авито Доставку."
+      },
+      "cartButton": {
+        "button": {
+          "text": "Хорошо"
+        },
+        "label": "add-cart-button-onboarding",
+        "text": "А затем открыть её, чтобы оформить доставку этого и других товаров.",
+        "title": "Можно добавить в корзину"
+      }
+    }
+  },
+  "seller": {
+    "avatar": {
+      "defaultUrl": "https://00.img.avito.st/image/1/1.ljw9JLa2LNULg7jTHV7NZaeHOt-DBzxXj4c4.awjaCzCVXjOFuNrkl8COq5MELEb_MqRPVkMDqwmAhu4",
+      "images": {
+        "100x100": "https://00.img.avito.st/image/1/1.ljw9JLa2LNVDhvDWHV7NZaeHOt-DTzkfioc4.UlyAiczKq5WD3uu8YGVUlzLjKeLNkbtY7y0MxKT1n9M",
+        "1024x1024": "https://00.img.avito.st/avatar/social/1024x1024/5958973003.jpg",
+        "128x128": "https://00.img.avito.st/image/1/1.ljw9JLa2LNULhbjVHV7NZaeHOt-DBzpXiYc4.K0zRIHbg9hLXtZptg-49iGdphLZRYPozJ4vC6mrUfP0",
+        "132x132": "https://00.img.avito.st/image/1/1.ljw9JLa2LNUDhbDVHV7NZaeHOt-DDzpfiYc4.955n3XgXc-HMXOXSnamJBN2fMgXEBwV2uh1q_Ro2Ntc",
+        "176x176": "https://00.img.avito.st/image/1/1.ljw9JLa2LNVrhdjVHV7NZaeHOt-DZzo3iYc4.E5ks5j6Vwbn_3ihac1e_AfE0LGrWrygqjuWXrGfpsSg",
+        "192x192": "https://00.img.avito.st/image/1/1.ljw9JLa2LNULhLjUHV7NZaeHOt-DBztXiIc4.6UFIbOi8H_4QhrXaEcFucwXdmtLxWPef8qF_knZmo7U",
+        "256x256": "https://00.img.avito.st/image/1/1.ljw9JLa2LNULg7jTHV7NZaeHOt-DBzxXj4c4.awjaCzCVXjOFuNrkl8COq5MELEb_MqRPVkMDqwmAhu4",
+        "25x25": "https://00.img.avito.st/image/1/1.ljw9JLayLNW5ta4OfjUU14mPMOW5hzg.etaefQh4AReqRIohuEiCKC5ypMR5yt4JF6TEdVZVSOM",
+        "50x50": "https://00.img.avito.st/image/1/1.ljw9JLayLNXv464OfjUU14mPMLPvhzg.zfXOflrkWb1DJ1u2WG4h6bijXwm2wsdFVyHnZyPhbOE",
+        "64x64": "https://00.img.avito.st/image/1/1.ljw9JLa2LNULhrjWHV7NZaeHOt-DBzlXioc4.DN43ufeSvHZlQqqNhjMTuD1lbakdQqvOH-M5aaTU-xc",
+        "96x96": "https://00.img.avito.st/image/1/1.ljw9JLa2LNVLhvjWHV7NZaeHOt-DRzkXioc4.bmpvUz4Xvt00tbzIZ5fzshxTWthG2g9lQa147zJtk3s"
+      },
+      "shape": "circle"
+    },
+    "badgeBar": {
+      "badges": [
+        {
+          "id": 102,
+          "style": {
+            "backgroundColor": {
+              "value": "#CCECFF",
+              "valueDark": "#004078"
+            },
+            "fontColor": {
+              "value": "#000000",
+              "valueDark": "#E3E3E3"
+            }
+          },
+          "title": "Экологический вклад –3700 кг CO₂"
+        }
+      ]
+    },
+    "connection": {
+      "sources": [
+        {
+          "type": "phone"
+        }
+      ],
+      "title": "Подтверждён"
+    },
+    "images": {
+      "128x128": "https://www.avito.st/stub_avatars/%D0%9F/5_128x128.png",
+      "192x192": "https://www.avito.st/stub_avatars/%D0%9F/5_192x192.png",
+      "24x24": "https://www.avito.st/stub_avatars/%D0%9F/5_24x24.png",
+      "256x256": "https://www.avito.st/stub_avatars/%D0%9F/5_256x256.png",
+      "36x36": "https://www.avito.st/stub_avatars/%D0%9F/5_36x36.png",
+      "48x48": "https://www.avito.st/stub_avatars/%D0%9F/5_48x48.png",
+      "64x64": "https://www.avito.st/stub_avatars/%D0%9F/5_64x64.png",
+      "72x72": "https://www.avito.st/stub_avatars/%D0%9F/5_72x72.png",
+      "96x96": "https://www.avito.st/stub_avatars/%D0%9F/5_96x96.png"
+    },
+    "isVerified": false,
+    "link": "ru.avito://1/user/profile?userKey=4f3b8edc1fc0c6eb2b34c7a6c7f94677b779ee372ad259fcd75946438dcc96cf\u0026context=H4sIAAAAAAAA_0q0MrKqLrYyslLKTFGyzrQysjQ1tjAxsTS1sC62MrZSKi5KVrIutjKxUsosSc1Vsq4FBAAA___cpqWHMQAAAA",
+    "name": "Пользователь",
+    "online": false,
+    "postfix": "Частное лицо",
+    "profileType": "person",
+    "replyTime": {
+      "category": 4,
+      "text": "Отвечает на сообщения в течение дня"
+    },
+    "subscribeInfo": {
+      "isSubscribed": false
+    },
+    "title": "Частное лицо",
+    "userHash": "4f3b8edc1fc0c6eb2b34c7a6c7f94677b779ee372ad259fcd75946438dcc96cf",
+    "userHashId": "4f3b8edc1fc0c6eb2b34c7a6c7f94677b779ee372ad259fcd75946438dcc96cf"
+  },
+  "seo": {
+    "canonicalUrl": "https://www.avito.ru/moskva/muzykalnye_instrumenty/midi_klaviatura_49_axiom_2953844958",
+    "description": "Midi клавиатура 49 Axiom: объявление о продаже с доставкой в Москве на Авито. Продаю свою миди клавиатуру. Полностью рабочая, в хорошем состоянии, 49 чувствительных к силе нажатия клавиш. В последнее время просто стояла. Любые проверки. Живу в области, могу подвести к метро: Волоколамская, Тушинская, Щукинская, Войковская. Или могу встретиться на любой станции мцд2 от Нахабино до Стрешнево. Если не дозвонились пишите, отвечу сразу!",
+    "title": "Midi клавиатура 49 Axiom купить в Москве с доставкой | Хобби и отдых | Авито"
+  },
+  "sharing": {
+    "native": "https://www.avito.ru/moskva/muzykalnye_instrumenty/midi_klaviatura_49_axiom_2953844958?utm_campaign=native\u0026utm_medium=item_page_mweb\u0026utm_source=soc_sharing",
+    "url": "https://www.avito.ru/moskva/muzykalnye_instrumenty/midi_klaviatura_49_axiom_2953844958"
+  },
+  "shouldShowMapPreview": true,
+  "stats": {
+    "views": {
+      "today": 53,
+      "total": 125
+    }
+  },
+  "time": 1679077004,
+  "title": "Midi клавиатура 49 Axiom",
+  "userType": "private",
+  "verticalId": 4,
+  "viewItemAndBuyerEventsParams": {
+    "item_id": "2953844958",
+    "item_location_id": "General",
+    "logcat": "Hobby"
+  }
+}
