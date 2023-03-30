@@ -2,6 +2,8 @@
 #https://github.com/encode/httpx/tree/master/httpx
 #cd avito_parser_django/avito
 # python manage.py '!!!!_httpx_class_2'
+#python manage.py makemigrations aparser
+#python manage.py migrate aparser
 
 import asyncio
 import threading
@@ -50,7 +52,7 @@ logger = logging.getLogger(__name__) #.setLevel(logging.INFO)
 # logging.getLogger().setLevel(logging.INFO)
 # logger.setLevel(logging.INFO)
 ##########################################
-url_0 = str('https://www.avito.ru/rostovskaya_oblast/mototsikly_i_mototehnika?cd=1&f=ASgCAgECAUXGmgwXeyJmcm9tIjoyMDAwLCJ0byI6NzAwMH0&q'+'=скутер&s=1')
+#url_0 = str('https://www.avito.ru/rostovskaya_oblast/mototsikly_i_mototehnika?cd=1&f=ASgCAgECAUXGmgwXeyJmcm9tIjoyMDAwLCJ0byI6NzAwMH0&q'+'=скутер&s=1')
 
 # r = httpx.get(url_av, verify=ssl_context)
 # # print(r.text)
@@ -162,12 +164,12 @@ class MyCustomAuth:  #
         r.raise_for_status() #from httpx._models.py
         return r.text
 
-    def parse_block(self, item):
-
-        ''' Выбрать блок со ссылкой '''
-        date = datetime.datetime.now()
-
-        #logger.debug(f'product {p}')
+    # def parse_block(self, item):
+    #
+    #     ''' Выбрать блок со ссылкой '''
+    #     date = datetime.datetime.now()
+    #
+    #     #logger.debug(f'product {p}')
 
 
     def get_blocks(self, page: int = None):
@@ -255,7 +257,7 @@ class MyCustomAuth:  #
                 p = Product.objects.get(url=url)
                 #print(f'##############&&&&&&&&&&&&&&&&  {p.title[:100]} \n\ntask = {self.task}')
                 # p.task = self.task
-                p.title = title
+                p.title = title[:255]
                 p.price = price
                 #p.currency = currency
                 #p.published_date = date,
@@ -263,8 +265,8 @@ class MyCustomAuth:  #
             except Product.DoesNotExist:
                 p = Product(
                     task=self.task,
-                    url=url,
                     title=title,
+                    url=url,
                     price=price,
                     currency=currency,
                     published_date=date,
