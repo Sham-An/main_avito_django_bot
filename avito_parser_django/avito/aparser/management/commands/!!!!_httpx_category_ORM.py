@@ -83,6 +83,7 @@ class Categories_set:
             p.save()
         except Categories.DoesNotExist:
             p = Categories(
+                id=id,
                 cat_id=id,
                 name=name,
                 parent_id=parentId,

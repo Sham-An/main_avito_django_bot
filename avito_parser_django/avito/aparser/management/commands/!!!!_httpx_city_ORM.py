@@ -82,6 +82,7 @@ class City_set:
             p.save()
         except City.DoesNotExist:
             p = City(
+                id=id,
                 name=name,
                 city_id=id,
                 region=region,
