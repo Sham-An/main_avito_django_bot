@@ -1,5 +1,6 @@
 rem export PYTHONPATH:=$(shell pwd)/avito
 rem  .\Make srv
+rem  .\Make reg
 rem cd avito_parser_django/avito
 echo off
 SET PYTHONPATH:=$(shell pwd)/avito
@@ -11,7 +12,7 @@ python I:\\pythonProjects\\avito_django_telebot\\avito_parser_django\\avito\\man
 
 :reg
 SET PYTHONPATH:=$(shell pwd)/avito
-call python I:\\pythonProjects\\avito_django_telebot\\avito_parser_django\\avito\\manage.py !!!!_httpx_region
+call python I:\\pythonProjects\\avito_django_telebot\\avito_parser_django\\avito\\manage.py !!!!_httpx_region_ORM
 GOTO end
 
 :mkmig

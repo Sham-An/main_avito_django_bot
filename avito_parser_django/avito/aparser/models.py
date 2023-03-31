@@ -75,6 +75,7 @@ class Path_xpath(models.Model):
 
 
 class Categories(models.Model):
+    cat_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Категория', max_length=255, blank=True)
     parentId = models.IntegerField('index', blank=True)
     url_path = models.CharField(max_length=255, blank=True)
@@ -82,7 +83,7 @@ class Categories(models.Model):
 
 
 class Region(models.Model):
-    #avito_id = models.IntegerField('ID')
+    region_id = models.IntegerField('kod_id')
     #kod_region = models.IntegerField('ID')
     name = models.CharField('Регион', max_length=255, blank=True)
     url_path = models.CharField(verbose_name='URL_path', max_length=255, blank=True)
@@ -98,8 +99,10 @@ class Region(models.Model):
 
 class City(models.Model):
     #avito_id = models.IntegerField('ID')
+    city_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Нас пункт', max_length=255, blank=True, null=True)
-    #region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион')
+    #region = models.ForeignKey(Region.region_id, on_delete=models.CASCADE, verbose_name='Регион')
+    region = models.IntegerField(verbose_name='Регион', blank=True) #models.ForeignKey(Region.region_id, on_delete=models.CASCADE, verbose_name='Регион')
     #parent_id = models.IntegerField(blank=True)
     url_path = models.CharField(verbose_name='URL_path', max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)

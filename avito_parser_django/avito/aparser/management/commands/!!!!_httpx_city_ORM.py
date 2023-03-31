@@ -1,7 +1,7 @@
 # https://www.python-httpx.org/advanced/
 # https://github.com/encode/httpx/tree/master/httpx
 # cd avito_parser_django/avito
-# python manage.py '!!!!_httpx_region'
+# python manage.py '!!!!_httpx_city_ORM'
 # python manage.py makemigrations aparser
 # python manage.py migrate aparser
 # .\Make reg
@@ -19,6 +19,7 @@ from django.core.management.base import CommandError
 # from aparser.models import Product
 from aparser.models import Product
 from aparser.models import Task
+from aparser.models import City
 
 STATUS_NEW = 1
 STATUS_READY = 2
@@ -37,7 +38,7 @@ logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)  # .setLevel(logging.INFO)
 
 
-class Region_set:
+class City_set:
     def __init__(self):  # (self, access_token, refresh_token, refresh_url)
 
         self.session = httpx.Client()  # requests.Session()
@@ -48,6 +49,7 @@ class Region_set:
         self.task = None
         self.product = None
         self.data = None
+        #self.city = None
 
     def find_task(self):
         obj = Task.objects.filter(status=STATUS_NEW).first()
@@ -58,40 +60,50 @@ class Region_set:
         print(f'Работаем над заданием {self.task}')
         # print(f'Работаем над заданием {self.task}')
 
-    #@staticmethod
+    @staticmethod
+    #def set_region(reg_list):
+    def set_city(reg_list):
+        id = int(reg_list['id'])
+        print(id)
+        name = reg_list['name']
+        region = reg_list['parent_Id']
+        url_path = reg_list['url_path']
+        print(f'Работаем над заданием City')
+        try:
+            p = City.objects.get(city_id=id)
+            #p = City.objects.filter(city_id=id).first()
+            print(f'##&& {p.name} {p.region} ')  # task = {self.task}')
+            #print(f'##&& {p} ')  # task = {self.task}')
+            # p.id = id
+            # p.city_id = id
+            p.name = name
+            p.region = region
+            # p.url_path = url_path
+            p.save()
+        except City.DoesNotExist:
+            p = City(
+                name=name,
+                city_id=id,
+                region=region,
+                url_path="",
+                url_name="",
+                index_post=0,
+            ).save()
+
+    # @staticmethod
     def check_region(self, reg):
-        #print(f'#########################################\n {self.data["data"]}')
-        reg1 = reg #list(self.data["data"]) #reg
+        # print(f'#########################################\n {self.data["data"]}')
+        reg1 = reg  # list(self.data["data"]) #reg
         print(self.data is reg1)
-        #reg1 = self.data['data']
-        #print(self.data)
-        #print(reg1)
-        #reg_id = reg1["id"]
-        #id_int = int(reg1["id"])
-        #print(f'reg_id {reg_id}')
+        # reg1 = self.data['data']
+        # print(self.data)
+        print(reg1)
+        reg_id = reg1["id"]
+        id_int = int(reg1["id"])
+        print(f'reg_id {reg_id}')
 
-
-        # with sqlite3.connect('realty.db') as connection:
-        #     cursor = connection.cursor()
-        #     cursor.execute("""
-        #           SELECT id FROM regions WHERE id = (?)
-        #       """, (reg_id,))
-        #     result = cursor.fetchone()
-        #     print(f'result cursor.fetchone() = {result}')
-        #
-        #     if result is None:
-        #         with sqlite3.connect('realty.db') as connection:
-        #             cursor = connection.cursor()
-        #             cursor.execute("""
-        #                 INSERT INTO regions VALUES (
-        #                  :id, :name, :url_path, :url_name, :index_post, :kod_region
-        #                 )
-        #                 """, reg1)
-        #             connection.commit()
-        #print(f'Хутор {reg_id} добавлен в базу данных')
-        ##connection.close()
-
-    def list_region(self): #, data):
+    # def list_region(self):  # , data):
+    def list_city(self):  # , data):
         data = self.data
         print(f'###################### data {type(data["data"])}')
 
@@ -106,26 +118,23 @@ class Region_set:
             dataitems.setdefault('url_name', 'None')  # , value)
             dataitems.setdefault('index_post', 'None')  # , value)
             dataitems.setdefault('kod_region', 'None')  # , value)
-            self.check_region(dataitems) #dataitems)
-            #print(dataitems)
+            # self.check_region(dataitems) #dataitems)
+            self.set_city(dataitems)
+            #print(dataitems['id'])
         #
-        #all_id.sort()
-        #print(all_id)
+        # all_id.sort()
+        # print(all_id)
 
     # @staticmethod
-    def open_json_region(self):
+    # def open_json_region(self):
+    def open_json_city(self):
         print('start open_json_region')
-        with open("Data/avito_region.json", encoding='utf-8') as file:
+        with open("Data/avito_city.json", encoding='utf-8') as file:
             self.data = json.load(file)
             # list_dict(data)
-        self.list_region()
-        #print(f'self.data \n {self.data} \n self.data')
+        self.list_city()
+        # print(f'self.data \n {self.data} \n self.data')
         #     return data
-
-
-class City:
-    pass
-
 
 class test:
     def say(self):
@@ -150,8 +159,8 @@ class Command(BaseCommand):
         # print(p.test())
         # p = AvitoParser()
         # p.parse_all()
-        s = Region_set()
+        s = City_set()
         # print(s)
         # s.find_task()
-        s.open_json_region()
+        s.open_json_city()
         # s.Open_json_region(self)
