@@ -77,7 +77,7 @@ class Path_xpath(models.Model):
 class Categories(models.Model):
     cat_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Категория', max_length=255, blank=True)
-    parentId = models.IntegerField('index', blank=True)
+    parent_id = models.IntegerField('index', blank=True)
     url_path = models.CharField(max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
 

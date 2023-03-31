@@ -64,28 +64,28 @@ class Categories_set:
     #def set_region(reg_list):
     def set_categories(reg_list):
         id = int(reg_list['id'])
-        print(id)
+        print('################## set_categories')
+        #print(reg_list)
         name = reg_list['name']
-        parentId = reg_list['parent_Id']
+        parentId = reg_list['parent_id']
         url_path = reg_list['url_path']
-        print(f'Работаем над заданием City')
+        print(f'Работаем над заданием Categories')
         try:
-            p = Categories.objects.get(city_id=id)
+            p = Categories.objects.get(cat_id=id)
             #p = City.objects.filter(city_id=id).first()
-            print(f'##&& {p.name} {p.parentId} ')  # task = {self.task}')
+            print(f'##&& {p.cat_id} {p.name} {p.parent_id} ')  # task = {self.task}')
             #print(f'##&& {p} ')  # task = {self.task}')
             # p.id = id
             p.cat_id = id
             p.name = name
-            p.parentId = parentId
+            p.parent_id = parentId
             # p.url_path = url_path
             p.save()
         except Categories.DoesNotExist:
             p = Categories(
                 cat_id=id,
                 name=name,
-                parentId_id=id,
-                region=region,
+                parent_id=parentId,
                 url_path="",
                 url_name="",
             ).save()
@@ -106,12 +106,27 @@ class Categories_set:
     def list_category(self):  # , data):
         data = self.data
 #        print(f'###################### data {type(data["data"])}')
-        print(f'###################### data {data}')
+#        print(f'###################### data {data}')
         all_id = []
         for dataitems in data['categories']:
-            print('PARENT  ',dataitems['id'], dataitems['name'])
+            #print(f'\n PARENT  {dataitems["id"]}, {dataitems["name"]}')
             #print(dataitems)
             all_id.append(dataitems['id'])
+
+            id = dataitems['id']
+            name = dataitems['name']
+            cat_id = dataitems['id']
+            #parent_id = dataitems['parentId']
+            #dataitems.setdefault('name', name)  # , value)
+            dataitems.setdefault('name', name)  # , value)
+            dataitems.setdefault('cat_id', cat_id)  # , value)
+            dataitems.setdefault('parent_id', 0)  # , value)
+            dataitems.setdefault('url_path', 'None')  # , value)
+            dataitems.setdefault('url_name', 'None')  # , value)
+            print(f'datainfo PARENT \n {dataitems}\n')  # ['id'])
+            self.set_categories(dataitems)
+
+
             #1
             #if dataitems['id'] in all_id:
             if dataitems['id'] > 0:
@@ -119,19 +134,24 @@ class Categories_set:
                     if datainfo['id'] in all_id:
                         print(f'IIIIDDDD Поймали ДУБЛЯЖ {datainfo}!!!!!!!!!!!!!!!!!!!!!')
                         break
-                all_id.append(dataitems['id'])
-                # Добавляем количество полей для корректного запроса заполнения SQL
-                id = datainfo['id']
-                name = datainfo['name']
-                cat_id = datainfo['id']
-                parent_id = datainfo['parentId']
-                dataitems.setdefault('name', name)  # , value)
-                dataitems.setdefault('cat_id', cat_id)  # , value)
-                dataitems.setdefault('parent_id', parent_id)  # , value)
-                dataitems.setdefault('url_path', 'None')  # , value)
-                dataitems.setdefault('url_name', 'None')  # , value)
-                #self.set_categories(dataitems)
-                print(dataitems)#['id'])
+                    #print(f'\n ######## Datainfo {datainfo}!!!!!!!!!!!!!!!!!!!!!')
+                    all_id.append(dataitems['id'])
+                    # Добавляем количество полей для корректного запроса заполнения SQL
+                    id = datainfo['id']
+                    name = datainfo['name']
+                    cat_id = datainfo['id']
+                    parent_id = datainfo['parentId']
+                    #dataitems.setdefault('name', name)  # , value)
+                    datainfo.setdefault('name', name)  # , value)
+                    datainfo.setdefault('cat_id', cat_id)  # , value)
+                    datainfo.setdefault('parent_id', parent_id)  # , value)
+                    datainfo.setdefault('url_path', 'None')  # , value)
+                    datainfo.setdefault('url_name', 'None')  # , value)
+                    print(f'datainfo CHILDREN \n {datainfo}\n')  # ['id'])
+                    self.set_categories(datainfo)
+                    #print(datainfo)#['id'])
+
+
         #
         # all_id.sort()
         # print(all_id)
