@@ -1,0 +1,94 @@
+
+Для того чтобы добавить свою собственную команду в Django, нужно выполнить следующие шаги:
+
+1. Создать директорию management в одном из приложений Django. Например, для приложения myapp:
+
+myapp/
+    __init__.py
+    models.py
+    views.py
+    ...
+    management/
+        __init__.py
+        commands/
+            __init__.py
+            mycommand.py
+
+
+2. Создать файл mycommand.py внутри директории commands. В этом файле нужно определить класс, который наследует Command из django.core.management.base. В этом классе нужно определить метод handle, который будет содержать логику команды. Например, если мы создаем команду, которая выводит на экран "Hello, world!", то код mycommand.py может выглядеть так:
+
+python
+from django.core.management.base import BaseCommand
+
+
+class Command(BaseCommand):
+    help = 'My custom command'
+
+    def handle(self, *args, **options):
+        print('Hello, world!')
+
+
+3. Зарегистрировать команду в Django. Для этого нужно создать файл __init__.py внутри директории management (если он еще не создан) и добавить default_app_config в файл __init__.py приложения. Например, для приложения myapp файлы могут выглядеть так:
+
+python
+# myapp/management/__init__.py
+default_app_config = 'myapp.apps.MyAppConfig'
+
+
+python
+# myapp/apps.py
+from django.apps import AppConfig
+
+
+class MyAppConfig(AppConfig):
+    name = 'myapp'
+    verbose_name = 'My App'
+
+    def ready(self):
+        import myapp.management.commands  # noqa
+
+
+4. Теперь можно запустить созданную команду с помощью python manage.py mycommand.
+
+#############################################################
+
+
+Для добавления новых пользовательских команд в проект Django необходимо создать файл с расширением .py в папке management/commands вашего приложения. В этом файле вы можете определить свою команду.
+
+Например, вы можете создать команду greet в файле greet.py, позволяющую приветствовать пользователя по имени, который будет передан в качестве аргумента командной строки:
+
+python
+from django.core.management.base import BaseCommand
+
+class Command(BaseCommand):
+    help = 'Greets the user'
+
+    def add_arguments(self, parser):
+        parser.add_argument('name', type=str)
+
+    def handle(self, *args, **options):
+        self.stdout.write('Hello, {}!'.format(options['name']))
+
+
+В данном примере команда greet принимает один обязательный аргумент - имя пользователя. Если запустить команду python manage.py greet John, то на экране будет выведено сообщение Hello, John!.
+
+В файле management/__init__.py нужно добавить следующий код для того,
+чтобы Django распознавал ваши команды:
+
+python
+from .commands import greet
+
+
+Затем вы можете запустить вашу пользовательскую команду greet следующим образом:
+
+
+python manage.py greet John
+
+
+где John - это имя пользователя, которое передается в качестве аргумента командной строки.
+
+Если вам нужно добавить несколько пользовательских команд, просто создайте несколько файлов в папке management/commands и повторите вышеописанный процесс для каждого файла.
+
+Обратите внимание, что имена файлов должны быть короткими, понятными и описательными. Они будут использоваться как имена команд для manage.py. Например, если вы создали файл greet.py, то имя команды будет python manage.py greet.
+
+Также не забывайте, что при создании пользовательских команд вы можете использовать все возможности Python, в том числе и сторонние библиотеки.
