@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec" >
+
+	<!-- <head> tag -->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="description" content="This article explains how to create a PostgreSQL table and insert rows of data into it using the psycopg2 Python adapter.">
+
+<meta name="keywords" content="create postgresql table insert data psycopg2 adapter python">
+
+	<link href="https://fonts.googleapis.com/css?family=Libre+Franklin:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-32312837-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-32312837-1');
+	  gtag('config', 'UA-32312837-7');
+	</script>
+
+	<!-- Bizible tag -->
+	<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+	<title>Create A PostgreSQL Table And Insert Data Using The Psycopg2 Adapter For Python | ObjectRocket</title>
+<meta name='robots' content='max-image-preview:large' />
+    <!-- Start VWO Common Smartcode -->
+    <script  type='text/javascript'>
+        var _vwo_clicks = 10;
+    </script>
+    <!-- End VWO Common Smartcode -->
+        <!-- Start VWO Async Smartcode -->
+    <script  type='text/javascript'>
+    window._vwo_code = window._vwo_code || (function(){
+    var account_id= 360281,
+    settings_tolerance= 2000,
+    library_tolerance= 2500,
+    use_existing_jquery= false,
+    is_spa=1,
+    hide_element='body',
+    /* DO NOT EDIT BELOW THIS LINE */
+    f=false,d=document,code={use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){
+    window.settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);var a=d.createElement('style'),b=hide_element?hide_element+'{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}':'',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);this.load('https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&f='+(+is_spa)+'&r='+Math.random());return settings_timer; }};window._vwo_settings_timer = code.init(); return code; }());
+    </script>
+    <!-- End VWO Async Smartcode -->
+    <link rel='dns-prefetch' href='//s7.addthis.com' />
+<link rel="alternate" type="application/rss+xml" title="ObjectRocket &raquo; Create A PostgreSQL Table And Insert Data Using The Psycopg2 Adapter For Python Comments Feed" href="https://kb.objectrocket.com/postgresql/create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748/feed" />
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/kb.objectrocket.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode,e=(p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0),i.toDataURL());return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(p&&p.fillText)switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([129777,127995,8205,129778,127999],[129777,127995,8203,129778,127999])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(e=t.source||{}).concatemoji?c(e.concatemoji):e.wpemoji&&e.twemoji&&(c(e.twemoji),c(e.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<style type="text/css">/* Add more width for line numbers ( past 100 lines was a problem ) */
+.codecolorer-container table td.line-numbers div {
+  min-width: 32px !important;
+}
+
+/* round the corners of the div holding the table and give it a border */
+.codecolorer-container.solarized-light.codecolorer-noborder {
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid grey !important;
+}</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://orkbprod.wpenginepowered.com/wp-includes/css/dist/block-library/style.min.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://orkbprod.wpenginepowered.com/wp-includes/css/classic-themes.min.css?ver=1' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='dashicons-css' href='https://orkbprod.wpenginepowered.com/wp-includes/css/dashicons.min.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='mmenu-css' href='https://orkbprod.wpenginepowered.com/wp-content/plugins/mmenu/css/mmenu.css?ver=4' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-postratings-css' href='https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/css/postratings-css.css?ver=1.89' type='text/css' media='all' />
+<link rel='stylesheet' id='addthis_all_pages-css' href='https://orkbprod.wpenginepowered.com/wp-content/plugins/addthis/frontend/build/addthis_wordpress_public.min.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='sage/main.css-css' href='https://orkbprod.wpenginepowered.com/wp-content/themes/objectrocket-knowledge-base/dist/styles/main_fc686a1c.css' type='text/css' media='all' />
+<link rel='stylesheet' id='codecolorer-css' href='https://orkbprod.wpenginepowered.com/wp-content/plugins/codecolorer/codecolorer.css?ver=0.9.16' type='text/css' media='screen' />
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-content/plugins/mmenu/js/mmenu.js?ver=4' id='mmenu-js'></script>
+<link rel="https://api.w.org/" href="https://kb.objectrocket.com/wp-json/" /><link rel="alternate" type="application/json" href="https://kb.objectrocket.com/wp-json/wp/v2/posts/811" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://kb.objectrocket.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://kb.objectrocket.com/wp-includes/wlwmanifest.xml" />
+<link rel="canonical" href="https://kb.objectrocket.com/postgresql/create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748" />
+<link rel='shortlink' href='https://kb.objectrocket.com/?p=811' />
+<link rel="alternate" type="application/json+oembed" href="https://kb.objectrocket.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkb.objectrocket.com%2Fpostgresql%2Fcreate-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748" />
+<link rel="alternate" type="text/xml+oembed" href="https://kb.objectrocket.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fkb.objectrocket.com%2Fpostgresql%2Fcreate-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748&#038;format=xml" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><link rel="icon" href="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/02/favicon.ico" sizes="32x32" />
+<link rel="icon" href="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/02/favicon.ico" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/02/favicon.ico" />
+<meta name="msapplication-TileImage" content="https://kb.objectrocket.com/wp-content/uploads/2020/02/favicon.ico" />
+</head>
+	
+	<body class="post-template post-template-views post-template-unstructured-tutorial post-template-viewsunstructured-tutorial single single-post postid-811 single-format-standard create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748 app-data index-data singular-data single-data single-post-data single-post-create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748-data unstructured-tutorial-data tutorial-template">
+
+			
+		<!-- WP header -->
+				
+		<!-- Page header -->
+		<div id="header" class="or-header">
+	<div class="bs-container">
+		<div class="header_in">
+
+			<!-- Desktop Header Banner -->
+			<div class="hidden-xs desktop">
+
+				<!-- Logo -->
+				<div id="logo">
+					<a href="https://www.objectrocket.com/">
+						<img class="logo-full" src="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/06/ObjectRocket-a-Rackspace-Technology-Company-Logo-Small-Color.png" alt="Object Rocket">
+						<img class="logo-small" src="https://27gugn2cjlf23by7ems65e21-wpengine.netdna-ssl.com/wp-content/themes/objectrocket/assets/images/logo-small.svg" alt="Object Rocket">
+					</a>
+				</div>
+
+				<!-- Header Menu -->
+				<div class="navbar nav-header header-menu navbar-static-top bs-docs-nav hidden-xs" id="top" role="banner">
+					<nav id="bs-navbar" class="collapse navbar-collapse">
+						<div class="menu-main-menu-container">
+							<ul id="top-menu" class="nav navbar-nav">
+								<li id="menu-item-509" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-509"><a href="https://www.objectrocket.com/services/">Services</a>
+<ul class="sub-menu">
+	<li id="menu-item-512" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-512"><a href="https://www.objectrocket.com/managed-elasticsearch/">Elasticsearch</a></li>
+	<li id="menu-item-514" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-514"><a href="https://www.objectrocket.com/managed-mongodb/">MongoDB</a></li>
+	<li id="menu-item-516" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-516"><a href="https://www.objectrocket.com/managed-redis/">Redis</a></li>
+	<li id="menu-item-510" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-510"><a href="https://www.objectrocket.com/database-migration/">Data Migration</a></li>
+	<li id="menu-item-1962" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1962"><a href="https://www.objectrocket.com/private-dbaas/">Private DBaaS</a></li>
+</ul>
+</li>
+<li id="menu-item-517" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-517"><a href="https://www.objectrocket.com/custom-pricing/">Custom Pricing</a></li>
+<li id="menu-item-518" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-518"><a href="https://objectrocket.com/about-objectrocket/">Company</a>
+<ul class="sub-menu">
+	<li id="menu-item-519" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-519"><a href="https://www.objectrocket.com/about-objectrocket/">About Objectrocket</a></li>
+	<li id="menu-item-521" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-521"><a href="https://www.objectrocket.com/contact/">Contact us</a></li>
+</ul>
+</li>
+<li id="menu-item-522" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-522"><a href="https://www.objectrocket.com/resources/">Resources</a>
+<ul class="sub-menu">
+	<li id="menu-item-523" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-523"><a href="https://www.objectrocket.com/blog/">Blog</a></li>
+	<li id="menu-item-524" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-524"><a href="https://www.objectrocket.com/customers/">Case Studies</a></li>
+	<li id="menu-item-525" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-525"><a href="https://docs.objectrocket.com/">Documentation</a></li>
+	<li id="menu-item-527" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-527"><a href="https://www.objectrocket.com/ebooks/">Ebooks</a></li>
+	<li id="menu-item-528" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-528"><a href="https://kb.objectrocket.com/">Knowledge Base</a></li>
+	<li id="menu-item-878" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-878"><a href="https://www.objectrocket.com/polyglot-persistence/">Polyglot Persistence</a></li>
+	<li id="menu-item-529" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-529"><a href="https://www.objectrocket.com/white-papers/">White Papers</a></li>
+</ul>
+</li>
+<li id="menu-item-530" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-530"><a href="https://objectrocket.com/support">Support</a>
+<ul class="sub-menu">
+	<li id="menu-item-531" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-531"><a href="https://objectrocket.zendesk.com/hc/en-us/restricted?return_to=https%3A%2F%2Fobjectrocket.zendesk.com%2Fhc%2Fen-us">Submit Ticket</a></li>
+	<li id="menu-item-532" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-532"><a href="http://status.objectrocket.com/">System Status</a></li>
+</ul>
+</li>
+
+							</ul>
+						</div>
+					</nav>
+				</div>
+
+				<!-- Spacer -->
+				<div class="visible-xs"></div>
+
+				<!-- Right-of-menu Widgets -->
+				<div id="custom_html-3" class="widget_text widget_custom_html">
+					<div class="textwidget custom-html-widget">
+						<a href="#" class="search-icon">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</a>
+
+						<a class="top-hdr-link" href="https://app.objectrocket.cloud" target="_blank">Log In</a>
+						<a class="orange_btn trial" href="https://app.objectrocket.cloud" target="_blank">Try Free</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Mobile Header Banner -->
+			<div class="bs-row visible-xs mobile">
+
+				<!-- Hamburger Button -->
+				<div class="col-xs-2">
+					<div class="header">
+						<a href="#menu" id="mobile-menu-toggle">
+							<span class="menu_btn">
+								<img src="https://27gugn2cjlf23by7ems65e21-wpengine.netdna-ssl.com/wp-content/themes/objectrocket/assets/images/menu_icon.png">
+							</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Logo -->
+				<div class="col-xs-8">
+					<div id="logo">
+						<a href="https://www.objectrocket.com">
+							<img class="logo-full" src="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/06/ObjectRocket-a-Rackspace-Technology-Company-Logo-Small-Color.png" alt="Object Rocket">
+							<img class="logo-small" src="https://27gugn2cjlf23by7ems65e21-wpengine.netdna-ssl.com/wp-content/themes/objectrocket/assets/images/logo-small.svg" alt="Object Rocket">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Searchbar (hidden until search toggle clicked -->
+	<div class="searchbar hidden-xs closed">
+		<form id="searchform" action="/" method="get" class="ng-pristine ng-valid">
+			<input class="inlineSearch" type="text" name="s" placeholder="Enter your search">
+
+			<button type="submit" class="search-submit">
+				<svg class="icon icon-search" aria-hidden="true" role="img">
+					<use href="#icon-search" xlink:href="#icon-search"></use>
+				</svg>
+
+				<span class="screen-reader-text">Search</span>
+			</button>
+		</form>
+	</div>
+</div>		
+		<!-- Main content -->
+		<div class="wrap" role="document">
+			<div class="content">
+				<aside class="sidebar">
+						<div class="table-of-contents">
+	<div class="table-of-contents-title">Contents</div>
+	
+	<div class="table-of-contents-items">
+					<a href="#introduction" class="toc-h2">Introduction</a>
+					<a href="#prerequisites" class="toc-h2">Prerequisites</a>
+					<a href="#import+the+psycopg2+modules+for+executing+postgresql+statements+in+a+python+script" class="toc-h2">Import the psycopg2 modules for executing PostgreSQL statements in a Python script</a>
+					<a href="#connect+to+postgresql+using+psycopg2%5C%27s+%5C%27connect%28%29%5C%27+method" class="toc-h2">Connect to PostgreSQL using psycopg2&#8217;s &#8216;connect()&#8217; method</a>
+					<a href="#define+a+function+that+will+execute+the+postgresql+statements" class="toc-h2">Define a function that will execute the PostgreSQL statements</a>
+					<a href="#dropping+a+postgresql+table+using+the+execute_sql%28%29+function" class="toc-h3">Dropping a PostgreSQL table using the execute_sql() function</a>
+					<a href="#declare+a+cursor+object+and+string+for+the+postgresql+table+name" class="toc-h2">Declare a cursor object and string for the PostgreSQL table name</a>
+					<a href="#declare+a+sql+string+for+creating+a+new+postgresql+table" class="toc-h2">Declare a SQL string for creating a new PostgreSQL table</a>
+					<a href="#execute+the+postgresql+%5C%27create+table%5C%27+transaction" class="toc-h3">Execute the PostgreSQL &#8216;CREATE TABLE&#8217; transaction</a>
+					<a href="#declare+a+sql+string+for+inserting+rows+of+data+into+a+postgresql+table" class="toc-h2">Declare a SQL string for inserting rows of data into a PostgreSQL table</a>
+					<a href="#execute+the+postgresql+%5C%27insert+into%5C%27+transaction" class="toc-h3">Execute the PostgreSQL &#8216;INSERT INTO&#8217; transaction</a>
+					<a href="#commit+the+postgresql+transactions+and+close+the+connection" class="toc-h2">Commit the PostgreSQL transactions and close the connection</a>
+					<a href="#run+the+python+script+to+create+the+postgresql+table+and+insert+data+rows" class="toc-h2">Run the Python script to create the PostgreSQL table and insert data rows</a>
+					<a href="#use+%5C%27psql%5C%27+to+verify+that+the+data+rows+were+inserted+into+the+postgresql+tablepostgresql" class="toc-h3">Use &#8216;psql&#8217; to verify that the data rows were inserted into the PostgreSQL tablePostgreSQL</a>
+					<a href="#conclusion" class="toc-h2">Conclusion</a>
+					<a href="#just+the+code" class="toc-h2">Just the Code</a>
+			</div>
+</div>
+
+				</aside>
+				
+				<main class="main">
+						<section class="section tutorial-header-section">
+	<div class="above-title">
+		<div class="breadcrumbs" role="navigation" aria-label="breadcrumbs">
+			<ul><li><a href='https://kb.objectrocket.com'>Resources</a></li><li><a href='https://kb.objectrocket.com/category/postgresql'>PostgreSQL</a></li><li class='is-active'><span>Create A PostgreSQL Table And Insert Data Using The Psycopg2 Adapter For Python</span></ul>
+		</div>
+	</div>	
+	
+	<h1 id="tutorial-title">Create A PostgreSQL Table And Insert Data Using The Psycopg2 Adapter For Python</h1>
+	
+	<div class="metadata">
+		<div class="tutorial-byline">
+	<img src="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/01/avatar_user_2_1579573427-96x96.png">
+	
+	<div>
+		<div>Written by Data Pilot</div>
+		<div>September 15, 2019</div>
+	</div>
+</div>		
+		<div class="tutorial-tags">
+	<ul>
+					<li class="tutorial-tag">PostgreSQL</li>
+					<li class="tutorial-tag">Psycopg2</li>
+					<li class="tutorial-tag">Python</li>
+			</ul>
+</div>		
+		<div class="tutorial-social-media">
+
+
+	<div class="subscribe">
+		<a href="https://app.objectrocket.com/sign_up">
+			<i class="fa fa-user-plus"></i> Subscribe
+		</a>
+	</div>
+
+	<div class="like">
+		<a class="tutorial-like-button" data-post-id="811">
+			<i class="fa fa-heart"></i> Like
+		</a>
+	</div>
+</div>	</div>
+</section>
+<section style="width:100%; background-size: cover; background-repeat: repeat;">
+	<div style="width:100%; background-color: #000000;color:#fff;height: 100%;align-content: center;flex-direction: row;border-radius: 25px;justify-content: center;text-align: center;" class="blackbanner">
+		<div style="margin-left: 5px;margin-bottom: 5px;padding-top: 5px;padding-bottom: 5px;font-size: 24px;">Have a Database Problem?  Speak with an Expert for Free
+		<br>
+		<a id="moreinfo" class="" onClick=“_gaq.push([‘_trackEvent’, ‘KB_Source’, ‘click’, ‘free_cons’, ‘0’]);” target="_blank" href="https://www.objectrocket.com/kb-request-consultation/" style="margin-left: 30px;width: 200px; font-size: 24px; border-radius: 25px; color:#F26923;"> Get Started &gt;&gt;</a>
+		</div>
+		
+	</div>
+</section>
+	<section class="section tutorial-content-section">
+		<div class="at-above-post addthis_tool" data-url="https://kb.objectrocket.com/postgresql/create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748"></div><h2 id='introduction'>Introduction</h2>
+<p>If you&#8217;re using Python to interact with PostgreSQL, it&#8217;s important to know all the different database operations you can perform in your scripts. With the psycopg2 adapter, you can do more than just query for data&#8211; you can also create tables and add rows to them. This article will introduce the <code class="codecolorer text mac-classic"><span class="text">execute()</span></code> method for the psycopg2 adapter for PostgreSQL, and it will show you how to use it to create a PostgreSQL table and insert data with the psycopg2 adapter for Python.</p>
+<h2 id='prerequisites'>Prerequisites</h2>
+<p>Before we start working on our Python script, let&#8217;s look at the key prerequisites that are necessary for this tutorial:</p>
+<ul>
+<li><p>You&#8217;ll need to have Python 3 installed, as well as the PIP package manager. Use the
+<code class="codecolorer text mac-classic"><span class="text">python3 -V</span></code> and <code class="codecolorer text mac-classic"><span class="text">pip3 -V</span></code> commands to retrieve the version numbers for your installations of Python and PIP3.</p>
+</li>
+<li><p>You can use the the <code class="codecolorer text mac-classic"><span class="text">pip3</span></code> package manager to install the <code class="codecolorer text mac-classic"><span class="text">psycopg2</span></code> library:</p>
+</li>
+</ul>
+
+<div class="codecolorer-container bash solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br /></div></td><td><div class="bash codecolorer">pip3 <span class="kw2">install</span> psycopg2</div></td></tr></tbody></table></div>
+
+<p><img decoding="async" src="https://i.gyazo.com/a862bdc967e725a53cc0ee6b32a9235e.jpg" alt="Screenshot of Python 3 and PIP3 versions in terminal and installation of psycopg2" /></p>
+<ul>
+<li>You&#8217;ll need to have a PostgreSQL database created on your server, and you&#8217;ll also need a user that has been granted privileges to the database. You can do this in the <code class="codecolorer text mac-classic"><span class="text">psql</span></code> interface using the following commands:</li>
+</ul>
+
+<div class="codecolorer-container sql solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br /></div></td><td><div class="sql codecolorer"><span class="kw1">CREATE</span> <span class="kw1">DATABASE</span> some_database;<br />
+<span class="kw1">CREATE</span> <span class="kw1">USER</span> some_user <span class="kw1">WITH</span> ENCRYPTED PASSWORD <span class="st0">'mypass'</span>;<br />
+<span class="kw1">GRANT</span> <span class="kw1">ALL</span> PRIVILEGES <span class="kw1">ON</span> <span class="kw1">DATABASE</span> some_database <span class="kw1">TO</span> some_user;</div></td></tr></tbody></table></div>
+
+<h2 id='import+the+psycopg2+modules+for+executing+postgresql+statements+in+a+python+script'>Import the psycopg2 modules for executing PostgreSQL statements in a Python script</h2>
+<p>Once you&#8217;ve made sure that all your prerequisites are in place, you can proceed to create your Python script. You can create it in your favorite IDE, or you can use the <code class="codecolorer text mac-classic"><span class="text">touch</span></code> command in a UNIX terminal, making sure that your file has the <code class="codecolorer text mac-classic"><span class="text">.py</span></code> extension. Then, import the following <code class="codecolorer text mac-classic"><span class="text">psycopg2</span></code> libraries at the beginning of the script:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="python codecolorer"><span class="co1"># import the psycopg2 database adapter for PostgreSQL</span><br />
+<span class="kw1">from</span> psycopg2 <span class="kw1">import</span> connect<span class="sy0">,</span> sql<br />
+<br />
+<span class="co1"># use a Python UUID for the table's PRIMARY KEY</span><br />
+<span class="kw1">import</span> uuid</div></td></tr></tbody></table></div>
+
+<p><strong><em>NOTE:</em></strong> The code shown in this article uses Python&#8217;s built-in <code class="codecolorer text mac-classic"><span class="text">uuid</span></code> library to generate unique IDs for the table&#8217;s <code class="codecolorer text mac-classic"><span class="text">PRIMARY KEY</span></code> column. The <code class="codecolorer text mac-classic"><span class="text">connect</span></code> library is used for establishing a connection with PostgreSQL and for generating a cursor for the <code class="codecolorer text mac-classic"><span class="text">execute()</span></code> method.</p>
+<h2 id='connect+to+postgresql+using+psycopg2%5C%27s+%5C%27connect%28%29%5C%27+method'>Connect to PostgreSQL using psycopg2&#8217;s &#8216;connect()&#8217; method</h2>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br /></div></td><td><div class="python codecolorer"><span class="co1"># declare a new PostgreSQL connection object</span><br />
+conn <span class="sy0">=</span> connect<span class="br0">&#40;</span><br />
+dbname <span class="sy0">=</span> <span class="st0">&quot;python_test&quot;</span><span class="sy0">,</span><br />
+<span class="kw3">user</span> <span class="sy0">=</span> <span class="st0">&quot;objectrocket&quot;</span><span class="sy0">,</span><br />
+host <span class="sy0">=</span> <span class="st0">&quot;localhost&quot;</span><span class="sy0">,</span><br />
+password <span class="sy0">=</span> <span class="st0">&quot;mypass&quot;</span><br />
+<span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<p>Be sure to pass the correct parameters when calling the <code class="codecolorer text mac-classic"><span class="text">connect()</span></code> method, and keep in mind that the string you pass to the <code class="codecolorer text mac-classic"><span class="text">dbname</span></code> parameter will be the database into which your new table will be inserted.</p>
+<h2 id='define+a+function+that+will+execute+the+postgresql+statements'>Define a function that will execute the PostgreSQL statements</h2>
+<p>The following function passes a SQL string to the cursor object&#8217;s <code class="codecolorer text mac-classic"><span class="text">execute()</span></code> method inside a try-except indentation block:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;height:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br /></div></td><td><div class="python codecolorer"><span class="co1"># define a function that will execute SQL statements</span><br />
+<span class="kw1">def</span> execute_sql<span class="br0">&#40;</span>ident<span class="sy0">=</span><span class="kw2">None</span><span class="sy0">,</span> statement<span class="br0">&#41;</span>:<br />
+<br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;<span class="es0">\n</span>execute_sql() SQL statement:&quot;</span><span class="sy0">,</span> statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># check if SQL statement/query end with a semi-colon</span><br />
+<span class="kw1">if</span> statement<span class="br0">&#91;</span>-<span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">!=</span> <span class="st0">&quot;;&quot;</span>:<br />
+err <span class="sy0">=</span> <span class="st0">&quot;execute_sql() ERROR: All SQL statements and &quot;</span><br />
+err <span class="sy0">=</span> err + <span class="st0">&quot;queries must end with a semi-colon.&quot;</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span>err<span class="br0">&#41;</span><br />
+<span class="kw1">else</span>:<br />
+<span class="kw1">try</span>:<br />
+<span class="co1"># have sql.SQL() return a sql.SQL object</span><br />
+sql_object <span class="sy0">=</span> sql.<span class="me1">SQL</span><span class="br0">&#40;</span><br />
+<span class="co1"># pass SQL string to sql.SQL()</span><br />
+statement<br />
+<span class="br0">&#41;</span>.<span class="me1">format</span><span class="br0">&#40;</span><br />
+<span class="co1"># pass the identifier to the Identifier() method</span><br />
+sql.<span class="me1">Identifier</span><span class="br0">&#40;</span> ident <span class="br0">&#41;</span><br />
+<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># pass the psycopg2.sql.SQL object to execute() method</span><br />
+cursor.<span class="me1">execute</span><span class="br0">&#40;</span> sql_object <span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># print message if no exceptions were raised</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;execute_sql() FINISHED&quot;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="kw1">except</span> <span class="kw2">Exception</span> <span class="kw1">as</span> err:<br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;execute_sql() ERROR:&quot;</span><span class="sy0">,</span> err<span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<p>If the PostgreSQL server raises an error, it will get returned to the psycopg2 adapter and the function will print it.</p>
+<h3 id='dropping+a+postgresql+table+using+the+execute_sql%28%29+function'>Dropping a PostgreSQL table using the execute_sql() function</h3>
+<p>The following code example shows how we would pass a SQL string to the function in order to drop a table:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="python codecolorer"><span class="co1"># drop the table if it already exists</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;DROP TABLE some_table;&quot;</span><br />
+<br />
+<span class="co1"># call the function to drop table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<p>If the table doesn&#8217;t exist, the following response will be returned:</p>
+
+<div class="codecolorer-container text solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br /></div></td><td><div class="text codecolorer">execute_sql() SQL statement: DROP TABLE some_table;<br />
+execute_sql() ERROR: table &quot;some_table&quot; does not exist</div></td></tr></tbody></table></div>
+
+<h2 id='declare+a+cursor+object+and+string+for+the+postgresql+table+name'>Declare a cursor object and string for the PostgreSQL table name</h2>
+<p>In the code shown below, we declare a string for the table name and instantiate a <code class="codecolorer text mac-classic"><span class="text">psycopg2</span></code> cursor object. The cursor will be used to execute SQL statements using the <code class="codecolorer text mac-classic"><span class="text">execute_sql()</span></code> function we defined earlier:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="python codecolorer"><span class="co1"># declare a string for the table name</span><br />
+TABLE_NAME <span class="sy0">=</span> <span class="st0">&quot;some_table&quot;</span><br />
+<br />
+<span class="co1"># instantiate a cursor object from the connection</span><br />
+cursor <span class="sy0">=</span> conn.<span class="me1">cursor</span><span class="br0">&#40;</span><span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<h2 id='declare+a+sql+string+for+creating+a+new+postgresql+table'>Declare a SQL string for creating a new PostgreSQL table</h2>
+<p>Now, let&#8217;s declare a SQL statement string that will create a PostgreSQL table:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br /></div></td><td><div class="python codecolorer"><span class="co1"># declare a SQL string for CREATE TABLE</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;&quot;&quot;<br />
+CREATE TABLE {} (<br />
+col_uuid VARCHAR(32) PRIMARY KEY,<br />
+col_str VARCHAR(64) UNIQUE NOT NULL,<br />
+col_int INTEGER NOT NULL,<br />
+col_bool BOOLEAN NOT NULL<br />
+);&quot;&quot;&quot;</span>.<span class="me1">format</span><span class="br0">&#40;</span> TABLE_NAME <span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<p><strong><em>NOTE:</em></strong> A Python <code class="codecolorer text mac-classic"><span class="text">uuid.UUID</span></code> string, converted from the <code class="codecolorer text mac-classic"><span class="text">uuid.uuid4()</span></code> method, has a character length of <code class="codecolorer text mac-classic"><span class="text">32</span></code>.</p>
+<h3 id='execute+the+postgresql+%5C%27create+table%5C%27+transaction'>Execute the PostgreSQL &#8216;CREATE TABLE&#8217; transaction</h3>
+<p>We can execute the SQL string by passing it, along with the <code class="codecolorer text mac-classic"><span class="text">TABLE_NAME</span></code> string, to the <code class="codecolorer text mac-classic"><span class="text">execute_sql()</span></code> function:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="python codecolorer"><span class="co1"># print the psycopg2.sql.SQL object</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;CREATE TABLE sql_statement:<span class="es0">\n</span>&quot;</span><span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># call the function to create table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<h2 id='declare+a+sql+string+for+inserting+rows+of+data+into+a+postgresql+table'>Declare a SQL string for inserting rows of data into a PostgreSQL table</h2>
+<p>We&#8217;ll declare another SQL string that will use the <code class="codecolorer text mac-classic"><span class="text">INSERT INTO</span></code> SQL command to insert several rows of data into the table we just instructed psycopg2 to create.</p>
+<p>We&#8217;ll use the curly braces (<code class="codecolorer text mac-classic"><span class="text">{}</span></code>) as substitutions to generate UUIDs for each row of data:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br /></div></td><td><div class="python codecolorer"><span class="co1"># declare a string that will INSERT rows into the table</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;&quot;&quot;INSERT INTO {} (col_uuid, col_str, col_int, col_bool) VALUES<br />
+('{}', 'hello, world', 1234, true),<br />
+('{}', 'kumusta, mundo', 42, false),<br />
+('{}', '‰Ω†Â•ΩÔºå‰∏ñÁïå', 4321, 'yes');&quot;&quot;&quot;</span><br />
+<span class="co1"># string must be enclosed using single-quotes (')</span></div></td></tr></tbody></table></div>
+
+<p>All that&#8217;s left to do is to pass <code class="codecolorer text mac-classic"><span class="text">uuid.uuid4().hex</span></code> to the string&#8217;s <code class="codecolorer text mac-classic"><span class="text">format()</span></code> method to generate the UUIDs:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br /></div></td><td><div class="python codecolorer"><span class="co1"># each '{}' needs a substitution</span><br />
+sql_statement <span class="sy0">=</span> sql_statement.<span class="me1">format</span><span class="br0">&#40;</span><br />
+TABLE_NAME<span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><br />
+<span class="br0">&#41;</span><br />
+<span class="co1"># string must be enclosed using single-quotes (')</span></div></td></tr></tbody></table></div>
+
+<p><img decoding="async" src="https://i.gyazo.com/565bcfd18e2029c0945125dd6348d8ae.jpg" alt="Screenshot of Python IDLE using string's format to concatenate strings and getting length of UUID object" /></p>
+<p>When you run your Python script, it should generate a SQL statement string that looks something like this:</p>
+
+<div class="codecolorer-container sql solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br /></div></td><td><div class="sql codecolorer"><span class="kw1">INSERT</span> <span class="kw1">INTO</span> some_table <span class="br0">&#40;</span>col_uuid<span class="sy0">,</span> col_str<span class="sy0">,</span> col_int<span class="sy0">,</span> col_bool<span class="br0">&#41;</span> <span class="kw1">VALUES</span><br />
+<span class="br0">&#40;</span><span class="st0">'5e4dbd53d357478b93610608413a3d38'</span><span class="sy0">,</span> <span class="st0">'hello, world'</span><span class="sy0">,</span> <span class="nu0">1234</span><span class="sy0">,</span> <span class="kw1">TRUE</span><span class="br0">&#41;</span><span class="sy0">,</span><br />
+<span class="br0">&#40;</span><span class="st0">'c45e750e271a448f9c56ffcf0a5636d7'</span><span class="sy0">,</span> <span class="st0">'kumusta, mundo'</span><span class="sy0">,</span> <span class="nu0">42</span><span class="sy0">,</span> <span class="kw1">FALSE</span><span class="br0">&#41;</span><span class="sy0">,</span><br />
+<span class="br0">&#40;</span><span class="st0">'e45235027b884dbcb5d3381be9e8a5d7'</span><span class="sy0">,</span> <span class="st0">'‰Ω†Â•ΩÔºå‰∏ñÁïå'</span><span class="sy0">,</span> <span class="nu0">1234</span><span class="sy0">,</span> <span class="st0">'yes'</span><span class="br0">&#41;</span>;</div></td></tr></tbody></table></div>
+
+<h3 id='execute+the+postgresql+%5C%27insert+into%5C%27+transaction'>Execute the PostgreSQL &#8216;INSERT INTO&#8217; transaction</h3>
+<p>Just like we did with the <code class="codecolorer text mac-classic"><span class="text">CREATE TABLE</span></code> string, we&#8217;ll also have to pass the <code class="codecolorer text mac-classic"><span class="text">INSERT INTO some_table</span></code> string to the <code class="codecolorer text mac-classic"><span class="text">execute_sql()</span></code> function:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="python codecolorer"><span class="co1"># print the SQL statement</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;INSERT INTO sql_statement:<span class="es0">\n</span>&quot;</span><span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># call the function to insert data into table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<h2 id='commit+the+postgresql+transactions+and+close+the+connection'>Commit the PostgreSQL transactions and close the connection</h2>
+<p>Finally, we commit the transactions to the PostgreSQL server and then close the connection and cursor object:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br /></div></td><td><div class="python codecolorer"><span class="co1"># commit transactions to PostgreSQL</span><br />
+conn.<span class="me1">commit</span><span class="br0">&#40;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># close the cursor object to avoid memory leaks</span><br />
+cursor.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># close the connection object</span><br />
+conn.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<h2 id='run+the+python+script+to+create+the+postgresql+table+and+insert+data+rows'>Run the Python script to create the PostgreSQL table and insert data rows</h2>
+<p>Now that we&#8217;ve finished reviewing all the parts of our script, we can try running it. Save the code in your Python script and navigate to your PostgreSQL-Python project directory. Then, run the script using the <code class="codecolorer text mac-classic"><span class="text">python3</span></code> command.</p>
+<p>You should see your terminal or command prompt window print something like this:</p>
+
+<div class="codecolorer-container bash solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br /></div></td><td><div class="bash codecolorer">execute_sql<span class="br0">&#40;</span><span class="br0">&#41;</span> SQL statement: INSERT INTO some_table <span class="br0">&#40;</span>col_uuid, col_str, col_int, col_bool<span class="br0">&#41;</span> VALUES<br />
+<span class="br0">&#40;</span><span class="st_h">'5e4dbd53d357478b93610608413a3d38'</span>, <span class="st_h">'hello, world'</span>, <span class="nu0">1234</span>, <span class="kw2">true</span><span class="br0">&#41;</span>,<br />
+<span class="br0">&#40;</span><span class="st_h">'c45e750e271a448f9c56ffcf0a5636d7'</span>, <span class="st_h">'kumusta, mundo'</span>, <span class="nu0">42</span>, <span class="kw2">false</span><span class="br0">&#41;</span>,<br />
+<span class="br0">&#40;</span><span class="st_h">'e45235027b884dbcb5d3381be9e8a5d7'</span>, <span class="st_h">'‰Ω†Â•ΩÔºå‰∏ñÁïå'</span>, <span class="nu0">1234</span>, <span class="st_h">'yes'</span><span class="br0">&#41;</span>;<br />
+execute_sql<span class="br0">&#40;</span><span class="br0">&#41;</span> FINISHED</div></td></tr></tbody></table></div>
+
+<p><img decoding="async" src="https://i.gyazo.com/6d3072cdac3b7840be8e877f917b0528.jpg" alt="Screenshot of a Python script running in terminal to create a PostgreSQL table and insert rows of data" /></p>
+<h3 id='use+%5C%27psql%5C%27+to+verify+that+the+data+rows+were+inserted+into+the+postgresql+tablepostgresql'>Use &#8216;psql&#8217; to verify that the data rows were inserted into the PostgreSQL tablePostgreSQL</h3>
+<p>We can verify that both the PostgreSQL table and its data were created in Python by going back into the database using the <code class="codecolorer text mac-classic"><span class="text">psql</span></code> interface. Use the following SQL statements to get all the rows from the new table you just created:</p>
+
+<div class="codecolorer-container sql solarized-light codecolorer-noborder" style="width:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br /></div></td><td><div class="sql codecolorer">\dt<br />
+<span class="kw1">SELECT</span> <span class="sy0">*</span> <span class="kw1">FROM</span> some_table;</div></td></tr></tbody></table></div>
+
+<p><img decoding="async" src="https://i.gyazo.com/d8712734f8e1da4c1082c7db155a0829.jpg" alt="Screenshot of psql listing tables in a PostgreSQL database and selecting rows of data" /></p>
+<h2 id='conclusion'>Conclusion</h2>
+<p>There are many ways to interact with PostgreSQL and execute various database operations. One common method is to connect to PostgreSQL via a Python script, using the psycopg2 package. In this tutorial, we showed you how to create a table and insert data using the psycopg2 adapter for Python. If you follow along with the examples we provided, you&#8217;ll be able to create your own Python script and execute whatever database transactions you need.</p>
+<h2 id='just+the+code'>Just the Code</h2>
+<p>We looked at quite a bit of code throughout this tutorial. Shown below is the sample Python script in its entirety:</p>
+
+<div class="codecolorer-container python solarized-light codecolorer-noborder" style="width:auto;height:auto;"><table cellspacing="0" cellpadding="0"><tbody><tr><td class="line-numbers"><div>1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br />39<br />40<br />41<br />42<br />43<br />44<br />45<br />46<br />47<br />48<br />49<br />50<br />51<br />52<br />53<br />54<br />55<br />56<br />57<br />58<br />59<br />60<br />61<br />62<br />63<br />64<br />65<br />66<br />67<br />68<br />69<br />70<br />71<br />72<br />73<br />74<br />75<br />76<br />77<br />78<br />79<br />80<br />81<br />82<br />83<br />84<br />85<br />86<br />87<br />88<br />89<br />90<br />91<br />92<br />93<br />94<br />95<br />96<br />97<br />98<br />99<br />100<br />101<br />102<br />103<br />104<br />105<br /></div></td><td><div class="python codecolorer"><span class="co1">#!/usr/bin/python3</span><br />
+<span class="co1"># -*- coding: utf-8 -*-</span><br />
+<br />
+<span class="co1"># import the psycopg2 database adapter for PostgreSQL</span><br />
+<span class="kw1">from</span> psycopg2 <span class="kw1">import</span> connect<span class="sy0">,</span> sql<br />
+<br />
+<span class="co1"># use a Python UUID for the table's PRIMARY KEY</span><br />
+<span class="kw1">import</span> uuid<br />
+<br />
+<span class="co1"># declare a new PostgreSQL connection object</span><br />
+conn <span class="sy0">=</span> connect<span class="br0">&#40;</span><br />
+dbname <span class="sy0">=</span> <span class="st0">&quot;python_test&quot;</span><span class="sy0">,</span><br />
+<span class="kw3">user</span> <span class="sy0">=</span> <span class="st0">&quot;objectrocket&quot;</span><span class="sy0">,</span><br />
+host <span class="sy0">=</span> <span class="st0">&quot;localhost&quot;</span><span class="sy0">,</span><br />
+password <span class="sy0">=</span> <span class="st0">&quot;mypass&quot;</span><br />
+<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># define a function thPostgreSQLatPostgreSQL will execute SQL statements</span><br />
+<span class="kw1">def</span> execute_sql<span class="br0">&#40;</span>ident<span class="sy0">,</span> sPostgreSQLtatement<span class="br0">&#41;</span>:<br />
+PostgreSQL<br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;<span class="es0">\n</span>execute_sqPostgreSQLl() SQL statement:&quot;</span><span class="sy0">,</span> statement<span class="br0">&#41;</span><br />
+PostgreSQL<br />
+<span class="co1"># check if SQL statePostgreSQLment/query end with a semi-colon</span><br />
+<span class="kw1">if</span> statement<span class="br0">&#91;</span>-<span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">!=</span> PostgreSQL<span class="st0">&quot;;&quot;</span>:<br />
+err <span class="sy0">=</span> <span class="st0">&quot;execute_sPostgreSQLql() ERROR: All SQL statements and &quot;</span><br />
+err <span class="sy0">=</span> err + <span class="st0">&quot;quePostgreSQLries must end with a semi-colon.&quot;</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span>err<span class="br0">&#41;</span>PostgreSQL<br />
+<span class="kw1">else</span>:PostgreSQL<br />
+<span class="kw1">try</span>:PostgreSQL<br />
+<span class="co1"># have sql.SPostgreSQLQL() return a sql.SQL object</span><br />
+sql_object <span class="sy0">=</span>PostgreSQL sql.<span class="me1">SQL</span><span class="br0">&#40;</span><br />
+<span class="co1"># pass SPostgreSQLQL string to sql.SQL()</span><br />
+statemenPostgreSQLt<br />
+<span class="br0">&#41;</span>.<span class="me1">format</span><span class="br0">&#40;</span>PostgreSQL<br />
+<span class="co1"># pass tPostgreSQLhe identifier to the Identifier() method</span><br />
+sql.<span class="me1">IdenPostgreSQLtifier</span><span class="br0">&#40;</span> ident <span class="br0">&#41;</span><br />
+<span class="br0">&#41;</span>PostgreSQL<br />
+PostgreSQL<br />
+<span class="co1"># pass the pPostgreSQLsycopg2.sql.SQL object to execute() method</span><br />
+cursor.<span class="me1">execuPostgreSQLte</span><span class="br0">&#40;</span> sql_object <span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># print message if no exceptions were raised</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;execute_sql() FINISHED&quot;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="kw1">except</span> <span class="kw2">Exception</span> <span class="kw1">as</span> err:<br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;execute_sql() ERROR:&quot;</span><span class="sy0">,</span> err<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># declare a string for the table name</span><br />
+TABLE_NAME <span class="sy0">=</span> <span class="st0">&quot;some_table&quot;</span><br />
+<br />
+<span class="co1"># instantiate a cursor object from the connection</span><br />
+cursor <span class="sy0">=</span> conn.<span class="me1">cursor</span><span class="br0">&#40;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># drop the table if it already exists</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;DROP TABLE some_table;&quot;</span><br />
+<br />
+<span class="co1"># call the function to drop table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># declare a SQL string for CREATE TABLE</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;&quot;&quot;<br />
+CREATE TABLE {} (<br />
+col_uuid VARCHAR(32) PRIMARY KEY,<br />
+col_str VARCHAR(64) UNIQUE NOT NULL,<br />
+col_int INTEGER NOT NULL,<br />
+col_bool BOOLEAN NOT NULL<br />
+);&quot;&quot;&quot;</span>.<span class="me1">format</span><span class="br0">&#40;</span> TABLE_NAME <span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># print the psycopg2.sql.SQL object</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;CREATE TABLE sql_statement:<span class="es0">\n</span>&quot;</span><span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># call the function to create table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<br />
+<span class="co1"># &quot;{} and {}&quot;.format(&quot;pancakes&quot;, &quot;syrup&quot;)</span><br />
+<span class="co1"># declare a string that will INSERT rows into the table</span><br />
+sql_statement <span class="sy0">=</span> <span class="st0">&quot;&quot;&quot;INSERT INTO {} (col_uuid, col_str, col_int, col_bool) VALUES<br />
+('{}', 'hello, world', 1234, true),<br />
+('{}', 'kumusta, mundo', 42, false),<br />
+('{}', '‰Ω†Â•ΩÔºå‰∏ñÁïå', 4321, 'yes');&quot;&quot;&quot;</span><br />
+<span class="co1"># string must be enclosed using single-quotes (')</span><br />
+<br />
+<span class="co1"># each '{}' needs a substitution</span><br />
+sql_statement <span class="sy0">=</span> sql_statement.<span class="me1">format</span><span class="br0">&#40;</span><br />
+TABLE_NAME<span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><span class="sy0">,</span><br />
+uuid.<span class="me1">uuid4</span><span class="br0">&#40;</span><span class="br0">&#41;</span>.<span class="kw2">hex</span><br />
+<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># print the psycopg2.sql.SQL object</span><br />
+<span class="kw1">print</span> <span class="br0">&#40;</span><span class="st0">&quot;CREATE TABLE sql_statement:<span class="es0">\n</span>&quot;</span><span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># call the function to insert data into table</span><br />
+execute_sql<span class="br0">&#40;</span>TABLE_NAME<span class="sy0">,</span> sql_statement<span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># commit transactions to PostgreSQL</span><br />
+conn.<span class="me1">commit</span><span class="br0">&#40;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># close the cursor object to avoid memory leaks</span><br />
+cursor.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span><br />
+<br />
+<span class="co1"># close the connection object</span><br />
+conn.<span class="me1">close</span><span class="br0">&#40;</span><span class="br0">&#41;</span></div></td></tr></tbody></table></div>
+
+<!-- AddThis Advanced Settings above via filter on the_content --><!-- AddThis Advanced Settings below via filter on the_content --><!-- AddThis Advanced Settings generic via filter on the_content --><!-- AddThis Share Buttons above via filter on the_content --><!-- AddThis Share Buttons below via filter on the_content --><div class="at-below-post addthis_tool" data-url="https://kb.objectrocket.com/postgresql/create-a-postgresql-table-and-insert-data-using-the-psycopg2-adapter-for-python-748"></div><!-- AddThis Share Buttons generic via filter on the_content -->
+  </section>
+
+  <section class="section widget-section">
+		<div class="rating-widget">
+	<div id="post-ratings-811" class="post-ratings" data-nonce="3362b8f87c"><span>Rate</span> <img id="rating_811_1" src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_on.gif" alt="1 Star" title="1 Star" onmouseover="current_rating(811, 1, '1 Star');" onmouseout="ratings_off(2.5, 3, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;" /><img id="rating_811_2" src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_on.gif" alt="2 Stars" title="2 Stars" onmouseover="current_rating(811, 2, '2 Stars');" onmouseout="ratings_off(2.5, 3, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;" /><img id="rating_811_3" src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_half.gif" alt="3 Stars" title="3 Stars" onmouseover="current_rating(811, 3, '3 Stars');" onmouseout="ratings_off(2.5, 3, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;" /><img id="rating_811_4" src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_off.gif" alt="4 Stars" title="4 Stars" onmouseover="current_rating(811, 4, '4 Stars');" onmouseout="ratings_off(2.5, 3, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;" /><img id="rating_811_5" src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_off.gif" alt="5 Stars" title="5 Stars" onmouseover="current_rating(811, 5, '5 Stars');" onmouseout="ratings_off(2.5, 3, 0);" onclick="rate_post();" onkeypress="rate_post();" style="cursor: pointer; border: 0px;" /></div>	
+	<a href="#" class="give-feedback-button">Give Feedback</a>
+</div>  </section>
+
+  <section class="section ad-section">
+	<div class="ad-banner" style="background: url(https://orkbprod.wpenginepowered.com/wp-content/themes/objectrocket-knowledge-base/dist/images/pilot-bg_7f791822.jpg) no-repeat center bottom;"></div>
+
+	<div class="ad-content">
+		<h2>Pilot the ObjectRocket Platform Free!</h2>
+		<div class="ad-flex">
+      <div class="ad-col">
+        <p>Try Fully-Managed CockroachDB, Elasticsearch, MongoDB, PostgreSQL (Beta) or Redis.</p>
+        <a class="pill-button" role="button" href="https://app.objectrocket.cloud/">Get Started</a>
+      </div>
+    </div>
+
+
+	</div>
+</section>
+				</main>
+			</div>
+			
+			<section class="section related-content-section">
+	<div class="container">
+		<div class="columns is-desktop">
+			<div class="column is-half-desktop left-column">
+				<div class="title">Related Topics:</div>
+				<ul class="related-content-list">
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/postgresql-view-728">PostgreSQL View</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/using-the-ceiling-function-in-postgresql-742">Using the CEILING Function in PostgreSQL</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/using-the-postgres-between-sql-operator-740">Using the Postgres BETWEEN SQL Operator</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/array-function-in-postgresql-736">Array Function in PostgreSQL</a>
+						</li>
+									</ul>
+			</div>
+			
+			<div class="column is-half-desktop right-column">
+				<div class="title">Additional Information:</div>
+				<ul class="related-content-list">
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/begin-transaction-commit-in-postgresql-739">Begin Transaction Commit in PostgreSQL</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/use-pythons-psycopg2-adapter-for-postgresql-to-fetch-records-from-a-table-754">Use Python&#039;s Psycopg2 Adapter For PostgreSQL To Fetch Records From A Table</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/types-of-indexes-in-postgresql-769">Types of Indexes in PostgreSQL</a>
+						</li>
+											<li class="related-content-item">
+							<a href="https://kb.objectrocket.com/postgresql/postgresql-all-operator-732">PostgreSQL ALL Operator</a>
+						</li>
+									</ul>
+			</div>
+		</div>
+	</div>
+</section>		</div>
+		
+		<!-- Page footer -->
+		<div id="newsletter_section">
+    <div class="bs-container">
+        <div class="bs-row">
+            <div class="col-sm-5">
+                <div id="newsletter_content" class="widget_text widget_custom_html">
+                    <div class="textwidget custom-html-widget">
+                        <h2>Keep in the know!</h2>
+                        <p>Subscribe to our emails and we’ll let you know what’s going on at ObjectRocket. We hate spam and make it easy to unsubscribe.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div id="newsletter_form" class="widget_text widget_custom_html">
+                    <div class="textwidget custom-html-widget">
+                        <!--[if lte IE 8]> <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script> <![endif]-->
+                        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script>
+                        <script data-hubspot-rendered="true">
+                            hbspt.forms.create({
+                                portalId: '2949201',
+                                formId: 'e35f7e65-95d0-44a7-a8c3-6f6bf1069f2e',
+                                target: '.kitk-form',
+                                css: ''
+                            });
+                        </script>
+                        <div class="kitk-form"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="or-footer">
+    <div id="footer_section">
+        <div class="bs-container">
+            <div class="bs-row">
+                <div class="col-sm-12">
+                    <div class="footer_top">
+                        <div id="nav_menu-3" class="widget widget_nav_menu">
+                            <h2 class="widget-title">Services</h2>
+                            <div class="menu-services-container">
+                                <ul id="menu-services" class="menu">
+                                    <li id="menu-item-2903" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2903"><a href="https://www.objectrocket.com/services/" data-ps2id-api="true">Services</a></li>
+                                    <li id="menu-item-2056" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2056"><a href="https://www.objectrocket.com/managed-mongodb/" data-ps2id-api="true">MongoDB</a></li>
+                                    <li id="menu-item-2057" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2057"><a href="https://www.objectrocket.com/managed-elasticsearch/" data-ps2id-api="true">Elasticsearch</a></li>
+                                    <li id="menu-item-2035" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2035"><a href="https://www.objectrocket.com/managed-redis/" data-ps2id-api="true">Redis</a></li>
+                                    <li id="menu-item-2947" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2947"><a href="https://www.objectrocket.com/database-migration/%20" data-ps2id-api="true">Database Migration</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="nav_menu-4" class="widget widget_nav_menu">
+                            <h2 class="widget-title">Platform</h2>
+                            <div class="menu-platform-container">
+                                <ul id="menu-platform" class="menu">
+                                    <li id="menu-item-2036" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2036"><a href="https://www.objectrocket.com/pricing/" data-ps2id-api="true">Pricing</a></li>
+                                    <li id="menu-item-2061" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2061"><a href="https://www.objectrocket.com/tco/" data-ps2id-api="true">Cost of Ownership</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="nav_menu-5" class="widget widget_nav_menu">
+                            <h2 class="widget-title">Company</h2>
+                            <div class="menu-company-container">
+                                <ul id="menu-company" class="menu">
+                                    <li id="menu-item-2039" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2039"><a href="https://www.objectrocket.com/about-objectrocket/" data-ps2id-api="true">About ObjectRocket</a></li>
+                                    <li id="menu-item-2026" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2026"><a href="https://www.objectrocket.com/contact/" data-ps2id-api="true">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="nav_menu-7" class="widget widget_nav_menu">
+                            <h2 class="widget-title">Resources</h2>
+                            <div class="menu-resources-container">
+                                <ul id="menu-resources" class="menu">
+                                    <li id="menu-item-2794" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2794"><a href="https://www.objectrocket.com/resources/" data-ps2id-api="true">Resources</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-2791" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2791"><a href="https://www.objectrocket.com/blog/" data-ps2id-api="true">Blog</a></li>
+                                            <li id="menu-item-2792" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2792"><a href="https://www.objectrocket.com/customers/" data-ps2id-api="true">Case Studies</a></li>
+                                            <li id="menu-item-2793" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2793"><a href="https://docs.objectrocket.com/" data-ps2id-api="true">Documentation</a></li>
+                                            <li id="menu-item-2958" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2958"><a href="https://www.objectrocket.com/ebooks/" data-ps2id-api="true">EBooks</a></li>
+                                            <li id="menu-item-2957" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2957"><a href="https://www.objectrocket.com/white-papers/" data-ps2id-api="true">White Papers</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="custom_html-4" class="widget_text widget widget_custom_html">
+                            <h2 class="widget-title">Support</h2>
+                            <div class="textwidget custom-html-widget">
+                                <div id="or-footer">
+                                    <ul>
+                                        <li><a href="https://objectrocket.com/support">Support</a></li>
+                                        <li><a href="https://objectrocket.zendesk.com/hc/en-us/restricted?return_to=https%3A%2F%2Fobjectrocket.zendesk.com%2Fhc%2Fen-us" target="_blank">Submit Ticket</a></li>
+                                        <li><a href="http://status.objectrocket.com/" target="_blank">System Status <i class="or-system-status fa fa-circle ng-scope up" ng-controller="StatusCtrl" ng-class="{'down': (code >= 500), 'degraded': (code < 500 &amp;&amp; code > 100), 'up': (code <= 100)}"></i></a></li>
+                                        <li><a target="_blank" href="https://docs.objectrocket.com/" data-ps2id-api="true">Documentation</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bs-row">
+                <div class="col-sm-12">
+                    <div class="footer_bottom">
+                        <div id="media_image-2" class="widget_media_image">
+                            <a href="/"><img width="389" height="124" src="https://orkbprod.wpenginepowered.com/wp-content/uploads/2020/06/ObjectRocket-a-Rackspace-Technology-Company-Logo-Small-White-color-rocket.png" class="image wp-image-2465  attachment-full size-full" alt="" style="max-width: 100%; height: auto;" srcset="https://kb.objectrocket.com/wp-content/uploads/2020/06/ObjectRocket-a-Rackspace-Technology-Company-Logo-Small-White-color-rocket.png 389w, https://kb.objectrocket.com/wp-content/uploads/2020/06/ObjectRocket-a-Rackspace-Technology-Company-Logo-Small-White-color-rocket.png 300w" sizes="100vw"></a>
+                        </div>
+                        <div id="custom_html-6" class="widget_text widget widget_custom_html">
+                            <div class="textwidget custom-html-widget">
+                                <div style="max-width:600px;text-align:center;">
+                                    <ul>
+                                        <li><a href="https://objectrocket.com/" style="font-size:11px;padding:0 8px;">© 2022 ObjectRocket, a Rackspace Company</a></li>
+                                        <li><a href="https://objectrocket.com/terms-of-service/" style="font-size:11px;padding:0 8px;">Terms of Service</a></li>
+                                        <li><a href="https://objectrocket.com/legal/" style="font-size:11px;padding:0 8px;">Legal</a></li>
+                                        <li><a id="not_border" href="https://objectrocket.com/privacy/" style="font-size:11px;padding:0 8px;">Privacy</a></li>
+                                    </ul>
+                                    <p></p>
+                                    <p style="font-size:10px !important; color:#fff;text-align:center;display:block;">MongoDB® is a registered trademark of MongoDB, Inc. Redis® and the Redis® logo are trademarks of Salvatore Sanfilippo in the US and other countries. Elasticsearch® is a trademark of Elasticsearch BV, registered in the US and in other countries.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="social_icon" class="widget_text widget widget_custom_html">
+                            <div class="textwidget custom-html-widget"><a href="https://github.com/objectrocket" target="_blank"><i class="fa fa-github-alt" aria-hidden="true"></i></a> <a href="https://twitter.com/objectrocket" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="https://www.facebook.com/ObjectRocketInc" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="https://www.youtube.com/channel/UChA65LXXhZnc5mo18r6-Hxg" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a> <a href="https://www.linkedin.com/company/2636941/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>		
+		<!-- WP footer -->
+		<script data-cfasync="false" type="text/javascript">if (window.addthis_product === undefined) { window.addthis_product = "wpp"; } if (window.wp_product_version === undefined) { window.wp_product_version = "wpp-6.2.7"; } if (window.addthis_share === undefined) { window.addthis_share = {}; } if (window.addthis_config === undefined) { window.addthis_config = {"data_track_clickback":true,"ui_atversion":"300"}; } if (window.addthis_plugin_info === undefined) { window.addthis_plugin_info = {"info_status":"enabled","cms_name":"WordPress","plugin_name":"Share Buttons by AddThis","plugin_version":"6.2.7","plugin_mode":"AddThis","anonymous_profile_id":"wp-e6864996038715d495b5a0088b6b02a1","page_info":{"template":"posts","post_type":""},"sharing_enabled_on_post_via_metabox":false}; } 
+                    (function() {
+                      var first_load_interval_id = setInterval(function () {
+                        if (typeof window.addthis !== 'undefined') {
+                          window.clearInterval(first_load_interval_id);
+                          if (typeof window.addthis_layers !== 'undefined' && Object.getOwnPropertyNames(window.addthis_layers).length > 0) {
+                            window.addthis.layers(window.addthis_layers);
+                          }
+                          if (Array.isArray(window.addthis_layers_tools)) {
+                            for (i = 0; i < window.addthis_layers_tools.length; i++) {
+                              window.addthis.layers(window.addthis_layers_tools[i]);
+                            }
+                          }
+                        }
+                     },1000)
+                    }());
+                </script><script type='text/javascript' id='wp-postratings-js-extra'>
+/* <![CDATA[ */
+var ratingsL10n = {"plugin_url":"https:\/\/kb.objectrocket.com\/wp-content\/plugins\/wp-postratings","ajax_url":"https:\/\/kb.objectrocket.com\/wp-admin\/admin-ajax.php","text_wait":"Please rate only 1 item at a time.","image":"stars","image_ext":"gif","max":"5","show_loading":"0","show_fading":"0","custom":"0"};
+var ratings_mouseover_image=new Image();ratings_mouseover_image.src="https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/images/stars/rating_over.gif";;
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-content/plugins/wp-postratings/js/postratings-js.js?ver=1.89' id='wp-postratings-js'></script>
+<script type='text/javascript' src='https://s7.addthis.com/js/300/addthis_widget.js?ver=6.1.1#pubid=ra-5d530f84697c9404' id='addthis_widget-js'></script>
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-content/themes/objectrocket-knowledge-base/dist/scripts/main_fc686a1c.js' id='sage/main.js-js'></script>
+<script type='text/javascript' src='https://orkbprod.wpenginepowered.com/wp-includes/js/comment-reply.min.js?ver=6.1.1' id='comment-reply-js'></script>
+	</body>
+</html>

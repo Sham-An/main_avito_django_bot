@@ -86,7 +86,7 @@ class Region_set:
             p.save()
         except Region.DoesNotExist:
             p = Region(
-                id = id,
+                id=id,
                 region_id=id,
                 name=name,
                 url_path="",
