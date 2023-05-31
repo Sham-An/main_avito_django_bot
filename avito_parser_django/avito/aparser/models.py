@@ -62,7 +62,7 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
 
-class Path_xpath(models.Model):
+class path_xpath(models.Model):
     path_name = models.TextField(
         verbose_name='Название поля',
         blank=True,
