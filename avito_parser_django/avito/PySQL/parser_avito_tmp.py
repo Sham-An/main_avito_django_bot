@@ -3,13 +3,16 @@ import sqlite3
 import time
 from datetime import datetime
 import requests
+#from realty_tmp import check_database
 from realty_tmp import check_database
-
+#from a
 from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.poolmanager import PoolManager
-from requests.packages.urllib3.util import ssl_
+#from requests.packages.urllib3.poolmanager import PoolManager
+from urllib3.poolmanager import PoolManager
+#from requests.packages.urllib3.util import ssl_
+from urllib3.util import ssl_
 from datetime import datetime
-from realty import check_database
+#from realty import check_database
 
 import ssl
 import requests

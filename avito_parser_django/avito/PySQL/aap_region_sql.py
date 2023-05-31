@@ -6,11 +6,11 @@ import json
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 def region_list_from_db():
     con = psycopg2.connect(
-        database="postgres",
+        database="main_avito_django_bot",
         user="postgres",
-        # password="",
-        password=input("Пароль"),
-        host="127.0.0.1",
+        password="postgres",
+        #password=input("Пароль"),
+        host="192.168.100.9",
         port="5432"
     )
 
@@ -28,11 +28,11 @@ def region_list_from_db():
 
 def region_from_js_to_db():
     con = psycopg2.connect(
-        database="postgres",
+        database="main_avito_django_bot",
         user="postgres",
-        # password="",
-        password=input("Пароль"),
-        host="127.0.0.1",
+        password="postgres",
+        #password=input("Пароль"),
+        host="192.168.100.9",
         port="5432"
     )
 
@@ -56,11 +56,11 @@ def region_from_js_to_db():
 
 def create_region_db():
     con = psycopg2.connect(
-        database="postgres",
+        database="main_avito_django_bot",
         user="postgres",
-        # password="",
-        password=input("Пароль"),
-        host="127.0.0.1",
+        password="postgres",
+        #password=input("Пароль"),
+        host="192.168.100.9",
         port="5432"
     )
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     print_hi('PyCharm')
     print_hi('PyCharm3')
     #create_region_db()
-    region_from_js_to_db()
-    #region_list_from_db()
+    #region_from_js_to_db()
+    region_list_from_db()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

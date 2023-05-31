@@ -42,14 +42,15 @@ class Product(models.Model):
         blank=True,
         on_delete=models.PROTECT,
     )
-    title = models.CharField(verbose_name='Заголовок', max_length=500) #CharField
+    title = models.CharField(verbose_name='Заголовок', max_length=500)  # CharField
     description = models.TextField(verbose_name='Объявление', blank=True)
     price = models.PositiveIntegerField(verbose_name='Цена')
     currency = models.TextField(verbose_name='Валюта', null=True, blank=True)
-    #location = models.CharField(max_length=255)
+    # location = models.CharField(max_length=255)
     url = models.URLField(verbose_name='Ссылка на объявление', unique=True)
-    published_date = models.DateTimeField(default=datetime.date, verbose_name='Дата публикации', blank=True, null=True)
-    #image_url = models.URLField()
+    #published_date = models.DateTimeField(default=datetime.date, verbose_name='Дата публикации', blank=True, null=True)
+    published_date = models.DateTimeField(default=datetime.datetime.now(), verbose_name='Дата публикации', blank=True, null=True)
+    # image_url = models.URLField()
     # date_upgrade = models.DateTimeField(default=datetime.date, verbose_name='Дата изменения', blank=True, null=True)
     seller_url = models.URLField(verbose_name='Продавец', blank=True, unique=False)
 
@@ -60,8 +61,8 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
-class Path_xpath(models.Model):
 
+class Path_xpath(models.Model):
     path_name = models.TextField(
         verbose_name='Название поля',
         blank=True,
@@ -97,13 +98,14 @@ class Region(models.Model):
     def __str__(self):
         return self.name
 
+
 class City(models.Model):
-    #avito_id = models.IntegerField('ID')
+    # avito_id = models.IntegerField('ID')
     city_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Нас пункт', max_length=255, blank=True, null=True)
     region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион')
-    #region = models.IntegerField(verbose_name='Регион', blank=True) #models.ForeignKey(Region.region_id, on_delete=models.CASCADE, verbose_name='Регион')
-    #parent_id = models.IntegerField(blank=True)
+    # region = models.IntegerField(verbose_name='Регион', blank=True) #models.ForeignKey(Region.region_id, on_delete=models.CASCADE, verbose_name='Регион')
+    # parent_id = models.IntegerField(blank=True)
     url_path = models.CharField(verbose_name='URL_path', max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
     index_post = models.IntegerField('index', blank=True)
@@ -114,4 +116,3 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
-

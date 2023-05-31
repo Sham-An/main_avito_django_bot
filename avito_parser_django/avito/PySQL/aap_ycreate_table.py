@@ -9,8 +9,8 @@
 
 import psycopg2
 # from config import host
-from PySQL.config import host, bd_name, user, password
-from PySQL.config import config
+from config import host, bd_name, user, password
+from config import config
 # import the psycopg2 database adapter for PostgreSQL
 from psycopg2 import connect, sql
 

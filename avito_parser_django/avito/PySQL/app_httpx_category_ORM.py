@@ -1,8 +1,7 @@
 # https://www.python-httpx.org/advanced/
 # https://github.com/encode/httpx/tree/master/httpx
 # cd avito_parser_django/avito
-#
-# python manage.py 'A_httpx_category_ORM'
+# python manage.py '!!!!_httpx_category_ORM'
 # python manage.py makemigrations aparser
 # python manage.py migrate aparser
 # .\Make reg
@@ -69,7 +68,7 @@ class Categories_set:
         #print(reg_list)
         name = reg_list['name']
         parentId = reg_list['parent_id']
-        #url_path = reg_list['url_path']
+        url_path = reg_list['url_path']
         print(f'Работаем над заданием Categories')
         try:
             p = Categories.objects.get(cat_id=id)

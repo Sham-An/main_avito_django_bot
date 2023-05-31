@@ -46,13 +46,14 @@ class PriceFilter(admin.SimpleListFilter):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'task', 'price', 'currency', 'published_date', 'url')
+    list_display = ('pk', 'title', 'task', 'price', 'currency', 'url')  #, 'published_date'
     list_filter = (
         'currency',
-        'published_date',
+        #'published_date',
         'task',
         PriceFilter,
     )
+    #'published_date',
     form = ProductForm
     list_per_page = 150
 
