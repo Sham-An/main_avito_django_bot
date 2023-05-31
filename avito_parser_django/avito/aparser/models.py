@@ -62,25 +62,34 @@ class Product(models.Model):
         verbose_name_plural = 'Продукты'
 
 
-class path_xpath(models.Model):
-    path_name = models.TextField(
-        verbose_name='Название поля',
-        blank=True,
-        unique=False,
-    )
-    path_str = models.TextField(
-        verbose_name='XPATH',
-        blank=True,
-        unique=False,
-    )
+# class path_xpath(models.Model):
+#     path_name = models.TextField(
+#         verbose_name='Название поля',
+#         blank=True,
+#         unique=False,
+#     )
+#     path_str = models.TextField(
+#         verbose_name='XPATH',
+#         blank=True,
+#         unique=False,
+#     )
 
 
-class Categories(models.Model):
+class Category(models.Model):
     cat_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Категория', max_length=255, blank=True)
     parent_id = models.IntegerField('index', blank=True)
     url_path = models.CharField(max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
+
+
+#class Categories(models.Model):
+#class Category(models.Model):
+#    cat_id2 = models.IntegerField('kod_id')
+#    name2 = models.CharField(verbose_name='Категория', max_length=255, blank=True)
+#    parent_id2 = models.IntegerField('index', blank=True)
+#    url_path = models.CharField(max_length=255, blank=True)
+#    url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
 
 
 class Region(models.Model):
