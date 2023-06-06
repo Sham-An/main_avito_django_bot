@@ -10,7 +10,8 @@ def city_list_from_db():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
@@ -32,7 +33,8 @@ def city_from_js_to_db():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
@@ -61,7 +63,8 @@ def create_city_db_sql():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
@@ -92,6 +95,7 @@ def print_hi(name):
 if __name__ == '__main__':
     #create_city_db_sql()
     #city_from_js_to_db()
+    print('start')
     city_list_from_db()
 
 

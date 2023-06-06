@@ -10,7 +10,8 @@ def region_list_from_db():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
@@ -32,7 +33,8 @@ def region_from_js_to_db():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
@@ -60,7 +62,8 @@ def create_region_db():
         user="postgres",
         password="postgres",
         #password=input("Пароль"),
-        host="192.168.100.9",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="db" uuid="fc3e2ede-6f7d-4a77-8908-588969238274">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>b0f5163d-55ee-43d9-a622-78892d1b36ae</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:I:\pythonProjects\avito_django_telebot\avito_parser_django\avito\db.sqlite3</jdbc-url>
@@ -34,7 +34,7 @@
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
     <data-source source="LOCAL" name="realty_tmp" uuid="0fcb2bea-85f9-49b0-bd1d-10095dc957fb">
-      <driver-ref>sqlite.xerial</driver-ref>
+      <driver-ref>b0f5163d-55ee-43d9-a622-78892d1b36ae</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySQL\realty_tmp.db</jdbc-url>
@@ -53,6 +53,13 @@
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
         </library>
       </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="main_avito_django_bot@10.10.10.18" uuid="8f29b02f-d4e3-4d18-b2e9-860be7a42612">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://10.10.10.18:5432/main_avito_django_bot</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

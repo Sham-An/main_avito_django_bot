@@ -2,9 +2,9 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/avito_parser_django/avito/PySQL" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/avito_parser_django/avito" />
+      <excludeFolder url="file://$MODULE_DIR$/avito_parser_django/avito/PySQL" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (main_avito_django_bot)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
