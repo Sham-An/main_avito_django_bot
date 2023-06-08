@@ -22,6 +22,7 @@ url = 'https://www.avito.ru/tarasovskiy/mototsikly_i_mototehnika?cd=1&radius=50&
 
 
 response = httpx.get(url, verify=ssl_context)
+#
 
 print(response.http_version)
 #print(response.text[:10000])

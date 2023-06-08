@@ -25,7 +25,7 @@ ssl_context = ssl.SSLContext(protocol=ssl.PROTOCOL_TLS_CLIENT)#+PROTOCOL_TLS_CLI
 ssl_context = httpx.create_ssl_context()
 
 ssl_context.set_alpn_protocols(["h2"])
-ssl_context.set_ciphers(CIPHERS)
+#ssl_context.set_ciphers(CIPHERS)
 
 #####################
 

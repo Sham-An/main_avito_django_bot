@@ -1,7 +1,8 @@
 # https://www.python-httpx.org/advanced/
 # https://github.com/encode/httpx/tree/master/httpx
 # cd avito_parser_django/avito
-# python manage.py '!!!!_httpx_region_ORM'
+#
+# python manage.py 'A_httpx_category_ORM'
 # python manage.py makemigrations aparser
 # python manage.py migrate aparser
 # .\Make reg
@@ -19,7 +20,7 @@ from django.core.management.base import CommandError
 # from aparser.models import Product
 from aparser.models import Product
 from aparser.models import Task
-from aparser.models import Region
+from aparser.models import Category #ies
 
 STATUS_NEW = 1
 STATUS_READY = 2
@@ -38,7 +39,7 @@ logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)  # .setLevel(logging.INFO)
 
 
-class Region_set:
+class Categories_set:
     def __init__(self):  # (self, access_token, refresh_token, refresh_url)
 
         self.session = httpx.Client()  # requests.Session()
@@ -49,7 +50,7 @@ class Region_set:
         self.task = None
         self.product = None
         self.data = None
-        self.region = None
+        #self.city = None
 
     def find_task(self):
         obj = Task.objects.filter(status=STATUS_NEW).first()
@@ -60,42 +61,39 @@ class Region_set:
         print(f'Работаем над заданием {self.task}')
         # print(f'Работаем над заданием {self.task}')
 
-    def find_region(self, id):
-        id = int(id)
-        obj = Region.objects.filter(pk).first()
-        if not obj:
-            raise CommandError('no tasks found')
-        self.Region = obj
-        logger.info(f'Работаем над заданием {self.task}')
-        # print(f'Работаем над заданием {self.task}')
-
     @staticmethod
-    def set_region(reg_list):
+    #def set_region(reg_list):
+    def set_categories(reg_list):
         id = int(reg_list['id'])
+        print('################## set_categories')
+        #print(reg_list)
         name = reg_list['name']
-        url_path = reg_list['url_path']
-        print(f'Работаем над заданием Region')
+        parentId = reg_list['parent_id']
+        #url_path = reg_list['url_path']
+        print(f'Работаем над заданием Categories')
         try:
-            p = Region.objects.get(region_id=id)
-            #p = Region.objects.filter(region_id=id).first()
-            print(f'##&& {p.id} {p.name} ')  # task = {self.task}')
-            p.id = id
-            p.region_id = id
+            p = Category.objects.get(cat_id=id)
+            #p = City.objects.filter(city_id=id).first()
+            print(f'##&& {p.cat_id} {p.name} {p.parent_id} ')  # task = {self.task}')
+            #print(f'##&& {p} ')  # task = {self.task}')
+            # p.id = id
+            p.cat_id = id
             p.name = name
-            p.url_path = url_path
+            p.parent_id = parentId
+            # p.url_path = url_path
             p.save()
-        except Region.DoesNotExist:
-            p = Region(
+        except Category.DoesNotExist:
+            p = Category(
                 id=id,
-                region_id=id,
+                cat_id=id,
                 name=name,
+                parent_id=parentId,
                 url_path="",
                 url_name="",
-                index_post=0,
             ).save()
 
     # @staticmethod
-    def check_region(self, reg):
+    def check_Categories(self, reg):
         # print(f'#########################################\n {self.data["data"]}')
         reg1 = reg  # list(self.data["data"]) #reg
         print(self.data is reg1)
@@ -106,42 +104,70 @@ class Region_set:
         id_int = int(reg1["id"])
         print(f'reg_id {reg_id}')
 
-    def list_region(self):  # , data):
+    # def list_region(self):  # , data):
+    def list_category(self):  # , data):
         data = self.data
-        print(f'###################### data {type(data["data"])}')
-
+#        print(f'###################### data {type(data["data"])}')
+#        print(f'###################### data {data}')
         all_id = []
-        for dataitems in data['data']:
-            if dataitems['id'] in all_id:
-                print('IIIIDDDD Поймали ДУБЛЯЖ!!!!!!!!!!!!!!!!!!!!!')
-                break
+        for dataitems in data['categories']:
+            #print(f'\n PARENT  {dataitems["id"]}, {dataitems["name"]}')
+            #print(dataitems)
             all_id.append(dataitems['id'])
-            # Добавляем количество полей для корректного запроса заполнения SQL
+
+            id = dataitems['id']
+            name = dataitems['name']
+            cat_id = dataitems['id']
+            #parent_id = dataitems['parentId']
+            #dataitems.setdefault('name', name)  # , value)
+            dataitems.setdefault('name', name)  # , value)
+            dataitems.setdefault('cat_id', cat_id)  # , value)
+            dataitems.setdefault('parent_id', 0)  # , value)
             dataitems.setdefault('url_path', 'None')  # , value)
             dataitems.setdefault('url_name', 'None')  # , value)
-            dataitems.setdefault('index_post', 'None')  # , value)
-            dataitems.setdefault('kod_region', 'None')  # , value)
-            # self.check_region(dataitems) #dataitems)
-            reg_id = dataitems['id']
-            self.set_region(dataitems)
-            print(dataitems['id'])
+            print(f'datainfo PARENT \n {dataitems}\n')  # ['id'])
+            self.set_categories(dataitems)
+
+
+            #1
+            #if dataitems['id'] in all_id:
+            if dataitems['id'] > 0:
+                for datainfo in dataitems['children']:
+                    if datainfo['id'] in all_id:
+                        print(f'IIIIDDDD Поймали ДУБЛЯЖ {datainfo}!!!!!!!!!!!!!!!!!!!!!')
+                        break
+                    #print(f'\n ######## Datainfo {datainfo}!!!!!!!!!!!!!!!!!!!!!')
+                    all_id.append(dataitems['id'])
+                    # Добавляем количество полей для корректного запроса заполнения SQL
+                    id = datainfo['id']
+                    name = datainfo['name']
+                    cat_id = datainfo['id']
+                    parent_id = datainfo['parentId']
+                    #dataitems.setdefault('name', name)  # , value)
+                    datainfo.setdefault('name', name)  # , value)
+                    datainfo.setdefault('cat_id', cat_id)  # , value)
+                    datainfo.setdefault('parent_id', parent_id)  # , value)
+                    datainfo.setdefault('url_path', 'None')  # , value)
+                    datainfo.setdefault('url_name', 'None')  # , value)
+                    print(f'datainfo CHILDREN \n {datainfo}\n')  # ['id'])
+                    self.set_categories(datainfo)
+                    #print(datainfo)#['id'])
+
+
         #
         # all_id.sort()
         # print(all_id)
 
     # @staticmethod
-    def open_json_region(self):
-        print('start open_json_region')
-        with open("Data/avito_region.json", encoding='utf-8') as file:
+    # def open_json_region(self):
+    def open_json_category(self):
+        print('start open_json_category')
+        with open("Data/avito_category.json", encoding='utf-8') as file:
             self.data = json.load(file)
             # list_dict(data)
-        self.list_region()
+        self.list_category()
         # print(f'self.data \n {self.data} \n self.data')
         #     return data
-
-class City:
-    pass
-
 
 class test:
     def say(self):
@@ -166,8 +192,8 @@ class Command(BaseCommand):
         # print(p.test())
         # p = AvitoParser()
         # p.parse_all()
-        s = Region_set()
+        s = Categories_set()
         # print(s)
         # s.find_task()
-        s.open_json_region()
+        s.open_json_category()
         # s.Open_json_region(self)
