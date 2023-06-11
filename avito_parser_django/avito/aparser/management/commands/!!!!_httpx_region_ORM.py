@@ -76,18 +76,19 @@ class Region_set:
         url_path = reg_list['url_path']
         print(f'Работаем над заданием Region')
         try:
-            p = Region.objects.get(region_id=id)
+            #p = Region.objects.get(region_id=id)
+            p = Region.objects.get(id=id)
             #p = Region.objects.filter(region_id=id).first()
             print(f'##&& {p.id} {p.name} ')  # task = {self.task}')
             p.id = id
-            p.region_id = id
+            #p.region_id = id
             p.name = name
             p.url_path = url_path
             p.save()
         except Region.DoesNotExist:
             p = Region(
                 id=id,
-                region_id=id,
+                #region_id=id,
                 name=name,
                 url_path="",
                 url_name="",

@@ -3,6 +3,26 @@ from django.db import models
 from .constants import STATUS_NEW, STATUS_READY
 import datetime
 
+'''
+Если вы не хотите прикасаться к более старой миграции, 
+сначала вы можете сделать makemigrations --empty appname, 
+чтобы сначала создать пустую миграцию. 
+Затем запустите makemigrations, который создаст другую миграцию с
+о всеми изменениями. 
+Переместите уже сделанные миграции в пустую миграцию, 
+которую вы создали.. затем --fake тот. Теперь django понимает, 
+как выглядит база данных, будет синхронизироваться с реальностью, 
+и вы можете migrate как обычно, применяя изменения в последнем файле миграции.
+python manage.py makemigrations --empty aparser
+python manage.py migrate --fake-initial
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py migrate aparser zero
+python manage.py migrate
+python manage.py makemigrations
+
+'''
 
 # STATUS_NEW = 1
 # STATUS_READY = 2
@@ -48,10 +68,10 @@ class Product(models.Model):
     currency = models.TextField(verbose_name='Валюта', null=True, blank=True)
     # location = models.CharField(max_length=255)
     url = models.URLField(verbose_name='Ссылка на объявление', unique=True)
-    #published_date = models.DateTimeField(default=datetime.date, verbose_name='Дата публикации', blank=True, null=True)
     published_date = models.DateTimeField(default=datetime.datetime.now(), verbose_name='Дата публикации', blank=True, null=True)
+    #published_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации', blank=True, null=True)
     # image_url = models.URLField()
-    # date_upgrade = models.DateTimeField(default=datetime.date, verbose_name='Дата изменения', blank=True, null=True)
+    date_upgrade = models.DateTimeField(default=datetime.date, verbose_name='Дата изменения', blank=True, null=True)
     seller_url = models.URLField(verbose_name='Продавец', blank=True, unique=False)
 
     def __str__(self):
