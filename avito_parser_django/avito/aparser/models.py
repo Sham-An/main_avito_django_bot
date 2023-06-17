@@ -21,6 +21,18 @@ python manage.py migrate
 python manage.py migrate aparser zero
 python manage.py migrate
 python manage.py makemigrations
+#######################################################
+
+
+        Restore the database in Postgres database (used pgAdmin tool for this)
+        (virtualenv)python manage.py loaddata dumpfile.json
+        Dropping django_migrations table from database (used pgAdmin tool for this)
+        (virtualenv)python manage.py makemigrations
+        (virtualenv)python manage.py migrate --fake
+        (virtualenv)python manage.py migrate
+        (virtualenv)python manage.py collectstatic
+        (virtualenv)python manage.py runserver 0.0.0.0:8000
+
 
 '''
 
@@ -68,10 +80,10 @@ class Product(models.Model):
     currency = models.TextField(verbose_name='Валюта', null=True, blank=True)
     # location = models.CharField(max_length=255)
     url = models.URLField(verbose_name='Ссылка на объявление', unique=True)
-    published_date = models.DateTimeField(default=datetime.datetime.now(), verbose_name='Дата публикации', blank=True, null=True)
+    published_date = models.DateTimeField(verbose_name='Дата публикации', blank=True, null=True) #default=datetime.datetime.now(),
     #published_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации', blank=True, null=True)
     # image_url = models.URLField()
-    date_upgrade = models.DateTimeField(default=datetime.date, verbose_name='Дата изменения', blank=True, null=True)
+    date_upgrade = models.DateTimeField(verbose_name='Дата изменения', blank=True, null=True) #default=datetime.date
     seller_url = models.URLField(verbose_name='Продавец', blank=True, unique=False)
 
     def __str__(self):
@@ -132,12 +144,12 @@ class City(models.Model):
     # avito_id = models.IntegerField('ID')
     city_id = models.IntegerField('kod_id')
     name = models.CharField(verbose_name='Нас пункт', max_length=255, blank=True, null=True)
-    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион')
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, verbose_name='Регион', null=True)
     # region = models.IntegerField(verbose_name='Регион', blank=True) #models.ForeignKey(Region.region_id, on_delete=models.CASCADE, verbose_name='Регион')
-    # parent_id = models.IntegerField(blank=True)
+    parent_id = models.IntegerField(blank=True, null=True)
     url_path = models.CharField(verbose_name='URL_path', max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
-    index_post = models.IntegerField('index', blank=True)
+    index_post = models.IntegerField('index_post', blank=True, null=True)
 
     class Meta:
         verbose_name = 'City'

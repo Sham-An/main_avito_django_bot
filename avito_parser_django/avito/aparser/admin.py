@@ -4,7 +4,10 @@ from .forms import TaskForm
 from .forms import ProductForm
 from .models import Task
 from .models import Product
-
+from .models import Region
+from .models import City
+from .forms import RegionForm
+from .forms import CityForm
 
 PRICE_FILTER_STEPS = 10
 
@@ -46,14 +49,14 @@ class PriceFilter(admin.SimpleListFilter):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'task', 'price', 'currency', 'url')  #, 'published_date'
+    list_display = ('pk', 'title', 'task', 'price', 'currency', 'url')  # , 'published_date'
     list_filter = (
         'currency',
-        #'published_date',
+        # 'published_date',
         'task',
         PriceFilter,
     )
-    #'published_date',
+    # 'published_date',
     form = ProductForm
     list_per_page = 150
 
@@ -61,10 +64,22 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'url', 'status')
-    list_filter = ('status', )
+    list_filter = ('status',)
     form = TaskForm
 
 
+@admin.register(Region)
+class RegionAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'kod_region', 'name', 'url_path')
+    # list_filter = ('status', )
+    form = RegionForm
+
+
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'region_id', 'url_path')
+    # list_filter = ('status', )
+    form = CityForm
 
 # from django.contrib import admin
 #

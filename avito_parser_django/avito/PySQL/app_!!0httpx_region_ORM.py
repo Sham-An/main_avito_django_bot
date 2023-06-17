@@ -7,6 +7,7 @@
 # python manage.py migrate aparser
 # .\Make reg
 
+import psycopg2
 import asyncio
 import threading
 import httpx
@@ -18,9 +19,9 @@ import json
 from django.core.management.base import BaseCommand
 from django.core.management.base import CommandError
 # from aparser.models import Product
-from aparser.models import Product
-from aparser.models import Task
-from aparser.models import Region
+# from aparser.models import Product
+# from aparser.models import Task
+# from aparser.models import Region
 
 STATUS_NEW = 1
 STATUS_READY = 2
@@ -46,6 +47,29 @@ response = httpx.get(url, verify=ssl_context)
 logging.basicConfig(level=logging.INFO)  # , filename="py_log.log") #,filemode="w")
 logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)  # .setLevel(logging.INFO)
+
+def region_list_from_db():
+    con = psycopg2.connect(
+        database="main_avito_django_bot",
+        user="postgres",
+        password="postgres",
+        #password=input("Пароль"),
+        #host="192.168.100.9",
+        host="10.10.10.18",
+        port="5432"
+    )
+
+    print("Database opened successfully")
+    cur = con.cursor()
+    cur.execute("SELECT id, name from AVITO_REGION")
+
+    rows = cur.fetchall()
+    for row in rows:
+        print("id =", row[0], " NAME =", row[1])
+        #print("NAME =", row[1])
+
+    print("Operation done successfully")
+    con.close()
 
 
 class Region_set:
@@ -158,8 +182,9 @@ class test:
         print('start_')
 
 
-# def main():
+def main():
 #     print("Hello")
+    region_list_from_db()
 #     pass
 
 
@@ -176,8 +201,12 @@ class Command(BaseCommand):
         # print(p.test())
         # p = AvitoParser()
         # p.parse_all()
-        s = Region_set()
+        #s = Region_set()
         # print(s)
         # s.find_task()
-        s.open_json_region()
+        #s.open_json_region()
         # s.Open_json_region(self)
+        region_list_from_db()
+
+if __name__ == '__main__':
+    main()

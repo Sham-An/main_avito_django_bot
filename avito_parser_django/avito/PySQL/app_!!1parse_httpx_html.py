@@ -13,8 +13,8 @@ def create_db_sql():
         user="postgres",
         password="postgres",
         # password=input("Пароль"),
-        host="192.168.100.9",
-        # host="10.10.10.18",
+        #host="192.168.100.9",
+        host="10.10.10.18",
         port="5432"
     )
 
