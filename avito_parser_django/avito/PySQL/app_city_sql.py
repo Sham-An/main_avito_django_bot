@@ -48,9 +48,13 @@ def city_from_js_to_db():
         #id_reg = item['id']
         #name_reg = item['name']
         values = ({'id': item['id'], 'name': item['name'], 'parent_Id': item['parent_Id']})
+        # cur.execute(
+        #     "INSERT INTO AVITO_city (id,NAME,parent_Id) VALUES (%(id)s,%(name)s,%(parent_Id)s)", values
+        # )
         cur.execute(
-            "INSERT INTO AVITO_city (id,NAME,parent_Id) VALUES (%(id)s,%(name)s,%(parent_Id)s)", values
+            "INSERT INTO aparser_city (id,NAME,parent_Id) VALUES (%(id)s,%(name)s,%(parent_Id)s)", values
         )
+
 #        values = ({'id': 1, 'name': 'Vasya', 'age': 45})
 #        cursor.execute("INSERT INTO tableName(id, name, age) VALUES (%(id)s,%(name)s,%(age)s)", values)
         con.commit()
@@ -58,33 +62,34 @@ def city_from_js_to_db():
 
 #input("Пароль"),
 def create_city_db_sql():
-    con = psycopg2.connect(
-        database="main_avito_django_bot",
-        user="postgres",
-        password="postgres",
-        #password=input("Пароль"),
-        #host="192.168.100.9",
-        host="10.10.10.18",
-        port="5432"
-    )
-
-    print("Database opened successfully")
-
-    cur = con.cursor()
-    cur.execute('''
-        CREATE TABLE AVITO_city
-        (id INT PRIMARY KEY NOT NULL,
-         name TEXT NOT NULL, 
-         parent_Id INT NOT NULL,
-         url_path TEXT ,
-         url_name TEXT ,
-         index_post INT         
-         )
-         ''')
-
-    print("Table created successfully")
-    con.commit()
-    con.close()
+    pass
+    # con = psycopg2.connect(
+    #     database="main_avito_django_bot",
+    #     user="postgres",
+    #     password="postgres",
+    #     #password=input("Пароль"),
+    #     #host="192.168.100.9",
+    #     host="10.10.10.18",
+    #     port="5432"
+    # )
+    #
+    # print("Database opened successfully")
+    #
+    # cur = con.cursor()
+    # cur.execute('''
+    #     CREATE TABLE AVITO_city
+    #     (id INT PRIMARY KEY NOT NULL,
+    #      name TEXT NOT NULL,
+    #      parent_Id INT NOT NULL,
+    #      url_path TEXT ,
+    #      url_name TEXT ,
+    #      index_post INT
+    #      )
+    #      ''')
+    #
+    # print("Table created successfully")
+    # con.commit()
+    # con.close()
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -94,9 +99,10 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     #create_city_db_sql()
-    #city_from_js_to_db()
     print('start')
-    city_list_from_db()
+    city_from_js_to_db()
+
+    #city_list_from_db()
 
 
 

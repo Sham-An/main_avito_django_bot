@@ -77,7 +77,7 @@ class RegionAdmin(admin.ModelAdmin):
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'region_id', 'url_path')
+    list_display = ('pk', 'name', 'url_path')
     # list_filter = ('status', )
     form = CityForm
 

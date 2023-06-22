@@ -56,7 +56,6 @@ class CityForm(forms.ModelForm):
         fields = (
             'name',
             'url_path',
-            'parent_id',
         )
         widgets = {
             'name': forms.TextInput,

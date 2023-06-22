@@ -6,6 +6,26 @@
 # python manage.py migrate aparser
 # .\Make reg
 
+'''
+Getting the SQL from a Django QuerySet
+You print the queryset's query attribute.
+>>> queryset = MyModel.objects.all()
+>>> print(queryset.query)
+
+SELECT "myapp_mymodel"."id", ... FROM "myapp_mymodel"
+How to see the raw SQL queries Django is running?
+See the docs FAQ: "How can I see the raw SQL queries Django is running?"
+
+django.db.connection.queries contains a list of the SQL queries:
+
+from django.db import connection
+print(connection.queries)
+Querysets also have a query attribute containing the query to be executed:
+
+print(MyModel.objects.filter(name="my name").query)
+
+'''
+
 import asyncio
 import threading
 import httpx
@@ -52,12 +72,15 @@ class Region_set:
         self.region = None
 
     def find_task(self):
+        #print(Task.objects.filter(status=STATUS_NEW).first().query)
         obj = Task.objects.filter(status=STATUS_NEW).first()
+        #print(f'query set \n {obj.query}')
         if not obj:
             raise CommandError('no tasks found')
         self.task = obj
+        #print(obj.query)
         # logger.info(f'Работаем над заданием {self.task}')
-        print(f'Работаем над заданием {self.task}')
+        print(f'1!!!!!!!!!!!! Работаем над заданием {self.task}')
         # print(f'Работаем над заданием {self.task}')
 
     def find_region(self, id):
@@ -66,26 +89,40 @@ class Region_set:
         if not obj:
             raise CommandError('no tasks found')
         self.Region = obj
-        logger.info(f'Работаем над заданием {self.task}')
+        logger.info(f'2!!!! Работаем над заданием {self.task}')
         # print(f'Работаем над заданием {self.task}')
 
     @staticmethod
     def set_region(reg_list):
-        id = int(reg_list['id'])
+#INSERT INTO "aparser_region"
+# ("region_id", "kod_region", "name", "url_path", "url_name", "index_post")
+# VALUES
+# (NULL       ,    '00'     ,    '2',     'zero',         '',     NULL) RETURNING "aparser_region"."id"
+
+        print(reg_list)
+        reg_id = int(reg_list['id'])
         name = reg_list['name']
         url_path = reg_list['url_path']
-        print(f'Работаем над заданием Region')
+        print(f'3!!!!!!!! Работаем над заданием Region \n id {reg_id}')
+
         try:
-            #p = Region.objects.get(region_id=id)
-            p = Region.objects.get(id=id)
+            #id = 0
+            p = Region.objects.get(region_id=reg_id)
+            #p = Region.objects.get(id=id)
+            p = Region.objects.filter(region_id=reg_id).first()
+            queryset = Region.objects.all()
+            print(queryset.query)
+
+            #print(p.query)
             #p = Region.objects.filter(region_id=id).first()
-            print(f'##&& {p.id} {p.name} ')  # task = {self.task}')
-            p.id = id
-            #p.region_id = id
+            #print(f'##&& {p.id} {p.name} ')  # task = {self.task}')
+            #p.id = reg_id
+            p.region_id = reg_id
             p.name = name
             p.url_path = url_path
             p.save()
         except Region.DoesNotExist:
+            print('Region.DoesNotExist:')
             p = Region(
                 id=id,
                 #region_id=id,
@@ -169,6 +206,14 @@ class Command(BaseCommand):
         # p.parse_all()
         s = Region_set()
         # print(s)
-        # s.find_task()
-        s.open_json_region()
+        s.find_task()
+        #s.open_json_region()
         # s.Open_json_region(self)
+
+"""
+SELECT "aparser_region"."id", "aparser_region"."region_id", 
+"aparser_region"."kod_region", "aparser_region"."name", 
+"aparser_region"."url_path", "aparser_region"."url_name", 
+"aparser_region"."index_post" FROM "aparser_region"
+
+"""

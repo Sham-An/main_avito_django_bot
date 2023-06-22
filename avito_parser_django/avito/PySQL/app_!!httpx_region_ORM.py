@@ -48,7 +48,50 @@ logging.basicConfig(level=logging.INFO)  # , filename="py_log.log") #,filemode="
 logging.getLogger().setLevel(logging.INFO)
 logger = logging.getLogger(__name__)  # .setLevel(logging.INFO)
 
-def region_list_from_db():
+
+def set_region_SQL(reg_list, cur):
+    id = int(reg_list['id'])
+    name = reg_list['name']
+    url_path = reg_list['url_path']
+    print(f'Работаем над заданием Region')
+    try:
+        cur = con.cursor()
+        cur.execute("SELECT id, name,parent_Id from AVITO_city")
+
+        rows = cur.fetchall()
+        for row in rows:
+            print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+            # print("NAME =", row[1])
+
+        print("Operation done successfully")
+        con.close()
+
+        # p = Region.objects.get(region_id=id)
+        # # p = Region.objects.filter(region_id=id).first()
+        # print(f'##&& {p.id} {p.name} ')  # task = {self.task}')
+        # p.id = id
+        # p.region_id = id
+        # p.name = name
+        # p.url_path = url_path
+        # p.save()
+    except Region.DoesNotExist:
+        p = Region(
+            id=id,
+            region_id=id,
+            name=name,
+            url_path="",
+            url_name="",
+            index_post=0,
+        ).save()
+
+
+def open_region_js():
+    with open("json/avito_region.json", encoding='utf-8') as file:
+        data = json.load(file)
+    #print(data)
+    return data
+
+def region_json_to_aparser():
     con = psycopg2.connect(
         database="main_avito_django_bot",
         user="postgres",
@@ -58,10 +101,69 @@ def region_list_from_db():
         host="10.10.10.18",
         port="5432"
     )
+    cur = con.cursor()
+    print("Database opened successfully \n")
+    data = open_region_js()
+    #print(reglist)
+    #data = reglist
+    print(f'###################### data {type(data["data"])}')
+
+    all_id = []
+    for dataitems in data['data']:
+        if dataitems['id'] in all_id:
+            print('IIIIDDDD Поймали ДУБЛЯЖ!!!!!!!!!!!!!!!!!!!!!')
+            break
+        all_id.append(dataitems['id'])
+        # Добавляем количество полей для корректного запроса заполнения SQL
+        dataitems.setdefault('url_path', 'None')  # , value)
+        dataitems.setdefault('url_name', 'None')  # , value)
+        dataitems.setdefault('index_post', 'None')  # , value)
+        dataitems.setdefault('kod_region', 'None')  # , value)
+        # self.check_region(dataitems) #dataitems)
+        reg_id = dataitems['id']
+
+        #set_region_SQL(dataitems, cur)
+        print(dataitems['id'], dataitems['kod_region'], dataitems['kod_region'], dataitems['name'], dataitems['url_path'], dataitems['url_name'], dataitems['index_post'],)
+
+        #values = ({'id': dataitems['id'], 'name': dataitems['name']})
+        #cur.execute(
+        #    "INSERT INTO APARSER_REGION (id,region_id,kod_region,url_path,url_name,index_post,NAME) VALUES (%(id)s,%(id)s,'00','blank','blank','000000',%(name)s)",
+        #    values
+        #)
+
+        #cur.execute("INSERT INTO aparser_region ('id', 'name') VALUES (dataitems['id'], dataitems['name'])")
+        #cur.execute("INSERT INTO aparser_region ('id', 'region_id', 'kod_region', 'name', 'url_path', 'url_name', 'index_post') VALUES (dataitems['id'], dataitems['kod_region'], dataitems['kod_region'], dataitems['name'], dataitems['url_path'], dataitems['url_name'], dataitems['index_post'])")
+
+    #cur = con.cursor()
+    #cur.execute("SELECT id, name from AVITO_REGION")
+    #INSERT INTO "aparser_region" ("region_id", "kod_region", "name", "url_path", "url_name", "index_post")
+#VALUES (NULL, '00', '2', 'zero', '', NULL) RETURNING "aparser_region"."id"
+
+    # rows = cur.fetchall()
+    # for row in rows:
+    #     print("id =", row[0], " NAME =", row[1])
+    #     #print("NAME =", row[1])
+    #
+    # print("Operation done successfully")
+    con.close()
+
+
+def region_list_from_db():
+    con = psycopg2.connect(
+        database="main_avito_django_bot",
+        user="postgres",
+        password="postgres",
+        #password=input("Пароль"),
+        host="192.168.100.9",
+        #host="10.10.10.18",
+        port="5432"
+    )
 
     print("Database opened successfully")
     cur = con.cursor()
     cur.execute("SELECT id, name from AVITO_REGION")
+    #INSERT INTO "aparser_region" ("region_id", "kod_region", "name", "url_path", "url_name", "index_post")
+#VALUES (NULL, '00', '2', 'zero', '', NULL) RETURNING "aparser_region"."id"
 
     rows = cur.fetchall()
     for row in rows:
@@ -96,9 +198,10 @@ class Region_set:
 
     def find_region(self, id):
         id = int(id)
-        obj = Region.objects.filter(pk).first()
+        obj = Region.objects.filter(id).first()
+        #obj = Region.objects.filter(pk).first()
         if not obj:
-            raise CommandError('no tasks found')
+            raise CommandError('no region found')
         self.Region = obj
         logger.info(f'Работаем над заданием {self.task}')
         # print(f'Работаем над заданием {self.task}')
@@ -176,7 +279,6 @@ class Region_set:
 class City:
     pass
 
-
 class test:
     def say(self):
         print('start_')
@@ -184,7 +286,9 @@ class test:
 
 def main():
 #     print("Hello")
-    region_list_from_db()
+    #open_region_js()
+    region_json_to_aparser()
+    #region_list_from_db()
 #     pass
 
 

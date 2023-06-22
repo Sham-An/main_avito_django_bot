@@ -2,7 +2,8 @@
 # https://github.com/encode/httpx/tree/master/httpx
 # cd avito_parser_django/avito
 #
-# python manage.py 'A_httpx_category_ORM'
+# python manage.py 'app_httpx_category_ORM'
+# python manage.py 'app_httpx_category_class_SQL'
 # python manage.py makemigrations aparser
 # python manage.py migrate aparser
 # .\Make reg

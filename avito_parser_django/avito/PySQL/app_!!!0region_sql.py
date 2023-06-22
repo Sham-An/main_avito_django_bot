@@ -17,7 +17,8 @@ def region_list_from_db():
 
     print("Database opened successfully")
     cur = con.cursor()
-    cur.execute("SELECT id, name from AVITO_REGION")
+    cur.execute("SELECT id, name from APARSER_REGION")
+    #cur.execute("SELECT id, name from AVITO_REGION")
 
     rows = cur.fetchall()
     for row in rows:
@@ -48,8 +49,12 @@ def region_from_js_to_db():
         name_reg = item['name']
         values = ({'id': item['id'], 'name': item['name']})
         cur.execute(
-            "INSERT INTO AVITO_REGION (id,NAME) VALUES (%(id)s,%(name)s)", values
+            "INSERT INTO APARSER_REGION (id,region_id,kod_region,url_path,url_name,index_post,NAME) VALUES (%(id)s,%(id)s,'00','blank','blank','000000',%(name)s)", values
         )
+
+        # cur.execute(
+        #     "INSERT INTO AVITO_REGION (id,NAME) VALUES (%(id)s,%(name)s)", values
+        # )
 #        values = ({'id': 1, 'name': 'Vasya', 'age': 45})
 #        cursor.execute("INSERT INTO tableName(id, name, age) VALUES (%(id)s,%(name)s,%(age)s)", values)
         con.commit()

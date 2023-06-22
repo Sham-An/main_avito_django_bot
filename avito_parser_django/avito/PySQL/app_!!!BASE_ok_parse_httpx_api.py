@@ -145,7 +145,9 @@ while cicle_stop:
 
 
     if res['status'] != 'ok':
+        #result = {'message': 'Доступ с вашего IP-адреса временно ограничен', 'link': 'ru.avito://1/firewall/captcha/show'}
             print(f'''result = {res['result']}''')
+            print(f'''result = {res['status']}''') #too-many-requests
             print(f'''result = NON''')
             sys.exit(1)
     if res['status'] == 'ok':
