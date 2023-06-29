@@ -4,6 +4,7 @@ from .models import Task
 from .models import Product
 from .models import Region
 from .models import City
+from .models import Category
 
 
 class TaskForm(forms.ModelForm):
@@ -55,6 +56,20 @@ class CityForm(forms.ModelForm):
         model = City
         fields = (
             'name',
+            'url_path',
+        )
+        widgets = {
+            'name': forms.TextInput,
+        }
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = (
+            'cat_kod',
+            'name',
+            'parent_kod',
             'url_path',
         )
         widgets = {

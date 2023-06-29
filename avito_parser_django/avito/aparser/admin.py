@@ -1,13 +1,16 @@
 from django.contrib import admin
 
 from .forms import TaskForm
-from .forms import ProductForm
 from .models import Task
+from .forms import ProductForm
 from .models import Product
-from .models import Region
-from .models import City
 from .forms import RegionForm
+from .models import Region
 from .forms import CityForm
+from .models import City
+from .forms import CategoryForm
+from .models import Category
+
 
 PRICE_FILTER_STEPS = 10
 
@@ -80,6 +83,12 @@ class CityAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'url_path')
     # list_filter = ('status', )
     form = CityForm
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'parent_kod','url_path')
+    # list_filter = ('status', )
+    form = CategoryForm
 
 # from django.contrib import admin
 #

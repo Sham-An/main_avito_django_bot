@@ -6,10 +6,32 @@ import json
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-def category_add(id):
+def category_add(id, name, parentId):
+    con = psycopg2.connect(
+        database="main_avito_django_bot",
+        user="postgres",
+        password="postgres",
+        #password=input("Пароль"),
+        #host="192.168.100.9",
+        host="10.10.10.18",
+        port="5432"
+    )
+
+    print("Database opened successfully")
+    cur = con.cursor()
+
     #models = Category
     #cat = Category.get(pk=id)
-    print("ADD CATEGORY ", id)
+    print("ADD CATEGORY ", id, name, parentId)
+    values = ({'id': id, 'name': name, 'region_id': parentId})
+
+    cur.execute(
+        "INSERT INTO APARSER_CATEGORY (id, cat_kod, name, parent_kod, url_path,url_name) VALUES (%(id)s, %(id)s,%(name)s,%(region_id)s,'blank','blank')",
+        values
+    )
+    # cur.execute("INSERT INTO APARSER_city (id, city_id, name, index_post, url_name, url_path, region_id, parent_id) VALUES (%(id)s,%(id)s,%(name)s,'00','blank','blank',%(region_id)s, %(parent_Id)s)", values)
+    con.commit()
+
 
 # #
 # #  #   PAGE_LIMIT = 10
@@ -46,7 +68,12 @@ def list_category(data):
         print(dataitems)
         all_id.append(dataitems['id'])
         # print(type(dataitems['id']))
-
+        id = dataitems['id']
+        name = dataitems['name']
+        parentId = 0
+        print("PARENT!!!! =", id, name, parentId)
+        category_add(id, name, parentId)
+#        category_add(id, name, parentId)
         if dataitems['id'] > 0:
             for datainfo in dataitems['children']:
                 if datainfo['id'] in all_id:
@@ -61,7 +88,7 @@ def list_category(data):
                 parentId = datainfo['parentId']
                 print(id, name, parentId)
                 # print(datainfo['id'], datainfo['name'], datainfo['parentId'])
-                category_add(id)
+                category_add(id, name, parentId)
     all_id.sort()
     print(all_id)
     # except AttributeError:

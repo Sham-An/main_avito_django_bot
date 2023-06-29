@@ -109,7 +109,7 @@ class Product(models.Model):
 class Category(models.Model):
     cat_kod = models.IntegerField('kod')
     name = models.CharField(verbose_name='Категория', max_length=255, blank=True)
-    parent_kod = models.IntegerField('index', blank=True)
+    parent_kod = models.IntegerField('Родитель', blank=True)
     url_path = models.CharField(max_length=255, blank=True)
     url_name = models.CharField(verbose_name='altername', max_length=255, blank=True)
 
@@ -118,8 +118,11 @@ class Region(models.Model):
     #region_id = models.IntegerField('kod_id')
     kod_region = models.CharField('код авто', max_length=255, blank=True)
     name = models.CharField('Регион', max_length=255, blank=True)
+    name_const = models.CharField('по конституции', max_length=255, blank=True)
     url_path = models.CharField(verbose_name='URL_path', max_length=255, blank=True)
     url_name = models.CharField(verbose_name='URL_name', max_length=255, blank=True)
+    subject_kod = models.CharField(verbose_name='subject_kod', max_length=255, blank=True)
+    phone_kod = models.CharField(verbose_name='phone_kod', max_length=255, blank=True)
     index_post = models.IntegerField(verbose_name='почтовый индекс', blank=True)
 
     class Meta:

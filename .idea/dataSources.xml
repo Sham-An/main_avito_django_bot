@@ -54,11 +54,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="main_avito_django_bot@10.10.10.18" uuid="8f29b02f-d4e3-4d18-b2e9-860be7a42612">
+    <data-source source="LOCAL" name="main_avito_django_bot@10.10.10.15" uuid="8f29b02f-d4e3-4d18-b2e9-860be7a42612">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://10.10.10.18:5432/main_avito_django_bot</jdbc-url>
+      <jdbc-url>jdbc:postgresql://10.10.10.15:5432/main_avito_django_bot</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
