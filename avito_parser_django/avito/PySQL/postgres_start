@@ -1,0 +1,3 @@
+postgres@s-pg13:~$ ps ax | grep bin/postgres
+# su postgres -c 'pg_ctl -w -l /opt/ssd_opt/postgresql/logfile start'
+pg_ctl -w -l /opt/ssd_opt/postgresql/logfile start

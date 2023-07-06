@@ -1,0 +1,221 @@
+Чтобы использовать метод fetchall() с классом PostgreSQLConnection, вам следует добавить это в ваш класс и вызвать его через экземпляр класса. Вот пример, как это можно сделать:
+
+python
+import psycopg2
+
+class PostgreSQLConnection:
+    def __init__(self, host, port, dbname, user, password):
+        self.host = host
+        self.port = port
+        self.dbname = dbname
+        self.user = user
+        self.password = password
+        self.connection = None
+        self.cursor = None
+    
+    def connect(self):
+        try:
+            self.connection = psycopg2.connect(
+                host=self.host,
+                port=self.port,
+                dbname=self.dbname,
+                user=self.user,
+                password=self.password
+            )
+            
+            self.cursor = self.connection.cursor()
+            print("Connected to PostgreSQL!")
+        except (Exception, psycopg2.Error) as error:
+            print("Error connecting to PostgreSQL:", error)
+    
+    def execute_query(self, query):
+        try:
+            self.cursor.execute(query)
+            print("Query executed successfully!")
+        except (Exception, psycopg2.Error) as error:
+            print("Error executing query:", error)
+    
+    def fetchall(self):
+        try:
+            return self.cursor.fetchall()
+        except (Exception, psycopg2.Error) as error:
+            print("Error fetching all rows:", error)
+            return None
+    
+    def close(self):
+        if self.cursor:
+            self.cursor.close()
+        if self.connection:
+            self.connection.close()
+            print("Connection closed.")
+
+# Пример использования класса
+connection = PostgreSQLConnection(
+    host='localhost',
+    port=5432,
+    dbname='mydb',
+    user='myuser',
+    password='mypassword'
+)
+connection.connect()
+
+# Выполнение запроса
+connection.execute_query("SELECT * FROM aparser_task")
+
+# Получение списка результатов
+rows = connection.fetchall()
+
+# Вывод списка результатов
+for row in rows:
+    print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+
+# Закрытие соединения
+connection.close()
+
+
+В этом примере я добавил метод fetchall() в класс PostgreSQLConnection. Он вызывает метод fetchall() у объекта курсора и возвращает список результатов. Затем вы можете использовать этот метод через экземпляр класса PostgreSQLConnection для получения и обработки результатов. Не забудьте вызвать close() для закрытия соединения с базой данных после использования.
+
+
+№№№№№№№№№№№№№№№№№№№№№№
+PostgreSQLConnection
+
+
+Если вы хотите использовать метод fetchall() через экземпляр класса PostgreSQLConnection,
+ у вас есть несколько вариантов реализации.
+
+1. Вариант 1: Добавить метод fetchall() в класс PostgreSQLConnection,
+ которые будет вызывать fetchall() у объекта курсора self.cursor и возвращать результаты:
+
+python
+class PostgreSQLConnection:
+    # ...
+
+    def fetchall(self):
+        try:
+            return self.cursor.fetchall()
+        except (Exception, psycopg2.Error) as error:
+            print("Error fetching all rows:", error)
+            return None
+
+# Пример использования
+connection = PostgreSQLConnection(
+    host='localhost',
+    port=5432,
+    dbname='mydb',
+    user='myuser',
+    password='mypassword'
+)
+connection.connect()
+
+# Выполнение запроса
+connection.execute_query("SELECT * FROM aparser_task")
+
+# Получение списка результатов
+rows = connection.fetchall()
+
+# Вывод списка результатов
+for row in rows:
+    print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+
+# Закрытие соединения
+connection.close()
+
+
+2. Вариант 2: Вместо добавления отдельного метода fetchall(), 
+вы можете вернуть объект курсора self.cursor и вызвать fetchall() 
+непосредственно из экземпляра класса PostgreSQLConnection:
+
+python
+# ...
+
+# Получение объекта курсора
+cursor = connection.cursor
+
+# Выполнение запроса
+cursor.execute("SELECT * FROM aparser_task")
+
+# Получение списка результатов
+rows = cursor.fetchall()
+
+# Вывод списка результатов
+for row in rows:
+    print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+
+# Закрытие соединения
+connection.close()
+
+
+3. Вариант 3: Вы можете добавить метод execute_query_and_fetchall(), 
+который будет выполнять запрос и сразу возвращать результаты с помощью fetchall():
+
+python
+class PostgreSQLConnection:
+    # ...
+
+    def execute_query_and_fetchall(self, query):
+        try:
+            self.cursor.execute(query)
+            print("Query executed successfully!")
+            return self.cursor.fetchall()
+        except (Exception, psycopg2.Error) as error:
+            print("Error executing query:", error)
+            return None
+
+# Пример использования
+connection = PostgreSQLConnection(
+    host='localhost',
+    port=5432,
+    dbname='mydb',
+    user='myuser',
+    password='mypassword'
+)
+connection.connect()
+
+# Выполнение запроса и получение списка результатов
+rows = connection.execute_query_and_fetchall("SELECT * FROM aparser_task")
+
+# Вывод списка результатов
+for row in rows:
+    print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+
+# Закрытие соединения
+connection.close()
+
+
+Выберите наиболее удобный для вас вариант, который соответствует вашим потребностям и структуре кода.
+
+######################################
+Извините за путаницу.
+Вероятно, мое предыдущее предложение создало недоразумение.
+Метод fetchall() принадлежит классу cursor, а не классу PostgreSQLConnection.
+
+Давайте исправим код согласно вашей реализации класса PostgreSQLConnection:
+
+python
+# Пример использования класса
+connection = PostgreSQLConnection(
+    host='localhost',
+    port=5432,
+    dbname='mydb',
+    user='myuser',
+    password='mypassword'
+)
+connection.connect()
+
+# Выполнение запроса
+connection.execute_query("SELECT * FROM aparser_task")
+
+# Получение списка результатов
+rows = connection.cursor.fetchall()
+
+# Вывод списка результатов
+for row in rows:
+    print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+
+# Закрытие соединения
+connection.close()
+
+
+В этом примере мы используем connection.cursor.fetchall() для получения списка результатов. cursor — это атрибут, определенный в вашем классе PostgreSQLConnection, который представляет объект курсора. Мы вызываем метод fetchall() у объекта курсора, а не у объекта соединения.
+
+Прошу прощения за возможное недоразумение и спасибо за исправление.
