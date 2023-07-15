@@ -83,8 +83,9 @@ def city_from_js_to_db():
 #     con.close()
 
 if __name__ == '__main__':
+    pass
     #create_city_db()
-    city_from_js_to_db()
+    #city_from_js_to_db()
     #city_list_from_db()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

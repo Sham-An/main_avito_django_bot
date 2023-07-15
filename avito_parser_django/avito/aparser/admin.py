@@ -73,20 +73,20 @@ class TaskAdmin(admin.ModelAdmin):
 
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'kod_region', 'name', 'url_path')
+    list_display = ('pk', 'kod_region', 'name') #, 'slug'
     # list_filter = ('status', )
     form = RegionForm
 
 
 @admin.register(City)
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'url_path')
+    list_display = ('pk', 'name', 'region_id') #'slug',
     # list_filter = ('status', )
     form = CityForm
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'parent_kod','url_path')
+    list_display = ('pk', 'name', 'parent_kod') #'slug',
     # list_filter = ('status', )
     form = CategoryForm
 

@@ -1,14 +1,14 @@
 import psycopg2
+from config import params
 
 # Параметры подключения к базе данных
-params = {
-    'host': 'localhost',
-    'port': 5432,
-    'dbname': 'main_avito_django_bot',
-    'user': 'postgres',
-    'password': 'postgres'
-}
-
+# params = {
+#     'host': 'localhost',
+#     'port': 5432,
+#     'dbname': 'main_avito_django_bot',
+#     'user': 'postgres',
+#     'password': 'postgres'
+# }
 # Подключение к базе данных
 conn = psycopg2.connect(**params)
 cursor = conn.cursor()

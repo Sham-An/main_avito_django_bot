@@ -11,17 +11,18 @@ def city_list_from_db():
         password="postgres",
         #password=input("Пароль"),
         #host="192.168.100.9",
-        host="10.10.10.18",
+        host="192.168.88.254",
+        #host="10.10.10.18",
         port="5432"
     )
 
     print("Database opened successfully")
     cur = con.cursor()
-    cur.execute("SELECT id, name,parent_Id from AVITO_city")
+    cur.execute("SELECT id, name from aparser_city") #, parent_Id
 
     rows = cur.fetchall()
     for row in rows:
-        print("id =", row[0], " NAME =", row[1], "parent_Id =", row[2])
+        print("id =", row[0], " NAME =", row[1]) #, "parent_Id =", row[2])
         #print("NAME =", row[1])
 
     print("Operation done successfully")
@@ -100,7 +101,8 @@ def print_hi(name):
 if __name__ == '__main__':
     #create_city_db_sql()
     print('start')
-    city_from_js_to_db()
+    #city_from_js_to_db()
+    city_list_from_db()
 
     #city_list_from_db()
 

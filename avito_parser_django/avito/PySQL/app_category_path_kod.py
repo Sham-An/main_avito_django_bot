@@ -128,7 +128,7 @@ def parse_xml_new(resp_text):
 
         print(f'dirLst {len(dirLst)} = {dirLst}  url = {url}')
         print(f'  name {name} @@@@@@@@ Cat_id = {cat_id}      dirname_cat = {dirname_cat1} \n')
-
+##########################################################################
         #print(f'dirname = {dirname1}')
     # ! В HTML карточке объявления путь к ID City
     # https://www.avito.ru/bryansk/zapchasti_i_aksessuary/dvigatel_na_skuter_150_kubov_157qmj_2332435829
@@ -163,7 +163,7 @@ def parse_xml_new(resp_text):
     #     desript = item_lxml.xpath('//meta[@itemprop="description"]')
     #     # getting movie id
     #     movie_link = item_lxml.xpath('.//div[@class = "nameRus"]/a/@href')[0]
-
+#<div class="style-item-map-wrapper-ElFsX" data-map-zoom="16" data-map-lat="53.233451" data-map-lon="34.358116" data-map-type="dynamic" data-item-id="2140356688" data-location-id="623880" data-category-id="10" data-shop-id="1481543">
 def parse_xml_old(resp_text):
     html_txt = resp_text  # response.text
     #print(html_txt)
@@ -212,9 +212,22 @@ def parse_xml_old(resp_text):
         print(f'Pages names = {name} url = {url}')
 
     # ! В HTML карточке объявления путь к ID City
-    # https://www.avito.ru/bryansk/zapchasti_i_aksessuary/dvigatel_na_skuter_150_kubov_157qmj_2332435829
-    # //*[@id="app"]/div/div[2]/div[1]/div[2]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[3]
-    # XPATH = .//div//div//div[@data-map-type='dynamic']
+    #//*[@id="app"]//div[substring(@class,1,22) ="style-item-map-wrapper"]
+    #<div class="style-item-map-wrapper-ElFsX" data-map-zoom="16" data-map-lat="55.751664" data-map-lon="37.817173" data-map-type="dynamic" data-item-id="1488644666" data-location-id="637640" data-category-id="101">
+    #//*[@id="app"]/div/div[2]/div[1]/div/div[2]/div[3]/div[1]/div[2]/div[1]/div[3]/div/div[3]
+
+#//*[@id="app"]/div/div[3]/div/div[2]/div[3]/div[3]/div[3]/nav/ul/li[7]/span
+    #//*[@id="app"]//a[contains(@class, "pagination-page")]
+
+    #Last page
+    #//*[@id="app"]//div[contains(@class, "pagination-page")]/a[last()]
+
+    #ID-City = ./div/div/div[substring(@class,1,22) ="style-item-map-wrapper"]
+    #"style-item-map-wrapper-ElFsX"
+#//*[@id="app"]/div/div[2]/div[1]/div/div[2]/div[3]/div[1]/div[2]/div[1]/div[2]/div/div[3]
+#!!! //*[@id="app"]//div[substring(@data-marker,1,15) ="item-navigation"]
+#data-marker="item-navigation"
+#div[substring(@data-marker,1,15) ="item-navigation"]
 
     # data-item-id="2332435829" ID объявления
     # data-location-id="623880" ID City
@@ -249,7 +262,7 @@ def parse_xml_old(resp_text):
 ################################################################################################
 def get_file_new():
     #with open("Data/get_categories1.html", 'r', encoding='utf-8') as file:
-    with open("Data/get_categories2.html", 'r', encoding='utf-8') as file:
+    with open("get_categories2.html", 'r', encoding='utf-8') as file:
         r = file.read()
      #   print(r)
     parse_xml_new(r)

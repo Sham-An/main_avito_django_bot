@@ -41,7 +41,6 @@ class RegionForm(forms.ModelForm):
         model = Region
         fields = (
             'name',
-            'url_path',
             'kod_region',
         )
         widgets = {
@@ -49,14 +48,14 @@ class RegionForm(forms.ModelForm):
         }
 
 
-# 'kod_region', 'name', 'url_path'
+# 'kod_region', 'name', 'slug'
 
 class CityForm(forms.ModelForm):
     class Meta:
         model = City
         fields = (
             'name',
-            'url_path',
+            'region',
         )
         widgets = {
             'name': forms.TextInput,
@@ -70,7 +69,6 @@ class CategoryForm(forms.ModelForm):
             'cat_kod',
             'name',
             'parent_kod',
-            'url_path',
         )
         widgets = {
             'name': forms.TextInput,

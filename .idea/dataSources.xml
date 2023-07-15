@@ -61,5 +61,12 @@
       <jdbc-url>jdbc:postgresql://10.10.10.15:5432/main_avito_django_bot</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="main_avito_django_bot@192.168.88.253" uuid="161ef8a3-2cbb-4ef2-abec-6ded54e57f1c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://192.168.88.253:5432/main_avito_django_bot</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

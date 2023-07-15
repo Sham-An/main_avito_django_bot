@@ -6,13 +6,20 @@ password = 'postgres'
 bd_name = 'main_avito_django_bot'
 port = '5432'
 
-api_reg = os.getenv("API_BOT_161")#.split(":")
-api_bot_reg = api_reg.split(":")
-bot_login = api_bot_reg[0]
-api_key = api_bot_reg[1]
-token = api_reg
-chat_id = bot_login
+# api_reg = os.getenv("API_BOT_161")#.split(":")
+# api_bot_reg = api_reg.split(":")
+# bot_login = api_bot_reg[0]
+# api_key = api_bot_reg[1]
+# token = api_reg
+# chat_id = bot_login
 
+params = {
+    'host': 'localhost',
+    'port': 5432,
+    'dbname': 'main_avito_django_bot',
+    'user': 'postgres',
+    'password': 'postgres'
+}
 
 
 # config(
@@ -22,13 +29,13 @@ chat_id = bot_login
 # password = password
 #  )
 
-config = {
-    'host': host,
-    'user': user,
-    'password': password,
-    'database': bd_name,
-    'token': api_reg,
-}
+# config = {
+#     'host': host,
+#     'user': user,
+#     'password': password,
+#     'database': bd_name,
+#     'token': api_reg,
+# }
 
 
 """

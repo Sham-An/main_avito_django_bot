@@ -5,18 +5,20 @@ import ssl
 import httpx
 from lxml import html
 import psycopg2
+from config import params
 
 
 def create_db_sql():
-    con = psycopg2.connect(
-        database="main_avito_django_bot",
-        user="postgres",
-        password="postgres",
-        # password=input("Пароль"),
-        #host="192.168.100.9",
-        host="10.10.10.18",
-        port="5432"
-    )
+    con = psycopg2.connect(**params)
+    #
+    #     database="main_avito_django_bot",
+    #     user="postgres",
+    #     password="postgres",
+    #     # password=input("Пароль"),
+    #     #host="192.168.100.9",
+    #     host="10.10.10.18",
+    #     port="5432"
+    # )
 
     print("Database opened successfully")
 
@@ -206,7 +208,7 @@ class AvitoParser:
 
 def main():
     con = create_db_sql()
-    print(con)
+    print(f'con = {con}')
     # CIPHERS = """ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:AES256-SHA"""
     # session = requests.session()
     # session = HTMLSession()

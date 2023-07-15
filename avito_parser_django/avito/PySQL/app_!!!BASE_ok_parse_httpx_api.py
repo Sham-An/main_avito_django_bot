@@ -91,8 +91,8 @@ print(f'куки = {cookie}')
 #proxiess = {'http': '207.154.231.208:3128'}
 #UA = UserAgent().random
 #s.get('https://m.avito.ru/', proxies = proxiess)#, useragent = UA) #   useragent = str(UA)                 # Делаем запрос на мобильную версию.
-url_api_9 = 'https://m.avito.ru/api/9/items'    # Урл первого API, позволяет получить id и url объявлений по заданным фильтрам
-url_api_10 = 'https://m.avito.ru/api/10/items'
+url_api_9_BAD = 'https://m.avito.ru/api/9/items'    # Урл первого API, позволяет получить id и url объявлений по заданным фильтрам
+url_api_10 = 'https://m.avito.ru/api/10/items' #OK 11, 
 #r = httpx.get(url_api_9, verify=ssl_context)
 # Тут уже видно цену и название объявлений
 #uag = useragent.Random()
@@ -124,9 +124,11 @@ while cicle_stop:
     cikle += 1          # Так как страницы начинаются с 1, то сразу же итерируем
     params['page'] = cikle
     #print(params)
-
+    #print(f"https://avito.ru/{}/{}/{}?p={}&{}={}".format(*args))
     #res = s.get(url_api_9, params=params, proxies = proxiess) #, useragent = UA) #, useragent = str(UA))
     res = httpx.get(url_api_10, params=params, verify=ssl_context)
+    print(res.url)
+    #print(url_api_10, params)
 
     #r  = httpx.get(url_av, verify=ssl_context)
     #print(f'PROXIIESS {proxiess} Agent {UA} \n HEADERS {headers}')
