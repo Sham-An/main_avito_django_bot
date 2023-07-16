@@ -112,7 +112,7 @@ QLineEdit#urlLineEdit {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>230</y>
+        <y>430</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -124,10 +124,10 @@ QLineEdit#urlLineEdit {
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>40</y>
-        <width>711</width>
-        <height>181</height>
+        <width>701</width>
+        <height>144</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -152,7 +152,20 @@ QLineEdit#urlLineEdit {
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QListWidget" name="list_Query"/>
+       </item>
       </layout>
+     </widget>
+     <widget class="QTableWidget" name="table_Query">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
+        <width>271</width>
+        <height>171</height>
+       </rect>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">

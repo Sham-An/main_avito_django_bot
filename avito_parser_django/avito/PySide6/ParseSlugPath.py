@@ -21,13 +21,15 @@ fragment = parsed_url.fragment
 parsed_query = parse_qs(query)
 
 #Парсим Path
-#<scheme>://<netloc>/<path>;<params>?<query>#<fragment>
 # Выводим результат
+
+#<scheme>://<netloc>/<path>;<params>?<query>#<fragment>
 print("Scheme:", scheme)
 print("Netloc:", netloc)
 print("Path:", path)
 print("Path parts:", path_parts)
 print("Params:", params)
 print("Query:", query)
-print("Fragment:", fragment)
 print("Parsed Query:", parsed_query)
+print("Fragment:", fragment)
+
