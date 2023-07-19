@@ -1,7 +1,47 @@
 from urllib.parse import urlparse, parse_qs
-from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
-from PyQt5.uic import loadUi
+from PySide2.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
+from PySide2.QtGui import QStandardItemModel, QStandardItem
+from PySide2.QtCore import QFile
+from PySide2.QtUiTools import QUiLoader
+import psycopg2
+from config_PySide import params
 
+def get_task():
+    conn = psycopg2.connect(**params)
+    cursor = conn.cursor()
+
+    # Выполнение запроса
+    query_all_task = "SELECT * FROM aparser_task"
+    cursor.execute(query_all_task)
+
+    # Получение списка результатов и имен столбцов
+    rows = cursor.fetchall()
+    column_names = [desc[0] for desc in cursor.description]
+
+    # Закрытие соединения
+    cursor.close()
+    conn.close()
+
+    # Очистка таблиц
+    ui.table_Task.clearContents()
+    #ui.View_Task.clearContents()
+
+    # Заполнение таблицы table_Task
+    row_count = len(rows)
+    column_count = len(column_names)
+
+    # Создание модели данных
+    model = QStandardItemModel(row_count, column_count)
+
+    for i, row in enumerate(rows):
+        items = [QStandardItem(str(value)) for value in row]
+        model.appendRow(items)
+
+    # Установка модели данных в table_Task
+    ui.table_Task.setModel(model)
+
+    # Установка модели данных в View_Task
+    ui.View_Task.setModel(model)
 
 def button1_clicked():
     url = ui.urlLineEdit.text()  # Получаем текст из поля urlLineEdit
@@ -34,8 +74,6 @@ def button1_clicked():
     for key, value in parsed_query.items():
         ui.list_Query.addItem(f"{key}: {value}")
 
-
-
     # Выводим результаты в table_Query
     ui.table_Query.clear()  # Очищаем таблицу
 
@@ -55,15 +93,19 @@ def button1_clicked():
         ui.table_Query.setItem(row, 1, value_item)
         row += 1
 
+    get_task()
 
 app = QApplication([])
-ui = loadUi("mainwindow.ui")
+ui_file = "mainwindow.ui"
+ui = QUiLoader().load(QFile(ui_file))
 window = QMainWindow()
 window.setWindowTitle("Task edit")
 window.setCentralWidget(ui)
 
 # Подключение функции button1_clicked к сигналу clicked кнопки button1
 ui.button1.clicked.connect(button1_clicked)
+ui.Get_Task.clicked.connect(get_task)
 
 window.show()
 app.exec_()
+

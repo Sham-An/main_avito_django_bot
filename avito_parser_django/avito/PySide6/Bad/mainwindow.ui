@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>755</width>
-    <height>594</height>
+    <height>634</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,7 +26,7 @@
       <x>10</x>
       <y>0</y>
       <width>731</width>
-      <height>541</height>
+      <height>581</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -112,7 +112,7 @@ QLineEdit#urlLineEdit {
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>430</y>
+        <y>260</y>
         <width>75</width>
         <height>23</height>
        </rect>
@@ -162,8 +162,41 @@ QLineEdit#urlLineEdit {
        <rect>
         <x>20</x>
         <y>190</y>
-        <width>271</width>
-        <height>171</height>
+        <width>701</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="table_Task">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>290</y>
+        <width>701</width>
+        <height>71</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Get_Task">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>490</y>
+        <width>94</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Get_Task</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="View_Task">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>370</y>
+        <width>701</width>
+        <height>91</height>
        </rect>
       </property>
      </widget>
