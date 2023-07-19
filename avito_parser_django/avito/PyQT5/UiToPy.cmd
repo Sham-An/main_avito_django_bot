@@ -1,0 +1,8 @@
+#Win
+pyuic5 I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\View_task.ui -o I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\view_task_form_QT5.py
+#lin
+pyuic5 /opt/opt2/PycharmProjects/main_avito_django_bot/avito_parser_django/avito/PyQT5/View_task.ui -o /opt/opt2/PycharmProjects/main_avito_django_bot/avito_parser_django/avito/PyQT5/view_task_form_QT5.py
+
+pyuic6 I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\View_task.ui -o I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\view_task_form_PS_6.py
+
+pyside6-uic I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\View_task.ui -o I:\pythonProjects\main_avito_django_bot\avito_parser_django\avito\PySide6_net\view_task_form_PS_6.py
