@@ -57,7 +57,7 @@ QLineEdit#urlLineEdit {
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>21</width>
+        <width>31</width>
         <height>20</height>
        </rect>
       </property>
@@ -71,9 +71,9 @@ QLineEdit#urlLineEdit {
      <widget class="QLineEdit" name="urlLineEdit">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>50</x>
         <y>10</y>
-        <width>631</width>
+        <width>361</width>
         <height>21</height>
        </rect>
       </property>
@@ -96,16 +96,16 @@ QLineEdit#urlLineEdit {
 </string>
       </property>
       <property name="text">
-       <string>https://www.avito.ru/rostovskaya_oblast_aksay/tovary_dlya_kompyutera/komplektuyuschie-ASgBAgICAUTGB~pm?f=ASgBAgECAUTGB~pmAUXGmgwXeyJmcm9tIjoxMDAwLCJ0byI6NjAwMH0&amp;q=E-MU+1616&amp;s=1</string>
+       <string>https://www.avito.ru/rostovskaya_oblast_aksay/tovary_dlya_kompyutera/komplektuyuschie-ASgBAgICAUTGB~pm?f=ASgBAgECAUTGB~pmAUXGmgwXeyJmcm9tIjoxMDAwLCJ0b</string>
       </property>
       <property name="maxLength">
-       <number>255</number>
+       <number>150</number>
       </property>
       <property name="cursorPosition">
        <number>1</number>
       </property>
       <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
      <widget class="QPushButton" name="button1">

@@ -2,7 +2,6 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import Qt
-from PyQt5.QtCore import QUrl
 from view_task_form_QT5 import Ui_MainWindow
 import psycopg2
 from config_PySide import params
@@ -33,40 +32,41 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
 
-#        self.Copy.clicked.connect(self.button1_clicked)
+        self.button1.clicked.connect(self.button1_clicked)
         self.fill_table()
         self.Get_Task.clicked.connect(self.get_task)
 
-        # Привязка обработчика событий на смену строки в таблице
-        selection_model = self.View_Task.selectionModel()
-        selection_model.currentChanged.connect(self.on_selection_change)
-
     def fill_table(self):
-        self.model = QStandardItemModel(self.View_Task)
-        self.View_Task.setModel(self.model)
+        model = QStandardItemModel(self.View_Task)
+        self.View_Task.setModel(model)
 
         data = [
             ['Получите задания', 0, 0],
         ]
 
-        self.model.setRowCount(len(data))
-        self.model.setColumnCount(len(data[0]))
+        model.setRowCount(len(data))
+        model.setColumnCount(len(data[0]))
 
         for i, row in enumerate(data):
             for j, value in enumerate(row):
                 item = QStandardItem(str(value))
-                self.model.setItem(i, j, item)
+                model.setItem(i, j, item)
 
     def get_task(self):
+        model = QStandardItemModel(self.View_Task)
+        self.View_Task.setModel(model)
         data = get_task_db()
 
-        self.model.setRowCount(len(data))
-        self.model.setColumnCount(len(data[0]))
+        model.setRowCount(len(data))
+        model.setColumnCount(len(data[0]))
 
         for i, row in enumerate(data):
             for j, value in enumerate(row):
                 item = QStandardItem(str(value))
-                self.model.setItem(i, j, item)
+                model.setItem(i, j, item)
+
+        # Ваш код для получения данных и заполнения таблицы
+        #pass
 
     def button1_clicked(self):
         url = self.urlLineEdit.text()  # Получаем текст из поля urlLineEdit
@@ -99,6 +99,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for key, value in parsed_query.items():
             self.list_Query.addItem(f"{key}: {value}")
 
+
+
         # Выводим результаты в table_Query
         self.table_Query.clear()  # Очищаем таблицу
 
@@ -118,17 +120,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         #     self.table_Query.setItem(row, 1, value_item)
         #     row += 1
 
-    def on_selection_change(self, current, previous):
-        # Получение текущей строки и третьей колонки
-        column = 2  # Вторая колонка (с индексом 1)
-        value = current.sibling(current.row(), column).data()
-
-        # Парсинг URL и установка этого значения в lineEdit
-        url = QUrl(value)
-        self.lineEdit.setText(url.toString())
-
-        # Возврат курсора в начало строки
-        self.lineEdit.setCursorPosition(0)
 
 
 if __name__ == "__main__":
@@ -136,3 +127,54 @@ if __name__ == "__main__":
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
+
+# import psycopg2
+# from config_PySide import params
+# from PySide6.QtWidgets import QApplication, QMainWindow, QTableView
+# from PySide6.QtGui import QStandardItemModel, QStandardItem
+# from view_task_form_PS6 import Ui_MainWindow
+#
+# def get_task():
+#     conn = psycopg2.connect(**params)
+#     cursor = conn.cursor()
+#
+#     # Выполнение запроса
+#     query_all_task = "SELECT * FROM aparser_task"
+#     cursor.execute(query_all_task)
+#
+#     # Получение списка результатов и имен столбцов
+#     rows = cursor.fetchall()
+#     column_names = [desc[0] for desc in cursor.description]
+#
+#     # Закрытие соединения
+#     cursor.close()
+#     conn.close()
+#
+#     # Получение модели таблицы View_Task
+#     model = ui.View_Task.model()
+#     if model is None:
+#         model = QStandardItemModel()
+#         ui.View_Task.setModel(model)
+#
+#     # Очистка и установка размера таблицы
+#     model.clear()
+#     model.setRowCount(len(rows))
+#     model.setColumnCount(len(column_names))
+#
+#     # Заполнение таблицы данными
+#     for i, row in enumerate(rows):
+#         for j, value in enumerate(row):
+#             if value is not None:
+#                 item = QStandardItem(str(value))
+#                 model.setItem(i, j, item)
+#
+# if __name__ == '__main__':
+#     app = QApplication([])
+#     mainwindow = QMainWindow()
+#     ui = Ui_MainWindow()
+#     ui.setupUi(mainwindow)
+#     mainwindow.show()
+#
+#     ui.Get_Task.clicked.connect(get_task)
+#
+#     app.exec()

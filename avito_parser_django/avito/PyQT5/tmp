@@ -1,0 +1,74 @@
+В первых строках мы импортируем необходимые модули для нашего приложения. Мы также импортируем класс Ui_MainWindow из файла view_task_form_QT5_GPT.py, содержащий настройки дизайна формы.CopyCopy
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QUrl
+from view_task_form_QT5_GPT import Ui_MainWindow
+import psycopg2
+from config_PySide import params
+from urllib.parse import urlparse, parse_qs
+CopyCopy
+Мы создаем класс MainWindow, который наследуется от QtWidgets.QMainWindow и Ui_MainWindow. Метод __init__() создает экземпляры курсора и соединения с базой данных psycopg2 с помощью параметров хранящихся в файле config_PySide.py.CopyCopyCopyCopyCopyCopyCopy
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        # Настраиваем соединение с базой данных
+        self.conn = psycopg2.connect(**params)
+        self.cursor = self.conn.cursor()
+CopyCopy
+Мы можем использовать метод self.setupUi(self) в экземпляре Ui_MainWindow, чтобы заполнить нашу форму. Любые дополнительные настройки, которых нет в дизайнере с помощью PyQt5, пишутся после вызова self.setupUi(self).CopyCopyCopyCopyCopy
+        self.setupUi(self)
+CopyCopy
+Метод __init__() также настраивает модель таблицы QStandardItemModel и устанавливает её в нашем представлении таблицы View_Task.CopyCopyCopyCopy
+        # Настраиваем модель таблицы
+        self.model = QStandardItemModel(self.View_Task)
+        self.View_Task.setModel(self.model)
+CopyCopy
+Метод get_task() получает все задания из таблицы aparser_task и заполняет модель таблицы данными из БД. Эта функция предназначена для подключения к кнопке Get Task.CopyCopyCopyCopyCopy
+    def get_task(self):
+        # Выполняем запрос к базе данных
+        query_all_task = "SELECT * FROM aparser_task"
+        self.cursor.execute(query_all_task)
+
+        # Получаем данные и имена столбцов и заполняем модель таблицы
+        rows = self.cursor.fetchall()
+        column_names = [desc[0] for desc in self.cursor.description]
+        self.model.clear()
+        self.model.setColumnCount(len(column_names))
+        self.model.setHorizontalHeaderLabels(column_names)
+        for row in rows:
+            data = [str(col) for col in row]
+            self.model.appendRow([QStandardItem(d) for d in data])
+CopyCopy
+Метод on_selection_change() срабатывает при смене строки в таблице View_Task и выводит различные компоненты URL-адреса нашей страницы в соответствующие поля, используя методы urlparse() и parse_qs() из модуля urllib.parse.CopyCopyCopyCopyCopyCopyCopyCopy
+    def on_selection_change(self, current, previous):
+        # Получаем URL из текущей строки таблицы
+        url_col = self.model.columnCount() - 1
+        url = self.model.item(current.row(), url_col).text()
+
+        # Парсим URL и выводим его компоненты
+        parsed_url = urlparse(url)
+        self.urlLineEdit.setText(url)
+        self.schemeLineEdit.setText(parsed_url.scheme)
+        self.hostLineEdit.setText(parsed_url.netloc)
+        self.pathLineEdit.setText(parsed_url.path)
+        self.queryPlainTextEdit.setPlainText(parsed_url.query)
+        self.fragmentLineEdit.setText(parsed_url.fragment)
+CopyCopy
+В методе closeEvent() мы закрываем соединение с базой данных при закрытии приложения.CopyCopy
+    def closeEvent(self, event):
+        # Закрываем соединение с базой данных
+        self.cursor.close()
+        self.conn.close()
+        event.accept()
+CopyCopy
+Метод if __name__ == "__main__": отвечает за запуск нашего приложения. Мы создаем экземпляр класса MainWindow, показываем его и запускаем QApplication.CopyCopyCopyCopy
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec_())
+CopyCopy
