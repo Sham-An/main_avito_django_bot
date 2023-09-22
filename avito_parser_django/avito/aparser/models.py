@@ -65,13 +65,13 @@ class Task(models.Model):
     #url_path1 = models.CharField(verbose_name='Region', max_length=255, blank=True)
 
     slug_reg = models.CharField(verbose_name='region', max_length=255, blank=True)
-    reg_kod = models.IntegerField('Region_kod', blank=True)
+    reg_kod = models.IntegerField('Region_kod', blank=True, null=True)
 
     slug_city = models.CharField(verbose_name='City', max_length=255, blank=True)
-    city_kod = models.IntegerField('City_kod', blank=True)
+    city_kod = models.IntegerField('City_kod', blank=True, null=True)
 
     slug_category = models.CharField(verbose_name='category', max_length=255, blank=True)
-    category_kod = models.IntegerField('category_kod', blank=True)
+    category_kod = models.IntegerField('category_kod', blank=True, null=True)
 
     search_key = models.CharField(verbose_name='search_key', max_length=255, blank=True)
     search_filter = models.CharField(verbose_name='search_filter', max_length=255, blank=True)
