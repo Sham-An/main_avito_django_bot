@@ -3,7 +3,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import QUrl
 from urllib.parse import urlparse, parse_qs
-from view_task_form_QT5_GPT import Ui_MainWindow  # изменено
+#from view_task_form_QT5_GPT import Ui_MainWindow  # изменено
+from view_task_form_QT5_GPT_tmp import Ui_MainWindow  # изменено
 import psycopg2
 from config_PySide import params
 from urllib.parse import urlparse, parse_qs

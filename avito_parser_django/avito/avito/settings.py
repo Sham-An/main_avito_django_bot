@@ -198,4 +198,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Debug Toolbar
 INTERNAL_IPS = [
     '127.0.0.1',
+    '10.10.16.2',
+    '192.168.100.9',
+    '192.168.100.4',
+    '10.10.16.4',
+    '10.10.16.5',
+    #'192.168.88.200',
 ]

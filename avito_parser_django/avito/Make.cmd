@@ -1,4 +1,5 @@
 rem export PYTHONPATH:=$(shell pwd)/avito
+rem
 rem  .\Make srv
 rem  .\Make reg
 rem cd avito_parser_django/avito
