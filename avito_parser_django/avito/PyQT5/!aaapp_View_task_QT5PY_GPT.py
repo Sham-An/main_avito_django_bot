@@ -4,13 +4,14 @@ from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from PyQt5.QtCore import QUrl
 from urllib.parse import urlparse, parse_qs
 #from view_task_form_QT5_GPT import Ui_MainWindow  # изменено
-from view_task_form_QT5_GPT_tmp import Ui_MainWindow  # изменено
+#from view_task_form_QT5_GPT_tmp import Ui_MainWindow  # изменено
+from view_task_form_QT5_WIN import Ui_TaskEDIT #Ui_MainWindow  # изменено
 import psycopg2
 from config_PySide import params
 from urllib.parse import urlparse, parse_qs
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_TaskEDIT): #Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
